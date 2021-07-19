@@ -1,0 +1,920 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    color: #555;
+    overflow: hidden;
+    font-family: 'Source Sans Pro', sans-serif;
+    outline: none;
+}
+
+body {
+    background: #f9fcfb;
+    font-size: 20px;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #0000004d;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #e2ffe06e;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.5); 
+    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:hover{
+    background: #cbffc7fa;
+}
+
+/* medium-zoom-image */
+.medium-zoom-overlay {
+    z-index: 2;
+}
+
+.medium-zoom-image--opened {
+    z-index: 9;
+    opacity: 1 !important;
+}
+
+.zoom, .z {
+    width: 100%;
+}
+
+.clearfix {
+    zoom: 1
+}
+
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+/*
+#2F4050
+aksahi: #3273a8 (rgb(50, 115, 168))
+green: #32a88b (rgb(50, 168, 139))
+nil: #003366 (rgb(rgb(0, 51, 102)))
+red: #FF0000 (rgb(255, 0, 0))
+Meron: #800000 (rgb(128, 0, 0))
+*/
+a p {
+    font-weight: bold;
+}
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+}
+
+/**** Left Side****/
+
+
+.left {
+    position: relative;
+    float: left;
+    height: 100vh;
+    width: 20%;
+}
+
+
+/**** BRAND & SIDE MENU****/
+
+.brand {
+    color: #fff;
+    text-align: center;
+    margin-top: 10px;
+    padding: 15px;
+}
+
+.brand img {
+    width: 90% !important;
+}
+
+.sidebar {
+    height: 80%;
+}
+
+.left .brand {
+    background-color: rgb(50, 168, 139, 0.1);
+    border-radius: 15px;
+}
+
+.sidebar .allpages {
+    margin-top: 5px;
+    height: auto;
+    background-color: rgb(50, 168, 139, 0.1);
+    border-radius: 15px;
+}
+
+.left .sidebar ul li {
+    padding-left: 15px;
+    margin: 10px;
+}
+
+.left .sidebar ul li a {
+    color: #000;
+    font-weight: 600;
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.sidemenu-link-hover:hover {
+    background-color: rgb(50, 168, 139, 0.2);
+    border-radius: 25px;
+    margin-right: 20px;
+}
+
+.sidemenu-link-hover .icon-link {
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+}
+
+.left .sidebar ul li a .fas {
+    width: 30px;
+}
+
+
+/**** OWN PROFILE ****/
+
+.profile {
+    background-color: rgb(50, 168, 139, 0.1);
+    border-radius: 15px;
+    margin-top: 5px;
+}
+
+.profile .row {
+    width: 90%;
+    margin: 10px 10px;
+}
+
+.profile .row .col-2 {
+    width: 20%;
+    ;
+    float: left;
+    margin-right: 5px;
+}
+
+.circular-img img {
+    border-radius: 50%;
+    width: 30px;
+}
+
+.profile .row .col-6 {
+    width: 55%;
+    float: left;
+    margin-top: 5px;
+}
+
+.profile .row .col-6 p {
+    font-weight: bold;
+    font-size: 85%;
+}
+
+.profile .row .col-4 {
+    width: 15%;
+    margin-top: 5px;
+}
+
+.profile .row .col-4 i {
+    float: right;
+    margin-right: 0px;
+    padding-top: 12%;
+}
+
+.profile-row {
+    padding: 10px 5px;
+}
+
+.profile-row:hover {
+    background-color: rgb(50, 168, 139, 0.2);
+    border-radius: 25px;
+}
+
+
+
+/**** Middle Side****/
+
+
+/*Nav-bars*/
+
+.nav-var-menu {
+    display: none;
+}
+
+.nav-var-menu .nav-var-link-hover-2 img {
+    border-radius: 50%;
+    width: 40px;
+}
+
+.middle {
+    position: relative;
+    float: left;
+    height: 100vh;
+    width: 55%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.middle .active-page .page-name {
+    margin: 20px 0;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.middle .active-page .page-name :hover {
+    color: rgb(50, 168, 139);
+}
+
+.active-page {
+    border: 1px solid rgb(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 15px;
+}
+
+.active-page {
+    display: none;
+}
+
+.middleContent {
+    border: 1px solid rgb(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 5px;
+    background-color: rgb(50, 168, 139, 0.03);
+}
+
+/* profile pane  */
+.page-head {
+    padding: 4px 0;
+    font-size: 85%;
+    font-weight: bold;
+    background-color: #eaf6f3 !important;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-radius: 0 !important;
+}
+
+.page-head button {
+    background-color: #eaf6f3;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    outline: none;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.page-head button,
+.page-head a {
+    cursor: pointer;
+    padding: .375rem .75rem;
+}
+
+.page-head button:hover,
+.page-head a:hover {
+    background-color: #e3f0ed;
+}
+
+.page-head>button>i {
+    color: #000;
+}
+
+.details-profile {
+    position: relative;
+}
+
+.cover-picture {
+    height: 250px;
+}
+
+.cover-picture img {
+    margin-top: -11%;
+}
+
+.profile-picture {
+    margin-left: 2%;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    bottom: 0;
+    border: 5px solid white;
+    border-radius: 50%;
+
+}
+
+.profile-btn {
+    padding: 10px 20px;
+    float: right;
+    margin: 10px 20px;
+    border-radius: 5px;
+    color: rgb(50, 168, 139);
+    font-weight: 600;
+    border: 2px solid rgb(50, 168, 139);
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    transition: 0.3s;
+}
+
+.profile-btn:hover {
+    color: white;
+    background-color: #32a88b;
+}
+
+.details-profile2 {
+    margin: 0 5% 2%;
+}
+
+.name-and-handle {
+    float: left;
+}
+
+.name-and-handle .profile-name {
+    font-weight: 600;
+    margin-top: 2%;
+}
+
+p.profile-name {
+    font-size: 80%;
+}
+
+.name-and-handle .profile-handle {
+    font-size: 80%;
+    opacity: 0.8;
+    margin: 7% 0;
+    font-weight: 600;
+}
+
+.followers-and-following {
+    margin: 30px 0 20px;
+    font-size: 70%;
+    float: right;
+}
+
+.followers-and-following span {
+    font-weight: 600;
+}
+
+.followers-and-following a:hover,
+.followers-and-following a:active {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/**** POST TYPPING PART ****/
+
+
+.DP-circular-img img {
+    border-radius: 50%;
+    width: 60%;
+    margin-left: 6px;
+}
+
+.middleContent .row .col-2 {
+    width: 12%;
+    position: relative;
+    float: left;
+}
+
+.middleContent .row .col-8 {
+    width: 85%;
+    position: relative;
+    float: left;
+    padding: 2%;
+}
+
+.middleContent .row {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.textarea:focus{
+    box-shadow: 0px 0px 10px 0px #2fb1656e;
+}
+
+form .textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    padding: 7px;
+    border: 1px solid #d8f1e3;
+    border-radius: 3px;
+    outline: 2px solid #d8f1e3;
+}
+textarea.textarea{
+    overflow-y: auto;
+}
+.title.textarea {
+    height: 20%;
+    font-size: 85%;
+    margin-bottom: 1%;
+}
+
+.stories h2 {
+    padding-top: 2px;
+    text-align: center;
+    font-weight: 900;
+    background-color: #eaf6f3;
+    color: #2fb166;
+}
+
+.stories h2:after {
+    content: ' ';
+    width: 15%;
+    margin: 5px auto 2px;
+    display: block;
+    border-top: 2px dotted rgba(36, 116, 36, 0.432);
+    border-bottom: 0;
+}
+
+.col-8 .post-icon .fas {
+    float: left;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    margin-left: 15px;
+    padding: 5px;
+}
+
+.col-8 .post-icon .fas:hover {
+    background-color: rgb(50, 168, 139, 0.2);
+    border-radius: 50%;
+    transition: 0.1s;
+}
+
+.col-8 .post-icon {
+    float: left;
+    margin-top: 5px;
+}
+
+.col-8 .post-button {
+    float: right;
+}
+
+.btn-post {
+    display: inline-block;
+    background: #ffffff;
+    color: #32a88b;
+    border: 2px solid rgb(50, 168, 139);
+    font-weight: 600;
+    padding: 3px 20px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-post:hover {
+    background: #32a88b;
+    color: white;
+}
+
+/***** POST STYLING *****/
+
+.middleContent .title,
+.caption {
+    line-height: 20px;
+}
+
+.post-info {
+    color: darkcyan;
+}
+
+.post-info:hover,
+.post-info:active {
+    text-decoration: underline;
+}
+
+.middleContent .caption {
+    margin-right: 15px;
+    text-align: justify;
+    color: #000;
+    font-size: 16px;
+}
+
+.title {
+    color: #073116cf;
+    padding: 10px 0;
+    font-size: 22px;
+}
+
+a.name {
+    color: #000;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+a.name:hover {
+    text-decoration: underline;
+}
+
+.pic-post {
+    width: 98%;
+    max-height: 285px !important;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pic-post-img {
+    width: 100%;
+    height: 100%;
+}
+
+.pic-post-img img {
+    width: 100%;
+}
+
+.end-of-post p,h6 {
+    text-align: center;
+    margin: auto;
+    font-weight: bold;
+    color: #ff5b5b;
+}
+h6{
+    margin-top: 2px;
+    padding-top: 2px;
+    border-top: 2px solid #fff;
+}
+.col-10 i{
+    float: right;
+    margin: 1% 3% 0;
+    cursor: pointer;
+}
+.col-10 i:active, .col-10 i:hover{
+    color: #25868675;
+}
+/**** Right Side****/
+
+.right {
+    float: left;
+    width: 25%;
+    margin: 20px 0 0;
+    position: relative;
+    height: 100vh;
+}
+
+
+.right .search {
+    color: #000;
+    border-radius: 20px;
+    margin-top: 3px;
+    position: relative;
+    float: right;
+    margin-right: 20px;
+    padding: 6px 10px;
+    width: 80%;
+    border: 2px solid rgb(50, 168, 139);
+}
+
+.right .search:focus {
+    border: 2px solid rgba(50, 168, 139, 0.411);
+    box-shadow: 0 0 5px rgba(50, 168, 139, 0.411);
+}
+
+/***** WHO TO FOLLOW****/
+
+.follow-people {
+    margin-left: 20px;
+    margin-top: 15px;
+    padding-left: 10px;
+    padding-top: 10px;
+
+}
+
+.follow-people {
+    background-color: rgb(50, 168, 139, 0.1);
+    border-radius: 15px;
+}
+
+.all-follower {
+    padding: 5px;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.01);
+    border-top: 1px solid rgb(0, 0, 0, 0.1)
+}
+
+.all-follower:hover {
+    background-color: rgb(50, 168, 139, 0.2);
+    border-radius: 25px;
+}
+
+.follow-people .col-2 {
+    width: 40px;
+    position: relative;
+    float: left;
+    margin-right: 3px;
+}
+
+.follow-people .col-6 {
+    position: relative;
+    float: left;
+}
+
+.follow-people .col-4 {
+    width: 70px;
+    position: relative;
+    float: right;
+}
+
+.who-to-follow-name, .follow-name {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.who-to-follow-username, .follow-username {
+    font-size: 12px;
+}
+
+.btn-follow {
+    border-radius: 5px;
+    padding: 6px 10px;
+    margin-top: 5px;
+    font-weight: 600;
+    font-size: 11px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(50, 168, 139);
+    border: 2px solid rgb(50, 168, 139);
+    cursor: pointer;
+}
+
+.btn-follow:hover {
+    background: rgb(50, 168, 139);
+    color: rgb(255, 255, 255);
+    margin-top: 5px;
+}
+
+/**** HERE IS THE FOOTER PART****/
+.footer {
+    position: absolute;
+    left: 20px;
+    bottom: 50px;
+}
+
+.footer ul li {
+    float: left;
+}
+
+.footer ul li a {
+    font-size: 10px;
+}
+
+.footer ul li a:hover {
+    color: rgb(50, 168, 139);
+}
+
+.copyright {
+    text-align: right;
+    margin-right: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.only-mbl {
+    display: none;
+}
+
+/* modals */
+.modal{
+    overflow: visible;
+}
+#editProfile.modal{
+    max-width: 800px !important;
+}
+
+/* The Modal (background) */
+
+
+/* Big tablet to 1200px (widths smaller than the 1200px row) */
+@media only screen and (max-width: 1200px) {
+    .container {
+        width: 95%;
+    }
+
+    /* left */
+    .brand img {
+        width: 100%;
+    }
+
+
+    /* middle */
+    .DP-circular-img img {
+        width: 70%;
+    }
+
+    p {
+        font-size: 80%;
+    }
+
+    .title {
+        font-size: 90%;
+        padding-top: 8px;
+    }
+
+    .caption {
+        margin-top: 0px;
+        font-size: 60%;
+    }
+
+    /* right */
+    .follow-people h3 {
+        font-size: 100%;
+    }
+
+    .who-to-follow-name {
+        font-size: 14px;
+    }
+
+    .follow-people {
+        margin-left: 10px;
+        margin-top: 15px;
+    }
+
+    .copyright p {
+        font-size: 7px;
+    }
+
+}
+
+/* Small tablet to big tablet: from  768px to 1023px */
+@media only screen and (max-width: 1023px) {
+
+    /* left */
+    .left {
+        width: 25%;
+    }
+
+    .profile-row {
+        padding: 0;
+    }
+
+    .profile .row .col-2 img {
+        width: 80%;
+    }
+
+    .left .sidebar ul .search:hover {
+        width: 170px;
+        padding: 0px 3px;
+    }
+
+    .only-mbl {
+        display: list-item;
+    }
+
+    /* middle */
+    .middle {
+        width: 75%;
+    }
+
+    /* right */
+    .right {
+        display: none;
+    }
+}
+
+/* Small phones to small tablets: from 481px to 767px */
+@media only screen and (max-width: 767px) {
+
+    .burger {
+        display: block;
+        margin-right: 30px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    /* left */
+    .left {
+        display: none;
+    }
+
+    .left .brand,
+    .profile,
+    .sidebar {
+        display: none;
+    }
+
+
+    /* middle */
+    .active-page {
+        display: block;
+        background-color: #f3f9f7 !important;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        border-top-right-radius: 0 !important;
+        border-top-left-radius: 0 !important;
+    }
+
+    .page-head {
+        display: none;
+    }
+
+    .nav-var-menu {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .nav-var-menu li {
+        margin: 2% 4%;
+        list-style: none;
+    }
+
+    .nav-var-menu li .icon-link {
+        font-size: 120%;
+        padding-top: 5px;
+    }
+
+    .fas:hover {
+        color: rgb(122, 213, 219);
+    }
+
+    .nav-var-menu li .icon-link {
+        margin-top: 3%;
+    }
+
+    .middle {
+        width: 100%;
+    }
+
+    form .textarea {
+        height: 60px;
+    }
+
+    .fas {
+        font-size: 20px !important;
+    }
+
+    .middleContent .row .col-2 {
+        width: 15%;
+    }
+
+    .middleContent .row .col-8 {
+        width: 80%;
+    }
+
+
+
+    /* right */
+    .right {
+        display: none;
+    }
+
+
+}
+
+/* Small phones: from 0 to 480px */
+@media only screen and (max-width: 480px) {
+    /* left */
+
+
+    /* middle */
+
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    .cover-picture {
+        height: 150px;
+    }
+    .modal{
+        width: 100% !important;
+        padding: 15px 0 !important;
+    }
+    .follow-people{
+        width: 100%;
+        margin-left: 0;
+    }
+
+    /* right */
+
+}
