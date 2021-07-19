@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUsersTable extends Migration
+class CreateUpazilasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AlterUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('location')->references('upazila')->on('upazilas')->onDelete('cascade');
+        Schema::create('upazilas', function (Blueprint $table) {
+            $table->id();
+            $table->string('division');
+            $table->string('district');
+            $table->string('upazila')->index();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AlterUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            Schema::dropColumn('location');
-        });
+        Schema::dropIfExists('upazilas');
     }
 }

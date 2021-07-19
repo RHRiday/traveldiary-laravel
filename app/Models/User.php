@@ -47,11 +47,20 @@ class User extends Authenticatable
     ];
 
     /**
+     * Gets all the post by a user
+     * 
+     * @returns array of collections
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    /**
      * This method creates a unique username for a user
      * 
      * @returns string
      */
-
     public function setUsername($name)
     {
         $brokenName = explode(' ', strtolower($name)); //rifat hossen
@@ -60,20 +69,18 @@ class User extends Authenticatable
             return $brokenName[0];
         } //first name is the username
 
-        elseif (User::where('username', end($brokenName))->count() < 1) { 
+        elseif (User::where('username', end($brokenName))->count() < 1) {
             return end($brokenName);
         } //last name is the username
 
-        elseif (User::where('username', Str::slug($name, '_'))->count() < 1 ) { //rifat_hossen does not exist
+        elseif (User::where('username', Str::slug($name, '_'))->count() < 1) { //rifat_hossen does not exist
             return Str::slug($name, '_');
         } //slug of whole name is username
 
-        else{
-            for($c=0; $c <= User::all()->count(); $c++)
-            {
-                if(User::where('username', $brokenName[0] . $c . mt_rand(1,30))->exists() === false)
-                {
-                    $username = $brokenName[0]. $c . mt_rand(1,30);
+        else {
+            for ($c = 0; $c <= User::all()->count(); $c++) {
+                if (User::where('username', $brokenName[0] . $c . mt_rand(1, 30))->exists() === false) {
+                    $username = $brokenName[0] . $c . mt_rand(1, 30);
                     break;
                 }
             }

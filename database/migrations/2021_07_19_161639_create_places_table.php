@@ -15,16 +15,17 @@ class CreatePlacesTable extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->string('division');
-            $table->string('district')->index();
             $table->string('name');
+            $table->string('location');
             $table->string('type');
             $table->string('checkpoint');
-            $table->double('budget');
+            $table->integer('budget');
             $table->text('description');
-            $table->longText('direction');
+            $table->mediumText('direction');
             $table->text('additional_info');
             $table->timestamps();
+
+            $table->foreign('location')->references('upazila')->on('upazilas')->onDelete('cascade');
         });
     }
 
