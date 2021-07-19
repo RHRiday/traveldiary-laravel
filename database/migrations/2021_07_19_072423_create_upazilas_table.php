@@ -17,8 +17,7 @@ class CreateUpazilasTable extends Migration
             $table->id();
             $table->string('division');
             $table->string('district');
-            $table->string('upazila')->index();
-            $table->timestamps();
+            $table->string('upazila')->unique()->index();
         });
     }
 
