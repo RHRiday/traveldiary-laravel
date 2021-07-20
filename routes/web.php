@@ -16,13 +16,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('/');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('/admin', AdminController::class);
 Auth::routes();
 
 Route::get('/places/{id}', [PlaceController::class, 'show']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

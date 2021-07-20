@@ -45,16 +45,16 @@
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 <div class="placeholder-img col-auto overflow-hidden">
-                                    <img class="card-img-top" src="{{ asset('resources/coxs-bazar.jpg') }}">
+                                    <img class="card-img-top" src="{{ asset('resources/places/'.$place->placePics->first()->path) }}">
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-title">{{ $place->name }}</h3>
+                                    <h3 class="card-title" style="max-height: 55px; overflow:hidden">{{ $place->name }}</h3>
                                     <p class="card-text">{{ $place->location }}</p>
-                                    <p class="card-text">{{ $place->description }}</p>
+                                    <p class="card-text" style="max-height: 155px; overflow:hidden">{{ $place->description }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                            <a href="/places/{{$place->id}}" class="btn btn-sm btn-outline-secondary">View</a>
+                                            <a href="/admin/edit/{{$place->id}}" class="btn btn-sm btn-outline-secondary">Edit</a>
                                         </div>
                                         <small class="text-muted">{{ $place->type }}</small>
                                     </div>

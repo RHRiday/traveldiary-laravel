@@ -61,7 +61,7 @@ class User extends Authenticatable
      * 
      * @returns string
      */
-    public function setUsername($name)
+    public static function setUsername($name)
     {
         $brokenName = explode(' ', strtolower($name)); //rifat hossen
 

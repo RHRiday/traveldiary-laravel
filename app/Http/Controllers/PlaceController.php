@@ -11,7 +11,6 @@ class PlaceController extends Controller
     {
         return view('place.show', [
             'place' => $id,
-            'pics' => $id->placePics,
         ]);
     }
 }
