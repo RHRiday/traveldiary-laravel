@@ -22,7 +22,7 @@ class CreatePlacesTable extends Migration
             $table->integer('budget');
             $table->text('description');
             $table->mediumText('direction');
-            $table->text('additional_info')->default("Don't throw any waste in the place");
+            $table->text('additional_info')->nullable();
             $table->timestamps();
 
             $table->foreign('location')->references('upazila')->on('upazilas')->onDelete('cascade');

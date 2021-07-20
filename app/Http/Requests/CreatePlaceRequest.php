@@ -31,6 +31,8 @@ class CreatePlaceRequest extends FormRequest
             'budget' => ['required', ],
             'description' => ['required', ],
             'direction' => ['required', ],
+            'image' => ['required',],
+            'image.*' => ['image'],
         ];
     }
 }

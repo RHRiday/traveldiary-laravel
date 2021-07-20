@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PlaceController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,5 +22,7 @@ Route::get('/', function () {
 
 Route::resource('/admin', AdminController::class);
 Auth::routes();
+
+Route::get('/places/{id}', [PlaceController::class, 'show']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

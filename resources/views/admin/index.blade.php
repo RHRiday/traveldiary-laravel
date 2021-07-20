@@ -40,12 +40,13 @@
         <div class="album bg-light">
             <div class="container">
                 <h3 class="py-2 mb-3 rounded text-light text-center bg-secondary">Places</h3>
-                <div class="row">
+                <div class="row d-flex justify-content-around">
                     @foreach ($places as $place)
                         <div class="col-md-4">
                             <div class="card mb-4 shadow-sm">
-                                <img class="bd-placeholder-img card-img-top" src="{{ asset('resources/coxs-bazar.jpg') }}"
-                                    width="100%" height="225">
+                                <div class="placeholder-img col-auto overflow-hidden">
+                                    <img class="card-img-top" src="{{ asset('resources/coxs-bazar.jpg') }}">
+                                </div>
                                 <div class="card-body">
                                     <h3 class="card-title">{{ $place->name }}</h3>
                                     <p class="card-text">{{ $place->location }}</p>

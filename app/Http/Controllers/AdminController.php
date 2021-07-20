@@ -8,6 +8,7 @@ use App\Models\Upazila;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePlaceRequest;
+use App\Models\PlacePic;
 
 class AdminController extends Controller
 {
@@ -44,10 +45,11 @@ class AdminController extends Controller
 
         $upazila = Upazila::pluck('upazila');
         $type = Place::pluck('type');
+        // dd($type->toArray());
 
         return view('admin.create', [
             'upazilas' => $upazila,
-            'types' => $type,
+            'types' => array_unique($type->toArray()),
         ]);
     }
 
@@ -73,6 +75,17 @@ class AdminController extends Controller
             'direction' => $request->direction,
             'additional_info' => $request->info,
         ]);
+
+        foreach ($request->image as $image){
+            $name = $request->location . time() . mt_rand(9,99) . '.' . $image->extension();
+            Place::max('id');
+
+            PlacePic::create([
+                'place_id' => Place::max('id'),
+                'path' => $name,
+            ]);
+            $image->move(public_path('resources/places'), $name);
+        }
 
         return redirect('/admin',)->with('message', 'Tour spot has been added');
 

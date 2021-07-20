@@ -43,7 +43,7 @@
                                     @csrf
                                 </form>
                                 <a title="Logout" href="http://localhost:8080/logout" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();"><i
+                                                    document.getElementById('logout-form').submit();"><i
                                         class="fas fa-sign-out-alt"></i>
                                 </a>
                             </div>
@@ -104,8 +104,8 @@
 
             <div class="col-6 middle">
                 <div class="middleContent page-head">
-                    <button type="button"><i class="fas fa-home"></i></button>
-                    <a onclick="window.location.reload()">Home</a>
+                    <a class="title" href=""><i class="fas fa-home"></i> Home</a>
+                    <a class="btn-post">Post</a>
                 </div>
                 <div class="middleContent active-page">
                     <div class="nav-list">
@@ -155,29 +155,6 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
-                </div>
-                <div class="middleContent">
-                    <div class="row">
-                        <div class="col-2 DP-circular-img">
-                            <a href="">
-                                <img src="{{ asset('resources/profile/default.png') }}">
-                            </a>
-                        </div>
-                        <form class="col-8">
-                            <input type="text" class="textarea title" placeholder="Type your title here..." name="title"
-                                required></input>
-                            <textarea class="textarea" placeholder="Type your story here..." name="story"></textarea>
-                            <div class="row">
-                                <div class="post-icon">
-                                    <i class="fas fa-camera"></i>
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="col-4 post-button">
-                                    <input type="submit" value="Post" class="btn-post" name="post-story"></input>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
                 <!-- //posts of users followed by the logged user// -->

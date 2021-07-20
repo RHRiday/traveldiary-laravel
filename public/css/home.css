@@ -264,7 +264,7 @@ a {
 
 /* profile pane  */
 .page-head {
-    padding: 4px 0;
+    padding: 10px 0;
     font-size: 85%;
     font-weight: bold;
     background-color: #eaf6f3 !important;
@@ -291,20 +291,8 @@ a {
     border-radius: .25rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-
-.page-head button,
-.page-head a {
-    cursor: pointer;
-    padding: .375rem .75rem;
-}
-
-.page-head button:hover,
-.page-head a:hover {
-    background-color: #e3f0ed;
-}
-
-.page-head>button>i {
-    color: #000;
+a.title{
+    padding: 2% 2% 0;
 }
 
 .details-profile {
@@ -480,15 +468,17 @@ textarea.textarea{
 
 .btn-post {
     display: inline-block;
+    font-size: 11px;
     background: #ffffff;
     color: #32a88b;
     border: 2px solid rgb(50, 168, 139);
     font-weight: 600;
-    padding: 3px 20px;
-    margin: 5px 0;
+    padding: 3px 15px;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
+    position: absolute;
+    right: 2%;
 }
 
 .btn-post:hover {
