@@ -10,4 +10,9 @@ class Upazila extends Model
     use HasFactory;
 
     protected $fillable = ['division', 'district', 'upazila'];
+
+    public function places()
+    {
+        return $this->hasMany(Place::class);
+    }
 }

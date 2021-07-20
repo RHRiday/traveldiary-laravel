@@ -6,6 +6,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 @endsection
 
 @section('content')
@@ -65,6 +66,9 @@
                         <div class="forms-pane" id="forms">
                             {{-- login form --}}
                             <div id="login-form">
+                                @if (session('message'))
+                                    <div class="alert alert-danger">{{ session('message') }}</div>
+                                @endif
                                 <form method="POST" action="{{ route('login') }}" class="log-sign-form">
                                     @csrf
                                     <h3>Explore <span>Now</span></h3>
