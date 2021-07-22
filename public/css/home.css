@@ -18,20 +18,23 @@ body {
 ::-webkit-scrollbar {
     width: 8px;
 }
+
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px #0000004d;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
+
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     background: #e2ffe06e;
-    box-shadow: inset 0 0 4px rgba(0,0,0,0.5); 
-    -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
 }
-::-webkit-scrollbar-thumb:hover{
+
+::-webkit-scrollbar-thumb:hover {
     background: #cbffc7fa;
 }
 
@@ -45,7 +48,8 @@ body {
     opacity: 1 !important;
 }
 
-.zoom, .z {
+.zoom,
+.z {
     width: 100%;
 }
 
@@ -291,7 +295,8 @@ a {
     border-radius: .25rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-a.title{
+
+a.title {
     padding: 2% 2% 0;
 }
 
@@ -404,7 +409,7 @@ p.profile-name {
     margin-bottom: 5px;
 }
 
-.textarea:focus{
+.textarea:focus {
     box-shadow: 0px 0px 10px 0px #2fb1656e;
 }
 
@@ -417,9 +422,11 @@ form .textarea {
     border-radius: 3px;
     outline: 2px solid #d8f1e3;
 }
-textarea.textarea{
+
+textarea.textarea {
     overflow-y: auto;
 }
+
 .title.textarea {
     height: 20%;
     font-size: 85%;
@@ -492,6 +499,11 @@ textarea.textarea{
 .caption {
     line-height: 20px;
 }
+a.post-story{
+    display: none;
+}
+
+
 
 .post-info {
     color: darkcyan;
@@ -542,25 +554,31 @@ a.name:hover {
     width: 100%;
 }
 
-.end-of-post p,h6 {
+.end-of-post p,
+h6 {
     text-align: center;
     margin: auto;
     font-weight: bold;
     color: #ff5b5b;
 }
-h6{
+
+h6 {
     margin-top: 2px;
     padding-top: 2px;
     border-top: 2px solid #fff;
 }
-.col-10 i{
+
+.col-10 i {
     float: right;
     margin: 1% 3% 0;
     cursor: pointer;
 }
-.col-10 i:active, .col-10 i:hover{
+
+.col-10 i:active,
+.col-10 i:hover {
     color: #25868675;
 }
+
 /**** Right Side****/
 
 .right {
@@ -633,12 +651,14 @@ h6{
     float: right;
 }
 
-.who-to-follow-name, .follow-name {
+.who-to-follow-name,
+.follow-name {
     font-size: 15px;
     font-weight: bold;
 }
 
-.who-to-follow-username, .follow-username {
+.who-to-follow-username,
+.follow-username {
     font-size: 12px;
 }
 
@@ -692,11 +712,19 @@ h6{
 }
 
 /* modals */
-.modal{
+.modal {
     overflow: visible;
 }
-#editProfile.modal{
+
+#editProfile.modal {
     max-width: 800px !important;
+}
+
+.modal-link {
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 5px 0;
 }
 
 /* The Modal (background) */
@@ -824,6 +852,15 @@ h6{
         border-top-left-radius: 0 !important;
     }
 
+    a.post-story {
+        background-color: #28a745;
+        border-color: #28a745;
+        padding: 1%;
+        text-align: center;
+        display: block;
+        color: #fff !important;
+    }
+
     .page-head {
         display: none;
     }
@@ -896,11 +933,13 @@ h6{
     .cover-picture {
         height: 150px;
     }
-    .modal{
+
+    .modal {
         width: 100% !important;
         padding: 15px 0 !important;
     }
-    .follow-people{
+
+    .follow-people {
         width: 100%;
         margin-left: 0;
     }

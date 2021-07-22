@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    <title>TravelDiary</title>
+    <title>{{$user->name}}</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -26,12 +26,12 @@
                 <div class="profile">
                     <div class="row">
                         <div class="profile-row">
-                            <a href="profile/{{ $user->username }}" title="">
+                            <a href="/profile/{{ Auth::user()->username }}">
                                 <div class="col-2 circular-img">
                                     <img src="{{ asset('resources/profile/default.png') }}">
                                 </div>
                                 <div class="col-6">
-                                    <p>@ {{ $user->username }} </p>
+                                    <p>@ {{ Auth::user()->username }} </p>
                                 </div>
                             </a>
                             <div class="col-4">
@@ -40,7 +40,8 @@
                                 </form>
                                 <a title="Logout" href="http://localhost:8080/logout"
                                     onclick="event.preventDefault();
-                                                                                document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
+                                                                                            document.getElementById('logout-form').submit();"><i
+                                        class="fas fa-sign-out-alt"></i>
                                 </a>
                             </div>
                         </div>
@@ -100,7 +101,7 @@
             <div class="col-6 middle">
                 <div class="middleContent page-head">
                     <a class="title" href="">
-                        <i class="fas fa-home"></i> &nbsp; Home
+                        <i class="fas fa-user"></i> &nbsp; Profile
                     </a>
                     <a class="btn-post" href="{{ route('story.create') }}">Post</a>
                 </div>
@@ -112,7 +113,7 @@
                             <li>
                                 <div class="nav-var-link-hover-2">
                                     <a href="index.php">
-                                        <div><img src="logo.ico" alt="Home"></i></div>
+                                        <div><img src="/resources/logo.ico" alt="Home"></i></div>
                                     </a>
                                 </div>
                             </li>
@@ -157,20 +158,53 @@
                     </div>
                 </div>
 
+                {{-- user profile --}}
+                <div class="middleContent">
+                    <div class="details-profile">
+                        <div class="cover-picture">
+                            <img src="{{ asset('resources/cover/default.png') }}" class="zoom medium-zoom-image">
+                        </div>
+                        <div class="profile-picture">
+                            <img src="{{ asset('resources/profile/default.png') }}" class="zoom medium-zoom-image">
+                        </div>
+
+                        <div>
+                            <a href="#editProfile" rel="modal:open">
+                                <button class="profile-btn" type="button">Edit Profile</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="details-profile2">
+                        <div class="name-and-handle">
+                            <h4 class="profile-name">{{ $user->name }}</h4>
+                            <p class="profile-handle" title="Username">@ {{ $user->username }}</p>
+                            <p class="profile-name"><i class="fa fa-map-marker-alt" title="Location"
+                                    aria-hidden="true"></i> Location</p>
+                            <p class="profile-handle"><i class="fa fa-bookmark" title="Points"></i> {{$user->points}}</p>
+                        </div>
+                        <div class="followers-and-following">
+                            <a href="#followers" rel="modal:open"><span>3</span> Followers </a>
+                            &nbsp;
+                            &nbsp;
+                            <a href="#following" rel="modal:open"><span>5</span> Following</a>
+                        </div>
+                    </div>
+                </div>
+
                 <a class="middleContent post-story" href="{{ route('story.create') }}">Post your story</a>
                 <!-- //posts of users followed by the logged user// -->
-                @foreach ($posts as $post)
+                @foreach ($user->posts as $post)
                     <div class="middleContent">
                         <div class="row">
                             <div class="col-2 DP-circular-img">
-                                <a href="/profile/{{ $post->user->username }}">
+                                <a href="/profile/{{ $user->username }}">
                                     <img src="/resources/profile/default.png">
                                 </a>
                             </div>
                             <div class="col-10">
                                 <div>
                                     <div id="post-option{{ $post->id }}" class="modal">
-                                        @if ($post->user->id === Auth::id())
+                                        @if ($user->id === Auth::id())
                                             <a class="middleContent modal-link"
                                                 href="{{ route('story.edit', $post->id) }}">Edit</a>
                                         @else
@@ -179,7 +213,7 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <a class="name" href="">{{ $post->user->name }}</a>
+                                        <a class="name" href="/profile/{{$user->username}}">{{ $user->name }}</a>
                                         &nbsp;<span>.</span>&nbsp;
                                         <a href="" style="font-size: 60%;" class="name">3 h</a>
                                         <a href="#post-option{{ $post->id }}" rel="modal:open"><i
@@ -205,8 +239,7 @@
                 <!-- end of posts -->
                 <div class="middleContent">
                     <div class="row end-of-post">
-                        <p>Your diary ends here!!</p>
-                        <p>Follow more travellers to get more stories!</p>
+                        <p>This diary ends here!!</p>
                     </div>
                 </div>
             </div>

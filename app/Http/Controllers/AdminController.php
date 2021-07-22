@@ -78,7 +78,6 @@ class AdminController extends Controller
 
         foreach ($request->image as $image){
             $name = $request->location . time() . mt_rand(9,99) . '.' . $image->extension();
-            Place::max('id');
 
             PlacePic::create([
                 'place_id' => Place::max('id'),
@@ -87,7 +86,7 @@ class AdminController extends Controller
             $image->move(public_path('resources/places'), $name);
         }
 
-        return redirect('/admin',)->with('message', 'Tour spot has been added');
+        return redirect('/admin')->with('message', 'Tour spot has been added');
 
     }
 

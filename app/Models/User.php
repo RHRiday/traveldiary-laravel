@@ -13,8 +13,6 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    public $name = "Foo Bar";
-
     /**
      * The attributes that are mass assignable.
      *
@@ -87,5 +85,16 @@ class User extends Authenticatable
             return $username;
         } //first name + random number + maximum corresponding id is the username
     }
-    
+
+    // users that are followed by this user
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
+    // users that follow this user
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
 }
