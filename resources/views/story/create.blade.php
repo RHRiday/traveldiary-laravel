@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Profile</title>
+    <title>Stories</title>
 @endsection
 
 @section('css')
@@ -25,7 +25,7 @@
                         <a class="nav-link text-light" href="/home">Stories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="/profile">Profile</a>
+                        <a class="nav-link text-light" href="/profile/{{ Auth::user()->username }}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="/places">Explore</a>
@@ -63,7 +63,8 @@
                             <label for="location">Location (Upazila)</label>
                             <select name="location" type="text" class="form-control" id="location" required>
                                 @foreach ($upazilas as $upazila)
-                                    <option value="{{ $upazila }}" {{ old('location')==$upazila  ? 'selected' : '' }}>
+                                    <option value="{{ $upazila }}"
+                                        {{ old('location') == $upazila ? 'selected' : '' }}>
                                         {{ $upazila }}</option>
                                 @endforeach
                             </select>

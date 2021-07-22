@@ -39,12 +39,22 @@ class HomeController extends Controller
             return redirect('/admin');
         }
         $user = User::where('id', Auth::id())->first();
+        if (!User::where('id', Auth::id())->first()->following()->where('user_id', Auth::id())->exists()) {
+            User::where('id', Auth::id())->first()->following()->attach(Auth::id());
+        } //if it is his 1st time, he will follow himself
+
         return view('home', [
-            'user' => User::where('username', Auth::user()->username)->first(),
+            'user' => $user,
             'posts' => Post::whereIn('user_id', $user->following()
-                                                    ->pluck('user_id', 'follower_id'))
-                                                    ->orderBy('created_at', 'DESC')
-                                                    ->get(),
+                ->pluck('user_id'))
+                ->orderBy('created_at', 'DESC')
+                ->get(),
+            'notFollowed' => User::whereNotIn('id', $user->following()
+                ->pluck('user_id'))
+                ->where('role', 'visitor')
+                ->inRandomOrder()
+                ->limit(3)
+                ->get(),
         ]);
     }
 
@@ -55,10 +65,38 @@ class HomeController extends Controller
      */
     public function profile($username)
     {
+        $auth = User::where('id', Auth::id())->first();
         $user = User::where('username', $username)->first();
+        // dd($user->following()->where('user_id', '<>', $user->id)->get());
         // dd(Post::whereIn('user_id', $user->following()->pluck('user_id', 'follower_id'))->orderBy('created_at', 'DESC')->get());
         return view('profile.index', [
             'user' => $user,
+            'followings' => $user->following()->where('user_id', '<>', $user->id)->get(),
+            'followers' => $user->followers()->where('follower_id', '<>', $user->id)->get(),
+            'notFollowed' => User::whereNotIn('id', $auth->following()
+                ->pluck('user_id'))
+                ->where('role', 'visitor')
+                ->inRandomOrder()
+                ->limit(3)
+                ->get(),
         ]);
     }
+
+    /**
+     * Handle following requests
+     * This user will follow given user
+     * 
+     * @returns response
+     */
+    public function followRequest($id)
+    {
+        if (!User::where('id', Auth::id())->first()->following()->where('user_id', $id)->exists()) {
+            User::where('id', Auth::id())->first()->following()->attach($id);
+        } else {
+            User::where('id', Auth::id())->first()->following()->detach($id);
+        }
+
+        return redirect()->back();
+    }
+
 }

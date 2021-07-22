@@ -86,6 +86,20 @@ class User extends Authenticatable
         } //first name + random number + maximum corresponding id is the username
     }
 
+    /**
+     * Checks whether a user is followed by logged user
+     * 
+     * @return bool
+     */
+    public static function status($id){
+        //if that id is followed => unfollow
+        if(User::where('id', Auth::id())->first()->following()->where('user_id', $id)->exists()){
+            return true; //needs to be unfollowed
+        }else{
+            return false;
+        }
+    }
+
     // users that are followed by this user
     public function following()
     {

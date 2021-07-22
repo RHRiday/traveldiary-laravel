@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('/');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile/{username}', [App\Http\Controllers\HomeController::class, 'profile']);
+Route::get('/follow/{id}', [App\Http\Controllers\HomeController::class, 'followRequest']);
 
 Route::resource('/story', PostController::class);
 Route::get('/story/report/{id}', [PostController::class, 'report'])->name('story.report');

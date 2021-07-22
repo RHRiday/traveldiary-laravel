@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    <title>{{$user->name}}</title>
+    <title>{{ $user->name }}</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -15,88 +15,88 @@
 @endsection
 
 @section('content')
+    <!-- Followers-following Modal -->
+    <div id="followers" class="modal">
+        <div class="follow-people">
+            <h3>{{ $user->name }}'s followers</h3> <br>
+            @foreach ($followers as $follower)
+                <a href="/profile/{{ $follower->username }}">
+                    <div class="all-follower">
+                        <div class="col-2 circular-img">
+                            <img src="/resources/profile/default.png">
+                        </div>
+                        <div class="col-6">
+                            <p class="follow-name">{{ $follower->name }}</p>
+                            <p class="follow-username">@ {{ $follower->username }}</p>
+                        </div>
+
+                        <div class="col-4">
+                            @if ($follower->status($follower->id))
+                                @if ($follower->id == Auth::id())
+                                    <a href="/profile/{{ $follower->username }}">
+                                        <button class="btn-follow">Profile</button>
+                                    </a>
+                                @else
+                                    <a href="/follow/{{ $follower->id }}">
+                                        <button class="btn-follow">Unfollow</button>
+                                    </a>
+                                @endif
+                            @else
+                                <a href="/follow/{{ $follower->id }}">
+                                    <button class="btn-follow">Follow</button>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+            <h6>Nothing more to show here</h6>
+        </div>
+    </div>
+    <div id="following" class="modal">
+        <div class="follow-people">
+            <h3>{{ $user->name }} is following</h3> <br>
+            @foreach ($followings as $following)
+                <a href="/profile/{{ $following->username }}">
+                    <div class="all-follower">
+                        <div class="col-2 circular-img">
+                            <img src="/resources/profile/default.png">
+                        </div>
+                        <div class="col-6">
+                            <p class="follow-name">{{ $following->name }}</p>
+                            <p class="follow-username">@ {{ $following->username }}</p>
+                        </div>
+
+                        <div class="col-4">
+                            @if ($following->status($following->id))
+                                @if ($following->id == Auth::id())
+                                    <a href="/profile/{{ $following->username }}">
+                                        <button class="btn-follow">Profile</button>
+                                    </a>
+                                @else
+                                    <a href="/follow/{{ $following->id }}">
+                                        <button class="btn-follow">Unfollow</button>
+                                    </a>
+                                @endif
+                            @else
+                                <a href="/follow/{{ $following->id }}">
+                                    <button class="btn-follow">Follow</button>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+            <h6>Nothing more to show here</h6>
+        </div>
+    </div>
 
     <div class="container">
         <div class="row">
             <!-------- LEFT CONTENT-------->
-            <div class="col-3 left">
-                <div class="brand">
-                    <img src="/resources/travel-diary.png">
-                </div>
-                <div class="profile">
-                    <div class="row">
-                        <div class="profile-row">
-                            <a href="/profile/{{ Auth::user()->username }}">
-                                <div class="col-2 circular-img">
-                                    <img src="{{ asset('resources/profile/default.png') }}">
-                                </div>
-                                <div class="col-6">
-                                    <p>@ {{ Auth::user()->username }} </p>
-                                </div>
-                            </a>
-                            <div class="col-4">
-                                <form id="logout-form" action="http://localhost:8080/logout" method="POST" hidden>
-                                    @csrf
-                                </form>
-                                <a title="Logout" href="http://localhost:8080/logout"
-                                    onclick="event.preventDefault();
-                                                                                            document.getElementById('logout-form').submit();"><i
-                                        class="fas fa-sign-out-alt"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- SIDE BAR -->
-                <div class="sidebar">
-                    <ul class="allpages">
-                        <li>
-                            <div class="sidemenu-link-hover">
-                                <a href="/home">
-                                    <div class="icon-link"><i class="fas fa-home"></i></div>
-                                    <div class="icon-link for-display">Home</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="sidemenu-link-hover">
-                                <a href="packages">
-                                    <div class="icon-link"><i class="fas fa-box-open"></i></div>
-                                    <div class="icon-link for-display">Packages</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="sidemenu-link-hover">
-                                <a href="explore">
-                                    <div class="icon-link"><i class="fas fa-hashtag"></i></div>
-                                    <div class="icon-link for-display">Explore</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="sidemenu-link-hover">
-                                <a href="bookmarks">
-                                    <div class="icon-link"><i class="fas fa-bookmark"></i></div>
-                                    <div class="icon-link for-display">Bookmarks</div>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="only-mbl">
-                            <div class="sidemenu-link-hover search">
-                                <a href="search">
-                                    <div class="icon-link"><i class="fas fa-search"></i></div>
-                                    <div class="icon-link for-display">Search</div>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
+            @include('partials.left')
 
             <!-------- MIDDLE CONTENT-------->
-
 
             <div class="col-6 middle">
                 <div class="middleContent page-head">
@@ -107,56 +107,7 @@
                 </div>
 
                 <!-- phone view -->
-                <div class="middleContent active-page">
-                    <div class="nav-list">
-                        <ul class="nav-var-menu">
-                            <li>
-                                <div class="nav-var-link-hover-2">
-                                    <a href="index.php">
-                                        <div><img src="/resources/logo.ico" alt="Home"></i></div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="sidemenu-link-hover-2">
-                                    <a href="#">
-                                        <div class="icon-link"><i class="fas fa-box-open"></i></div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="sidemenu-link-hover-2">
-                                    <a href="#">
-                                        <div class="icon-link"><i class="fas fa-bookmark"></i></div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="sidemenu-link-hover-2">
-                                    <a href="#">
-                                        <div class="icon-link"><i class="fas fa-hashtag"></i></div>
-                                    </a>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="sidemenu-link-hover-2">
-                                    <a href="#">
-                                        <div class="icon-link"><i class="fas fa-search"></i></div>
-                                    </a>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="sidemenu-link-hover-2">
-                                    <a href="">
-                                        <div class="icon-link"><i class="fas fa-user"></i></div>
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @include('partials.phone')
 
                 {{-- user profile --}}
                 <div class="middleContent">
@@ -169,24 +120,31 @@
                         </div>
 
                         <div>
-                            <a href="#editProfile" rel="modal:open">
-                                <button class="profile-btn" type="button">Edit Profile</button>
-                            </a>
+                            @if ($user->id === Auth::id())
+                                <a href="/profile/edit">
+                                    <button class="profile-btn">Edit Profile</button>
+                                </a>
+                            @else
+                                <a href="/follow/{{ $user->id }}">
+                                    <button class="profile-btn">{{$user->status($user->id) ? 'Unfollow' : 'Follow'}}</button>
+                                </a>
+                            @endif
                         </div>
                     </div>
                     <div class="details-profile2">
                         <div class="name-and-handle">
                             <h4 class="profile-name">{{ $user->name }}</h4>
                             <p class="profile-handle" title="Username">@ {{ $user->username }}</p>
-                            <p class="profile-name"><i class="fa fa-map-marker-alt" title="Location"
-                                    aria-hidden="true"></i> Location</p>
-                            <p class="profile-handle"><i class="fa fa-bookmark" title="Points"></i> {{$user->points}}</p>
+                            <p class="profile-name"><i class="fa fa-map-marker-alt" title="Location" aria-hidden="true"></i>
+                                Location</p>
+                            <p class="profile-handle"><i class="fa fa-bookmark" title="Points"></i> {{ $user->points }}
+                            </p>
                         </div>
                         <div class="followers-and-following">
-                            <a href="#followers" rel="modal:open"><span>3</span> Followers </a>
+                            <a href="#followers" rel="modal:open"><span>{{ $followers->count() }}</span> Followers </a>
                             &nbsp;
                             &nbsp;
-                            <a href="#following" rel="modal:open"><span>5</span> Following</a>
+                            <a href="#following" rel="modal:open"><span>{{ $followings->count() }}</span> Following</a>
                         </div>
                     </div>
                 </div>
@@ -213,7 +171,7 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <a class="name" href="/profile/{{$user->username}}">{{ $user->name }}</a>
+                                        <a class="name" href="/profile/{{ $user->username }}">{{ $user->name }}</a>
                                         &nbsp;<span>.</span>&nbsp;
                                         <a href="" style="font-size: 60%;" class="name">3 h</a>
                                         <a href="#post-option{{ $post->id }}" rel="modal:open"><i
@@ -245,35 +203,8 @@
             </div>
 
             <!-------- RIGHT CONTENT-------->
+            @include('partials.right')
 
-            <div class="col-3 right">
-                <div class="search-diary">
-                    <input class="search" type="text" placeholder="Search your diary">
-                </div>
-                <div class="follow-people">
-                    <h3>Who to follow</h3>
-                    <div class="all-follower">
-                        <div class="col-2 circular-img">
-                            <a href=""><img src="resources/profile/default.png"></a>
-                        </div>
-                        <a href="">
-                            <div class="col-6">
-                                <p class="who-to-follow-name">Some name</p>
-                                <p class="who-to-follow-username">@ username</p>
-                            </div>
-                        </a>
-                        <div class="col-4">
-                            <button class="btn-follow" data-ref="home" data-self="username" value="username">Follow</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="footer">
-                    <div class="copyright">
-                        <p>&copy; Copyright 2021 - Travel-Diary</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
