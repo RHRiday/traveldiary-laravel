@@ -151,7 +151,7 @@
 
                 <a class="middleContent post-story" href="{{ route('story.create') }}">Post your story</a>
                 <!-- //posts of users followed by the logged user// -->
-                @foreach ($user->posts as $post)
+                @foreach ($user->posts->reverse() as $post)
                     <div class="middleContent">
                         <div class="row">
                             <div class="col-2 DP-circular-img">
@@ -173,7 +173,8 @@
                                     <div>
                                         <a class="name" href="/profile/{{ $user->username }}">{{ $user->name }}</a>
                                         &nbsp;<span>.</span>&nbsp;
-                                        <a href="" style="font-size: 60%;" class="name">3 h</a>
+                                        <a href="" style="font-size: 60%;"
+                                            class="name">{{ $post->time($post->created_at) }}</a>
                                         <a href="#post-option{{ $post->id }}" rel="modal:open"><i
                                                 class="fas fa-ellipsis-h"></i></a>
                                     </div>

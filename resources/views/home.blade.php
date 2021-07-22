@@ -58,7 +58,8 @@
                                         <a class="name"
                                             href="/profile/{{ $post->user->username }}">{{ $post->user->name }}</a>
                                         &nbsp;<span>.</span>&nbsp;
-                                        <a href="" style="font-size: 60%;" class="name">3 h</a>
+                                        <a href="" style="font-size: 60%;"
+                                            class="name">{{ $post->time($post->created_at) }}</a>
                                         <a href="#post-option{{ $post->id }}" rel="modal:open"><i
                                                 class="fas fa-ellipsis-h"></i></a>
                                     </div>
