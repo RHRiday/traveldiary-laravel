@@ -46,7 +46,7 @@ class AdminController extends Controller
         $upazila = Upazila::pluck('upazila');
         $type = Place::pluck('type');
 
-        return view('admin.create', [
+        return view('place.create', [
             'upazilas' => $upazila,
             'types' => array_unique($type->toArray()),
         ]);
@@ -114,7 +114,7 @@ class AdminController extends Controller
         $upazila = Upazila::pluck('upazila');
         $type = Place::pluck('type');
 
-        return view('admin.edit', [
+        return view('place.edit', [
             'place' => Place::where('id', $id)->first(),
             'upazilas' => $upazila,
             'types' => array_unique($type->toArray()),

@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\PostPic;
 use App\Models\Upazila;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\PotentiallyMissing;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -79,9 +80,16 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        if(Post::find($id)->user->id !== Auth::id()){
+            abort(404);
+        }
+        $upazila = Upazila::pluck('upazila');
+        return view('story.edit', [
+            'post' => Post::find($id),
+            'upazilas' => $upazila,
+        ]);
     }
 
     /**
@@ -91,9 +99,19 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        if(Post::find($id)->user->id !== Auth::id()){
+            abort(404);
+        }
+        $post = Post::find($id);
+        $post->update([
+            'title' => $request->title,
+            'location' => $request->location,
+            'story' => $request->story,
+        ]);
+
+        return redirect('/home')->with('message', 'Updated!');
     }
 
     /**
@@ -102,8 +120,14 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        if(Post::find($id)->user->id !== Auth::id()){
+            abort(404);
+        }
+        $post = Post::find($id);
+        $post->delete();
+
+        return redirect('/home');
     }
 }

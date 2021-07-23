@@ -25,7 +25,7 @@
                         <a class="nav-link text-light" href="/home">Stories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="/profile">Profile</a>
+                        <a class="nav-link text-light" href="/profile/{{$post->user->username}}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="/places">Explore</a>
@@ -51,7 +51,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('story.update') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('story.update',$post->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">
@@ -64,24 +64,27 @@
                             <label for="location">Location (Upazila)</label>
                             <select name="location" type="text" class="form-control" id="location" required>
                                 @foreach ($upazilas as $upazila)
-                                    <option value="{{ $upazila }}" {{ $post ? 'selected' : '' }}>
+                                    <option value="{{ $upazila }}" {{ $post && $post->location ==$upazila ? 'selected' : '' }}>
                                         {{ $upazila }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-8 mb-3">
-                            <label for="image">Image(s)</label>
-                            <input name="image[]" type="file" accept="image/*" class="form-control py-1" id="image" multiple
-                                required>
+                            <p class="badge badge-info text-wrap mt-4"> Images can not be updated </p>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="story">Story</label>
                             <textarea name="story" rows="8" class="form-control" id="story"
-                                placeholder="Tell us your story briefly" required>{{ old('story') }}</textarea>
+                                placeholder="Tell us your story briefly" required>{{ $post ? $post->story : old('story') }}</textarea>
                         </div>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-success btn-lg btn-block text-light" type="submit">Share story</button>
+                    <button class="btn btn-success btn-lg btn-block mb-3 text-light" type="submit">Share story</button>
+                </form>
+                <form action="{{route('story.destroy', $post->id)}}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger btn-lg btn-block" type="submit">Delete story</button>
                 </form>
             </div>
         </div>

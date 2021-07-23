@@ -27,7 +27,7 @@
                         <a class="nav-link" href="#">ABOUT US <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">STORIES</a>
+                        <a class="nav-link" href="/home">STORIES</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">PACKAGES</a>
