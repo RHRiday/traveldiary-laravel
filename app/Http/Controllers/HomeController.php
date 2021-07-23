@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Upazila;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -63,7 +65,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function profile($username)
+    public function show($username)
     {
         $auth = User::where('id', Auth::id())->first();
         $user = User::where('username', $username)->first();
@@ -83,6 +85,67 @@ class HomeController extends Controller
     }
 
     /**
+     * Show profile edit page
+     * 
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function edit()
+    {
+        $user = User::find(Auth::id());
+
+        return view('profile.edit', [
+            'user' => $user,
+            'notFollowed' => User::whereNotIn('id', $user->following()
+                ->pluck('user_id'))
+                ->where('role', 'visitor')
+                ->inRandomOrder()
+                ->limit(3)
+                ->get(),
+            'upazilas' => Upazila::pluck('upazila'),
+        ]);
+    }
+
+    /**
+     * Handles profile edit request
+     * 
+     * @returns changes
+     */
+    public function update(Request $request)
+    {
+        $user = User::find(Auth::id());
+
+        if ($request->dp) {
+            $dp = Auth::user()->username . '.' . $request->dp->getClientOriginalExtension();
+            $request->dp->move(public_path('resources/profile'), $dp);
+        }else{
+            $dp = $user->dp;
+        }
+
+        if ($request->cp) {
+            $cp = Auth::user()->username . '.' . $request->cp->getClientOriginalExtension();
+            $request->cp->move(public_path('resources/cover'), $cp);
+        }else{
+            $cp = $user->cover;
+        }
+
+        if ($request->password) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
+
+        $user->update([
+            'name' => $request->name,
+            'location' => $request->location,
+            'dp' => $dp,
+            'cover' => $cp,
+
+        ]);
+
+        return redirect('/profile/' . $user->username);
+    }
+
+    /**
      * Handle following requests
      * This user will follow given user
      * 
@@ -98,5 +161,4 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
-
 }

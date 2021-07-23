@@ -113,10 +113,10 @@
                 <div class="middleContent">
                     <div class="details-profile">
                         <div class="cover-picture">
-                            <img src="{{ asset('resources/cover/default.png') }}" class="zoom medium-zoom-image">
+                            <img src="{{ asset('resources/cover/'.$user->cover) }}" class="zoom medium-zoom-image">
                         </div>
                         <div class="profile-picture">
-                            <img src="{{ asset('resources/profile/default.png') }}" class="zoom medium-zoom-image">
+                            <img src="{{ asset('resources/profile/'.$user->dp) }}" class="zoom medium-zoom-image">
                         </div>
 
                         <div>
@@ -136,7 +136,7 @@
                             <h4 class="profile-name">{{ $user->name }}</h4>
                             <p class="profile-handle" title="Username">@ {{ $user->username }}</p>
                             <p class="profile-name"><i class="fa fa-map-marker-alt" title="Location" aria-hidden="true"></i>
-                                Location</p>
+                                {{$user->location ? $user->location : 'N/A'}}</p>
                             <p class="profile-handle"><i class="fa fa-bookmark" title="Points"></i> {{ $user->points }}
                             </p>
                         </div>

@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('visitor');
             $table->string('location')->nullable();
             $table->integer('points')->default(0);
-            $table->string('dp')->default('resources/profile/default.png');
-            $table->string('cover')->default('resources/cover/default.png');
+            $table->string('dp')->default('default.png');
+            $table->string('cover')->default('default.png');
             $table->rememberToken();
             $table->timestamps();
 
