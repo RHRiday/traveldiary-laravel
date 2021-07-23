@@ -168,8 +168,12 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
-        //
+        $place = Place::find($id);
+        
+        $place->delete();
+
+        return redirect('/admin')->with('message', 'Tour spot has been deleted');
     }
 }

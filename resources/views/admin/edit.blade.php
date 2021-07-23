@@ -112,7 +112,12 @@
                         </div>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-info btn-lg btn-block" type="submit">Add to the site</button>
+                    <button class="btn btn-info btn-lg btn-block mb-3" type="submit">Add to the site</button>
+                </form>
+                <form action="{{route('admin.destroy', $place->id)}}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button class="btn btn-danger btn-lg btn-block" type="submit">Delete</button>
                 </form>
             </div>
         </div>

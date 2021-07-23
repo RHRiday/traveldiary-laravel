@@ -18,7 +18,7 @@ class CreatePlacePicsTable extends Migration
             $table->unsignedBigInteger('place_id');
             $table->string('path')->nullable()->unique();
 
-            $table->foreign('place_id')->references('id')->on('places');
+            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
         });
     }
 
