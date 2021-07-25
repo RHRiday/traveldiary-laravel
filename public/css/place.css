@@ -1,29 +1,4 @@
 
-@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
-@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
-
-body {
-    color: #333;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 21px;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden !important;
-}
-
-
-.comment-section {
-    width: 100%;
-    position: relative;
-    display: block;
-    float: left;
-}
-
-.comment-section .nav-pills {
-    border-bottom: 2px solid #dee2e6;
-}
-
 .post-content .post-tags  {
     float: left;
     margin: 0;
@@ -72,15 +47,9 @@ label {
     padding: 0
 }
 
-
-
-.rating {
-    border: none;
-    margin-right: 49px
-}
-
 .myratings {
-    font-size: 85px;
+    margin-left: 10px;
+    font-size: 20px;
     color: green
 }
 
@@ -88,19 +57,12 @@ label {
     display: none
 }
 
-.rating>label:before {
-    margin: 5px;
-    font-size: 2.25em;
+.rating>label:after {
+    font-size: 20px;
     font-family: FontAwesome;
     display: inline-block;
     content: "\f005"
 }
-
-.rating>.half:before {
-    content: "\f089";
-    position: absolute
-}
-
 .rating>label {
     color: #ddd;
     float: right
@@ -109,14 +71,14 @@ label {
 .rating>[id^="star"]:checked~label,
 .rating:not(:checked)>label:hover,
 .rating:not(:checked)>label:hover~label {
-    color: #FFD700
+    color: #38c172
 }
 
 .rating>[id^="star"]:checked+label:hover,
 .rating>[id^="star"]:checked~label:hover,
 .rating>label:hover~[id^="star"]:checked~label,
 .rating>[id^="star"]:checked~label:hover~label {
-    color: #FFED85
+    color: #6affa8
 }
 
 .reset-option {
@@ -129,30 +91,10 @@ label {
     text-transform: uppercase
 }
 
-
-
-p {
-    font-size: 14px
-}
-
-h4 {
-    margin-top: 18px
-}
-
-.btn:focus {
-    outline: none
-}
-
-.btn {
-    border-radius: 22px;
-    text-transform: capitalize;
-    font-size: 13px;
-    padding: 8px 19px;
-    cursor: pointer;
-    color: #fff;
-    
-}
-
 .btn:hover {
     background-color: #D32F2F !important
+}
+
+.display-4 {
+    font-size: 2rem !important;
 }

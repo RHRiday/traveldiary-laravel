@@ -84,9 +84,10 @@ mediumZoom('.zoom', {
 
 // places
 
-$(document).ready(function () {
-    $("input[type='radio']").click(function () {
+$(function () {
+    $("input[type='radio']").on('click', function () {
       var sim = $("input[type='radio']:checked").val();
+      $('#rating').val(sim);
       //alert(sim);
       if (sim < 3) {
         $(".myratings").css("color", "red");
