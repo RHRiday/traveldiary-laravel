@@ -80,21 +80,6 @@ mediumZoom('.zoom', {
   background: '#000000d9'
 });
 
-$(document).ready(function() {
-
-    $("input[type='radio']").on('click', function() {
-        var sim = $("input[type='radio']:checked").val();
-        $("input[type='number']").val(sim);
-        //alert(sim);
-        if (sim < 3) {
-            $('.myratings').css('color', 'red');
-            $(".myratings").text(sim);
-        } else {
-            $('.myratings').css('color', 'green');
-            $(".myratings").text(sim);
-        }
-    });
-});
 
 
 // places
