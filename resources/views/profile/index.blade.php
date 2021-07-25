@@ -173,7 +173,7 @@
                                     <div>
                                         <a class="name" href="/profile/{{ $user->username }}">{{ $user->name }}</a>
                                         &nbsp;<span>.</span>&nbsp;
-                                        <a href="" style="font-size: 60%;"
+                                        <a href="/story/{{$post->id}}" style="font-size: 60%;"
                                             class="name">{{ $post->time($post->created_at) }}</a>
                                         <a href="#post-option{{ $post->id }}" rel="modal:open"><i
                                                 class="fas fa-ellipsis-h"></i></a>

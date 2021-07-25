@@ -69,6 +69,10 @@ class HomeController extends Controller
     {
         $auth = User::where('id', Auth::id())->first();
         $user = User::where('username', $username)->first();
+        
+        if(!$user){
+            abort(404);
+        }
         // dd($user->following()->where('user_id', '<>', $user->id)->get());
         // dd(Post::whereIn('user_id', $user->following()->pluck('user_id', 'follower_id'))->orderBy('created_at', 'DESC')->get());
         return view('profile.index', [

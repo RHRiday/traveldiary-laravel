@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateStoryRequest;
+use App\Models\User;
 use App\Models\Post;
 use App\Models\PostPic;
 use App\Models\Upazila;
@@ -69,9 +70,22 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $post = Post::find($id);
+        if(!$post){
+            abort(404);
+        }
+        $user = User::find(Auth::id());
+        return view('story.show', [
+            'post' => $post,
+            'notFollowed' => User::whereNotIn('id', $user->following()
+                ->pluck('user_id'))
+                ->where('role', 'visitor')
+                ->inRandomOrder()
+                ->limit(3)
+                ->get(),
+        ]);
     }
 
     /**
@@ -82,7 +96,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        if(Post::find($id)->user->id !== Auth::id()){
+        if(!Post::find($id) || Post::find($id)->user->id !== Auth::id()){
             abort(404);
         }
         $upazila = Upazila::pluck('upazila');
