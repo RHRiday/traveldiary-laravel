@@ -6,8 +6,8 @@
 @endsection
 
 @section('content')
-<!--navbar section starts-->
-<div class="container">
+    <!--navbar section starts-->
+    <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button
@@ -40,7 +40,7 @@
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">
               Search
             </button>
           </form>
@@ -85,8 +85,8 @@
                             <div class="">
                                 <div class=" text-center mt-3"> <span class="myratings">4.5</span>
                                     
-                                    <fieldset class="rating"> <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label> <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label> <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label> <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label> <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label> <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label> <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label> <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label> <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label> <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label> <input type="radio" class="reset-option" name="rating" value="reset" /> </fieldset>
-                                    <button type="button" class="btn btn-dark mt-1">Rate This</button>
+                                    <fieldset class="rating mt-3"> <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label> <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label> <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label> <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label> <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label> <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label> <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label> <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label> <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label> <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label> <input type="radio" class="reset-option" name="rating" value="reset" /> </fieldset>
+                                    <button type="button" class="btn btn-dark mt-5">Rate This</button>
                                 </div>
                             </div>
                         
@@ -141,7 +141,7 @@
                       class="captionClass"
                       style="text-align: left; color: rgb(153, 153, 153)"
                     >
-                      <strong style="color: rgb(0, 0, 0)">Description :</strong>
+                      <strong style="color: rgb(0, 0, 0)"> বিস্তারিত :</strong>
                     </figcaption>
                   </figure>
                   <p>
@@ -156,7 +156,7 @@
 
                   <!--Direction Parts Start-->
 
-                  <p><strong> Direction :</strong></p>
+                  <p><strong>যেভাবে যাবেন :</strong></p>
                   <p>
                     <strong>২৪জুন ২০২১</strong> বৃহষ্পতিবার রাত ১১ঃ০০ টায়
                     কলাবাগান/ফকিরাপুল বাস কাউন্টার থেকে মীরেরসরাইয়ের উদ্দেশ্যে
@@ -175,7 +175,7 @@
                   <!--Direction parts Ends-->
 
                   <!--additional info parts start-->
-                  <p><strong>Additional Info </strong>: </p>
+                  <p><strong>বিশেষ দ্রষ্টব্য </strong>: </p>
                   <ul>
                     <li>
                       ট্যুরের সময়ে সঠিক দূরত্ব বজায় রাখার চেষ্টা করতে হবে এবং
@@ -192,10 +192,61 @@
 
                 <!--Budget Parts starts-->
                 <div>
-                  <p><strong>Budget </strong>: </p>
+                  <p><strong>বাজেট </strong>: </p>
                   <p class="package-price"><b>৳2300.00</b> / Person</p>
+                
                 </div>
                 <!--Budget Parts starts-->
+
+
+               
+
+                <!--related package section-->
+
+                <div class="related-posts mt-5">
+                  <div class="d-flex justify-content-between mb-3">
+                    <button type="button" class="btn btn-dark">Add Packages <span><i class="far fa-plus-square"></i></span> </button>
+                    <h3>Related Packages</h3>
+                    <a href="">See All</a>
+                  </div>
+                  <div class="card-deck">
+                    <div class="card">
+                      <img
+                        src="images/boalia trail.jpg"
+                        class="card-img-top"
+                        alt="..."
+                      />
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          বোয়ালিয়া ট্রেইল - মিরসরাই রেঞ্জের অন্যতম আকর্ষণ
+                        </h5>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img
+                        src="images/no-kaba.jpg"
+                        class="card-img-top"
+                        alt="..."
+                      />
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          ন-কাবা ছড়া এই পাহাড়ি ঝর্ণা বাংলাদেশের অন্য সকল ঝর্ণার
+                        </h5>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <img
+                        src="images/dhuppani.jpg"
+                        class="card-img-top"
+                        alt="..."
+                      />
+                      <div class="card-body">
+                        <h5 class="card-title">জোছনাতরীর সাথে ধুপপানি ভ্রমণ</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--related package section-->
 
 
               <!--related posts section-->
@@ -251,8 +302,4 @@
     </section>
 
     <!--main section ends-->
-
-
-
-    <!--footer section ends-->
 @endsection
