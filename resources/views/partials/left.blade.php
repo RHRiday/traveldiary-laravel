@@ -7,7 +7,7 @@
             <div class="profile-row">
                 <a href="/profile/{{ Auth::user()->username }}">
                     <div class="col-2 circular-img">
-                        <img src="resource/profile/{{ $user->dp }}">
+                        <img src="/resources/profile/{{ $user->dp }}">
                     </div>
                     <div class="col-6">
                         <p>@ {{ Auth::user()->username }} </p>
