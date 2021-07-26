@@ -85,6 +85,7 @@ class PostController extends Controller
                 ->inRandomOrder()
                 ->limit(3)
                 ->get(),
+            'user' => $user,
         ]);
     }
 
