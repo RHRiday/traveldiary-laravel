@@ -47,8 +47,8 @@
                 <div class="col-12">
                     <div class="container">
                         <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item"><a href="">ট্যুরস</a></li>
-                            <li class="list-group-item"><a href="">প্রাকৃতিক ঝরনা </a></li>
+                            <li class="list-group-item"><a href="">{{ $place->location }}</a></li>
+                            <li class="list-group-item"><a href=""> {{ $place->type }} </a></li>
                         </ul>
                     </div>
                 </div>
@@ -58,36 +58,39 @@
                         <div class="post-content">
                             <div class="post-title mt-5">
                                 <h1 class="title">
-                                    নাপিত্তাছড়া ও ঝরঝরি ট্রেইল ভ্রমণে ব্যাকপ্যাকওয়ালার দল
+                                   {{ $place->name }}
                                 </h1>
                             </div>
                             <div class="post-meta mt-3">
-                                <div class="d-flex justify-content-center px-5">
-                                    <div class="row text-center">
-                                        <fieldset class="rating">
-                                            <input type="radio" id="star5" name="rating" value="5" />
-                                            <label class="full" for="star5" title="Awesome - 5 stars"></label>
-                                            <input type="radio" id="star4" name="rating" value="4" />
-                                            <label class="full" for="star4" title="Pretty good - 4 stars"></label>
-                                            <input type="radio" id="star3" name="rating" value="3" />
-                                            <label class="full" for="star3" title="Meh - 3 stars"></label>
-                                            <input type="radio" id="star2" name="rating" value="2" />
-                                            <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-                                            <input type="radio" id="star1" name="rating" value="1" />
-                                            <label class="full" for="star1" title="Sucks big time - 1 star"></label>
-                                            <input type="radio" class="reset-option" name="rating" value="reset" />
-                                        </fieldset>
-                                        <span class="myratings"></span>
-                                        <form action="" method="post">
-                                            @csrf
-                                            <input type="number" name="rated" id="rating" hidden>
-                                            <button type="submit" class="btn btn-sm btn-success ml-3">Rate This</button>
-                                        </form>
+                                @if(Auth::check())
+                                    <div class="d-flex justify-content-center px-5">
+                                        <div class="row text-center">
+                                            <fieldset class="rating">
+                                                <input type="radio" id="star5" name="rating" value="5" />
+                                                <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                                <input type="radio" id="star4" name="rating" value="4" />
+                                                <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                                <input type="radio" id="star3" name="rating" value="3" />
+                                                <label class="full" for="star3" title="Meh - 3 stars"></label>
+                                                <input type="radio" id="star2" name="rating" value="2" />
+                                                <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                <input type="radio" id="star1" name="rating" value="1" />
+                                                <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                                <input type="radio" class="reset-option" name="rating" value="reset" />
+                                            </fieldset>
+                                            <span class="myratings"></span>
+                                            <form action="" method="post">
+                                                @csrf
+                                                <input type="number" name="rated" id="rating" hidden>
+                                                <button type="submit" class="btn btn-sm btn-success ml-3">Rate This</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="text-center alert alert-danger">
-                                    Please <a href="/">login</a> to rate this place !!
-                                </div>
+                                @else
+                                    <div class="text-center alert alert-danger">
+                                        Please <a href="/">login</a> to rate this place !!
+                                    </div>
+                                @endif
                             </div>
 
                             <div class="post-text text-style fzaWUy">
@@ -96,19 +99,14 @@
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                     </ol>
+
                                     <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="images/jhorjhori trail.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="images/napittachora.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="images/traveller.jpg" class="d-block w-100" alt="...">
-                                        </div>
+                                        @foreach($place->placePics as $pic)
+                                            <div class="carousel-item @if($loop->first) active @endif">
+                                                <img src="/resources/places/{{ $pic->path }}" class="d-block w-100" alt="...">
+                                            </div>
+                                        @endforeach
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
                                         data-slide="prev">
@@ -124,7 +122,7 @@
                                 <!--carousel ends-->
 
                                 <!--carousel pic caption starts-->
-
+                                <br>
                                 <!--Description parts starts-->
                                 <figure class="figureClass">
                                     <figcaption class="captionClass">
@@ -132,11 +130,7 @@
                                     </figcaption>
                                 </figure>
                                 <p>
-                                    সীতাকুণ্ড-মিরসরাই রেঞ্জে লুকিয়ে আছে বেশ কিছু ঝর্ণার ট্রেইল।
-                                    তারমধ্যে তুলনামূলক দুইটি অপরিচিত ট্রেইল হচ্ছে নাপিত্তাছড়া ও
-                                    ঝরঝরি ট্রেইল। দুইটি ট্রেইলেই আমরা তিন-চারটি করে খুব সুন্দর
-                                    ঝর্ণা দেখবো। দুটি ট্রেইলই মোটামুটি সহজ ট্রেইল। তাই মোটামুটি
-                                    ট্রেকিং জানলেই এই ট্যুরে আমাদের সাথে যে কেউ যোগ দিতে পারেন।
+                                    {{ $place->description}}
                                 </p>
 
                                 <!--Description parts Ends-->
@@ -145,19 +139,9 @@
 
                                 <p><strong class="display-4">যেভাবে যাবেন :</strong></p>
                                 <p>
-                                    <strong>২৪জুন ২০২১</strong> বৃহষ্পতিবার রাত ১১ঃ০০ টায়
-                                    কলাবাগান/ফকিরাপুল বাস কাউন্টার থেকে মীরেরসরাইয়ের উদ্দেশ্যে
-                                    যাত্রা করবো।
+                                    {{ $place->direction }}
                                 </p>
-                                <p>
-                                    <strong>২৫ জুন ২০২১</strong> শুক্রবার ভোরে বাস থেকে নেমে ফ্রেশ হয়ে
-                                    নাস্তা সেরে চলে যাব নাপিত্তাছড়া ট্রেইলে। এই ট্রেইলে বেশি সময়
-                                    লাগবে না। ৩ ঘন্টার মধ্যেই আমরা ঘুরে দেখে চলে যাবো ঝরঝরি
-                                    ট্রেইলে। মাঝে একটা হোটেলে লাঞ্চ করে নিব। ৩-৪ ঘন্টা ঝরঝরি
-                                    ট্রেইলে সময় লাগবে সব ঝর্ণা গুলো দেখতে। ঝর্ণা দেখা শেষে আমরা
-                                    সুবিধামত সময়ে ঢাকার উদ্দেশ্যে রওনা দিব। আশা করি রাত দশটার
-                                    মধ্যে ঢাকা পৌঁছে যাবো।
-                                </p>
+                                
 
                                 <!--Direction parts Ends-->
 
@@ -165,12 +149,7 @@
                                 <p><strong class="display-4">বিশেষ দ্রষ্টব্য :</strong> </p>
                                 <ul>
                                     <li>
-                                        ট্যুরের সময়ে সঠিক দূরত্ব বজায় রাখার চেষ্টা করতে হবে এবং
-                                        সবসময় মাস্ক ব্যবহার করতে হবে।
-                                    </li>
-                                    <li>
-                                        করোনার যেকোন লক্ষণ কারো মধ্যে দেখা গেলে তার ট্যুর সঙ্গে
-                                        সঙ্গে ক্যানসেল করা হবে।
+                                        {{ $place->additional_info}}
                                     </li>
                                 </ul>
                             </div>
@@ -180,7 +159,7 @@
                             <!--Budget Parts starts-->
                             <div>
                                 <p><strong>বাজেট :</strong> </p>
-                                <p><b>৳2300.00</b> / Person</p>
+                                <p><b>{{ $place->budget }}</b> / Person</p>
 
                             </div>
                             <!--Budget Parts starts-->
