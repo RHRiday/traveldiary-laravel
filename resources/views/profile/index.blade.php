@@ -156,7 +156,7 @@
                         <div class="row">
                             <div class="col-2 DP-circular-img">
                                 <a href="/profile/{{ $user->username }}">
-                                    <img src="/resources/profile/default.png">
+                                    <img src="/resources/profile/{{$user->dp}}">
                                 </a>
                             </div>
                             <div class="col-10">
