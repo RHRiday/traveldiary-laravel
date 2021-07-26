@@ -147,10 +147,10 @@ class AdminController extends Controller
         ]);
 
         if ($request->image) {
+            PlacePic::where('place_id', $id)->delete();
             foreach ($request->image as $image) {
                 $name = $request->location . time() . mt_rand(9, 99) . '.' . $image->extension();
 
-                PlacePic::where('place_id', $id)->delete();
                 PlacePic::create([
                     'place_id' => $id,
                     'path' => $name,
