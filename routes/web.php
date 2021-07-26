@@ -31,4 +31,4 @@ Route::resource('/admin', AdminController::class);
 Auth::routes();
 
 Route::get('/places/{id}', [PlaceController::class, 'show']);
-
+Route::post('/places/{id}', [PlaceController::class, 'saveRating']) ;

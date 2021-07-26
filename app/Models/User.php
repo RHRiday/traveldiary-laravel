@@ -115,4 +115,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
     }
+
+    // a user can rate different places
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }

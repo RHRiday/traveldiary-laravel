@@ -63,29 +63,34 @@
                             </div>
                             <div class="post-meta mt-3">
                                 @if(Auth::check())
-                                    <div class="d-flex justify-content-center px-5">
-                                        <div class="row text-center">
-                                            <fieldset class="rating">
-                                                <input type="radio" id="star5" name="rating" value="5" />
-                                                <label class="full" for="star5" title="Awesome - 5 stars"></label>
-                                                <input type="radio" id="star4" name="rating" value="4" />
-                                                <label class="full" for="star4" title="Pretty good - 4 stars"></label>
-                                                <input type="radio" id="star3" name="rating" value="3" />
-                                                <label class="full" for="star3" title="Meh - 3 stars"></label>
-                                                <input type="radio" id="star2" name="rating" value="2" />
-                                                <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                <input type="radio" id="star1" name="rating" value="1" />
-                                                <label class="full" for="star1" title="Sucks big time - 1 star"></label>
-                                                <input type="radio" class="reset-option" name="rating" value="reset" />
-                                            </fieldset>
-                                            <span class="myratings"></span>
-                                            <form action="" method="post">
-                                                @csrf
-                                                <input type="number" name="rated" id="rating" hidden>
-                                                <button type="submit" class="btn btn-sm btn-success ml-3">Rate This</button>
-                                            </form>
+                                        <div class="d-flex justify-content-center px-5">
+                                            <div class="row text-center">
+                                                @if(!$alreadyRated)
+                                                    <fieldset class="rating">
+                                                        <input type="radio" id="star5" name="rating" value="5" />
+                                                        <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                                        <input type="radio" id="star4" name="rating" value="4" />
+                                                        <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                                        <input type="radio" id="star3" name="rating" value="3" />
+                                                        <label class="full" for="star3" title="Meh - 3 stars"></label>
+                                                        <input type="radio" id="star2" name="rating" value="2" />
+                                                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                        <input type="radio" id="star1" name="rating" value="1" />
+                                                        <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                                        <input type="radio" class="reset-option" name="rating" value="reset" />
+                                                    </fieldset>
+                                                    <span class="myratings"></span>
+                                                    
+                                                    <form action="" method="POST">
+                                                        @csrf
+                                                        <input type="number" name="rated" id="rating" hidden>
+                                                        <button type="submit" class="btn btn-sm btn-success ml-3">Rate This</button>
+                                                    </form>
+                                                @else 
+                                                    <b> <span class="h2"> Ratings: </span> {{ $place->ratings->avg('rating') }}</b>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
                                 @else
                                     <div class="text-center alert alert-danger">
                                         Please <a href="/">login</a> to rate this place !!

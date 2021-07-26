@@ -36,4 +36,15 @@ class Place extends Model
     // {
     //     return $this->belongsTo(Upazila::class);
     // }
+
+    
+    /**
+     * a place can be rated by different users
+     */
+    
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+    
 }
