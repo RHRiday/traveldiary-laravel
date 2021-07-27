@@ -25,6 +25,7 @@ Route::get('/profile/{username}', [App\Http\Controllers\HomeController::class, '
 Route::get('/follow/{id}', [App\Http\Controllers\HomeController::class, 'followRequest']);
 
 Route::resource('/story', PostController::class);
+//Route::get('/story/{id}', [PostController::class, 'showOnlyPost']);
 Route::get('/story/report/{id}', [PostController::class, 'report'])->name('story.report');
 
 Route::resource('/admin', AdminController::class);

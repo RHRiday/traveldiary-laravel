@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Place;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rating;
+use App\Models\Post;
 
 class PlaceController extends Controller
 {
@@ -19,9 +20,15 @@ class PlaceController extends Controller
             }
         }
 
+        $relatedPost = Post::where('location', $id->location)
+                ->inRandomOrder()
+                ->limit(3)
+                ->get();
+
         return view('place.show', [
             'place' => $id,
             'alreadyRated' => $alreadyRated,
+            'relatedPost' => $relatedPost,
         ]);
     }
 

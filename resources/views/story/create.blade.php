@@ -65,7 +65,8 @@
                                 @foreach ($upazilas as $upazila)
                                     <option value="{{ $upazila }}"
                                         {{ old('location') == $upazila ? 'selected' : '' }}>
-                                        {{ $upazila }}</option>
+                                        {{ $upazila }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>

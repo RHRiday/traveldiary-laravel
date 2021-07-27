@@ -87,7 +87,7 @@
                                                         <button type="submit" class="btn btn-sm btn-success ml-3">Rate This</button>
                                                     </form>
                                                 @else 
-                                                    <b> <span class="h2"> Ratings: </span> {{ $place->ratings->avg('rating') }}</b>
+                                                    <b> <span class="h2"> Ratings: </span> {{ round($place->ratings->avg('rating'), 2) }}</b>
                                                 @endif
                                             </div>
                                         </div>
@@ -217,31 +217,20 @@
                                     <a href="">See All</a>
                                 </div>
                                 <div class="card-deck">
-                                    <div class="card">
-                                        <img src="images/boalia trail.jpg" class="card-img-top" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                বোয়ালিয়া ট্রেইল - মিরসরাই রেঞ্জের অন্যতম আকর্ষণ
-                                            </h5>
+                                    @foreach($relatedPost as $post)
+                                        <div class="card">
+                                            <a href="/story/{{ $post->id }}"><img src="/resources/stories/{{ $post->postPics->first()->path }}" width="50" class="card-img-top" alt="..." /> </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    {{ $post->title }}
+                                                </h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="card">
-                                        <img src="images/no-kaba.jpg" class="card-img-top" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                ন-কাবা ছড়া এই পাহাড়ি ঝর্ণা বাংলাদেশের অন্য সকল ঝর্ণার
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img src="images/dhuppani.jpg" class="card-img-top" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">জোছনাতরীর সাথে ধুপপানি ভ্রমণ</h5>
-                                        </div>
-                                    </div>
+                                    @endforeach  
                                 </div>
                             </div>
                             <!--related posts section-->
+                            <br> <br>
 
                         </div>
                     </div>
