@@ -11,6 +11,8 @@ class Upazila extends Model
 
     protected $fillable = ['division', 'district', 'upazila'];
 
+
+    // has many relation with different place
     public function places()
     {
         return $this->hasMany(Place::class);
