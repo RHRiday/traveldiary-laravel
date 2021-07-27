@@ -121,4 +121,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Rating::class);
     }
+    // a user can post many packages
+    public function packages()
+    {
+        return $this->hasMany(Package::class);
+    }
 }

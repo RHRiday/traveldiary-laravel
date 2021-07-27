@@ -7,7 +7,7 @@
         @forelse ($notFollowed as $toFollow)
             <div class="all-follower">
                 <div class="col-2 circular-img">
-                    <a href="/profile/{{ $toFollow->username }}"><img src="{{ asset($toFollow->dp) }}"></a>
+                    <a href="/profile/{{ $toFollow->username }}"><img src="/resources/profile/{{ $toFollow->dp }}"></a>
                 </div>
                 <a href="/profile/{{ $toFollow->username }}">
                     <div class="col-6">
