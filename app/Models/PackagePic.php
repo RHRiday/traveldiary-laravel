@@ -5,19 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Package extends Model
+class PackagePic extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
+    public $timestamps = false;
 
-    public function user()
+    public function package()
     {
-        $this->belongsTo(User::class);
-    }
-
-    public function packagePics()
-    {
-        $this->hasMany(PackagePic::class);
+        $this->belongsTo(Package::class);
     }
 }
