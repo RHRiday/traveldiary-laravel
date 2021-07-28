@@ -65,7 +65,8 @@
                                 @foreach ($upazilas as $upazila)
                                     <option value="{{ $upazila }}"
                                         {{ old('location') == $upazila ? 'selected' : '' }}>
-                                        {{ $upazila }}</option>
+                                        {{ $upazila }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -86,8 +87,6 @@
             </div>
         </div>
 
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">© 2020-2021 TravelDiary</p>
-        </footer>
+        @include('partials.footer')
     </div>
 @endsection

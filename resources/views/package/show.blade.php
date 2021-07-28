@@ -1,42 +1,16 @@
 @extends('layouts.app')
 
+@section('title')
+    <title>Packages</title>
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/place.css') }}">
 @endsection
 
 @section('content')
-
-    <!--navbar section starts-->
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-success my-2 my-sm-0" type="submit">
-                        Search
-                    </button>
-                </form>
-            </div>
-        </nav>
-    </div>
-
-    <!--navbar section ends-->
-
+    @include('partials.nav')
     <!--main section starts-->
     <section id="main">
         <div class="container">
@@ -45,8 +19,8 @@
                 <div class="col-12">
                     <div class="container">
                         <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item"><a href="">এক্সপেরিয়েন্স</a></li>
-                            <li class="list-group-item"><a href="">এক্সপ্লোর</a></li>
+                            <li class="list-group-item"><a href="">Sitakunda</a></li>
+                            <li class="list-group-item"><a href="">ঝর্ণা</a></li>
                         </ul>
                     </div>
                 </div>
@@ -54,66 +28,38 @@
                 <div class="col-sm-12 col-md-12">
                     <div class="content">
                         <div class="post-content">
-                            <div class="post-title mt-5">
+                            <div class="mt-5">
                                 <h1 class="title">
-                                    রিক্সায় ঘুরে সারাদিন চট্টগ্রাম দেখা, সাথে খাবার বিলাস
+                                    ট্রাভেল ডায়েরী ও দক্ষ ফ্যামিলির পক্ষ থেকে ব্যতিক্রমী এই সুযোগ আপনাকে দিচ্ছে ১৫০০
+                                    টাকায়
                                 </h1>
                             </div>
-
                             <div class="post-summary">
-                                <h2>ট্রাভেল ডায়েরী ও দক্ষ ফ্যামিলির পক্ষ থেকে ব্যতিক্রমী এই সুযোগ আপনাকে দিচ্ছে ১৫০০
-                                    টাকায়</h2>
+                                <h2><i class="fas fa-child"></i> একদিনের ট্যুর</h2>
                             </div>
+                            
                             <!--profile section starts-->
-                            <div class="post-meta mt-3">
-                                <!-- <div class="d-flex justify-content-start">
-                                    <div class="row">
-                                        <div class="container mt-5 ">
-                                            <div class="second d-flex flex-row mt-2">
-                                                <div
-                                                    class="image d-flex flex-row align-items-center justify-content-between mt-3 mr-3">
-                                                    <img src="image/avatar.jpg" class="rounded-circle" width="60" />
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="d-flex flex-column mb-1 mt-3"> <span> <strong>Tamim
-                                                            </strong></span>
-                                                        <div class="time mt-3"> <strong> Created at : 26 July,2021
-                                                            </strong> </div>
-                                                    </div>
-                                                    <div>
-                                                        <button class="btn btn-outline-dark btn-md px-2 ml-5 ">+
-                                                            Follow</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div> -->
-
-
+                            <div class="mt-3">
                                 <div class="d-flex bd-highlight ">
                                     <div class="p-2 bd-highlight">
-                                        <img src="image/avatar.jpg" class="rounded-circle" width="60" />
+                                        <img src="/resources/profile/rifathr.jpg" class="rounded-circle" width="60" />
                                     </div>
                                     <div class="p-2 bd-highlight">
-                                        <span> <strong>Tamim</strong></span> <br>
-                                        <span> <strong>Created At : 26 July,2021</strong></span>
+                                        <h4 class="mb-1">Tamim</h4 >
+                                        <p class="mb-0"><strong>Deadline :</strong> 26 July,2021</p>
+                                        <p class="mb-0"><strong>Price :</strong> 500 BDT</p>
                                     </div>
                                     <div class="ml-auto p-2 bd-highlight">
-                                        <button class="btn btn-outline-dark btn-md px-2 ml-5 ">+
-                                            Follow</button>
+                                        <button class="btn btn-outline-dark btn-md px-2 ml-5 ">Follow</button>
                                     </div>
                                 </div>
-
                             </div>
                             <!--profile section ends-->
                         </div>
 
 
 
-                        <div class="post-text text-style fzaWUy mt-5">
-
+                        <div class="mt-5">
                             <!--carousel starts-->
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
@@ -150,7 +96,7 @@
                             <!--Description parts starts-->
                             <figure class="figureClass mt-5">
                                 <figcaption class="captionClass">
-                                    <strong class="display-4"> বিস্তারিত :</strong>
+                                    <strong class="display-4"> বিস্তারিত:</strong>
                                 </figcaption>
                             </figure>
                             <p>
@@ -169,7 +115,8 @@
                             </p>
 
                             <!--Direction parts Ends-->
-                            <p><strong class="display-4">বুকিংয়ের নিয়মাবলী :</strong> </p>
+                            <p><strong class="display-4">বুকিংয়ের নিয়মাবলী ও সতর্কতা:</strong> </p>
+                            
                             <p>
                                 * বুকিং প্রাইস পেমেন্ট করলেই আপনার বুকিংটি প্রাথমিকভাবে কনফার্ম হবে। <br>
                                 * হোস্টের সাথে কমিউনিকেশন করে আপনাকে কনফার্মেশন ম্যাসেজ ও মেইল পাঠানো হবে। <br>
@@ -178,46 +125,18 @@
                                 * আপনার নিজস্ব কারণে যদি আপনার পক্ষ থেকে ২-৬ দিন আগে ক্যানসেল করা হয় তাহলে আপনি বুকিং
                                 মানির ৪০% রিফান্ড পাবেন। <br>
                             </p>
-
-
-                            <!--additional info parts start-->
-                            <p><strong class="display-4">বিশেষ দ্রষ্টব্য :</strong> </p>
-                            <ul>
-                                <li>
-                                    ট্যুরের সময়ে সঠিক দূরত্ব বজায় রাখার চেষ্টা করতে হবে এবং
-                                    সবসময় মাস্ক ব্যবহার করতে হবে।
-                                </li>
-                                <li>
-                                    করোনার যেকোন লক্ষণ কারো মধ্যে দেখা গেলে তার ট্যুর সঙ্গে
-                                    সঙ্গে ক্যানসেল করা হবে।
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!--additional info parts ends-->
-
-                        <!--Budget Parts starts-->
+                            <p class="display-4">প্যাকেজ সংক্রান্ত তথ্যের জন্য যোগাযোগ করুন <span class="alert-dark">015631</span> নম্বরে</p>
                         <div>
-                            <p><strong class="display-4">বাজেট :</strong> </p>
-                            <p class="package-price"><b>৳2300.00</b> / Person</p>
-
-                        </div>
-                        <div>
-                            <button type="" class="btn btn-md btn-custom">Choose Package</button>
+                            <a class="btn btn-success">Buy Package</a>
                         </div>
                         <!--Budget Parts starts-->
-
-
-
 
                         <!--related package section-->
 
                         <div class="related-posts mt-5">
                             <div class="d-flex justify-content-between mb-3">
-                                <button type="button" class="btn btn-md btn-custom ">Add Packages <span><i
-                                            class="far fa-plus-square pl-3"></i></span> </button>
                                 <h3>Related Packages</h3>
-                                <a href="">See All</a>
+                                <a href="/packages">See All</a>
                             </div>
                             <div class="card-deck">
                                 <div class="card">
@@ -252,4 +171,5 @@
         </div>
     </section>
 
+    @include('partials.footer')
 @endsection

@@ -6,38 +6,7 @@
 @endsection
 
 @section('content')
-    <!--navbar section starts-->
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-            <a class="navbar-brand" href="/home">
-                <img class="mx-auto" src="{{ asset('logo.ico') }}" width="32" height="32">
-                <span class="d-md-none"> TravelDiary</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="/home">Stories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="/places">Explore</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-success my-2 my-sm-0" type="submit">
-                        Search
-                    </button>
-                </form>
-            </div>
-        </nav>
-    </div>
-
-    <!--navbar section ends-->
+    @include('partials.nav')
 
     <!--main section starts-->
     <section id="main">
@@ -87,7 +56,7 @@
                                                         <button type="submit" class="btn btn-sm btn-success ml-3">Rate This</button>
                                                     </form>
                                                 @else 
-                                                    <b> <span class="h2"> Ratings: </span> {{ $place->ratings->avg('rating') }}</b>
+                                                    <b> <span class="h2"> Ratings: </span> {{ round($place->ratings->avg('rating'), 2) }}</b>
                                                 @endif
                                             </div>
                                         </div>
@@ -217,31 +186,20 @@
                                     <a href="">See All</a>
                                 </div>
                                 <div class="card-deck">
-                                    <div class="card">
-                                        <img src="images/boalia trail.jpg" class="card-img-top" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                বোয়ালিয়া ট্রেইল - মিরসরাই রেঞ্জের অন্যতম আকর্ষণ
-                                            </h5>
+                                    @foreach($relatedPost as $post)
+                                        <div class="card">
+                                            <a href="/story/{{ $post->id }}"><img src="/resources/stories/{{ $post->postPics->first()->path }}" width="50" class="card-img-top" alt="..." /> </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    {{ $post->title }}
+                                                </h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="card">
-                                        <img src="images/no-kaba.jpg" class="card-img-top" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">
-                                                ন-কাবা ছড়া এই পাহাড়ি ঝর্ণা বাংলাদেশের অন্য সকল ঝর্ণার
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <img src="images/dhuppani.jpg" class="card-img-top" alt="..." />
-                                        <div class="card-body">
-                                            <h5 class="card-title">জোছনাতরীর সাথে ধুপপানি ভ্রমণ</h5>
-                                        </div>
-                                    </div>
+                                    @endforeach  
                                 </div>
                             </div>
                             <!--related posts section-->
+                            <br> <br>
 
                         </div>
                     </div>

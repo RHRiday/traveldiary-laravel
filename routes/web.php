@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -25,9 +26,11 @@ Route::get('/profile/{username}', [App\Http\Controllers\HomeController::class, '
 Route::get('/follow/{id}', [App\Http\Controllers\HomeController::class, 'followRequest']);
 
 Route::resource('/story', PostController::class);
+//Route::get('/story/{id}', [PostController::class, 'showOnlyPost']);
 Route::get('/story/report/{id}', [PostController::class, 'report'])->name('story.report');
 
 Route::resource('/admin', AdminController::class);
+Route::resource('/packages', PackageController::class);
 Auth::routes();
 
 Route::get('/places/{id}', [PlaceController::class, 'show']);
