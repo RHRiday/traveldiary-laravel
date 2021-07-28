@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Package;
+use App\Models\PackagePic;
+use App\Models\User;
 
 class PackageController extends Controller
 {
@@ -46,7 +49,24 @@ class PackageController extends Controller
      */
     public function show($id)
     {
-        return view('package.show');
+        $package = Package::find($id);
+        $user = User::find($package->user_id) ;
+
+        $relatedPackage = Package::where('location', $package->location)
+                ->inRandomOrder()
+                ->limit(3)
+                ->get();
+
+        
+        $packagePic = PackagePic::where('pkg_id', $id)->get() ;
+        
+
+        return view('package.show', [
+            'package' => $package,
+            'user' => $user,
+            'packagePic' => $packagePic,
+            'relatedPackage' => $relatedPackage,
+        ]);
     }
 
     /**
