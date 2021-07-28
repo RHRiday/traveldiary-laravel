@@ -13,11 +13,11 @@ class Package extends Model
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function packagePics()
     {
-        $this->hasMany(PackagePic::class);
+        return $this->hasMany(PackagePic::class);
     }
 }
