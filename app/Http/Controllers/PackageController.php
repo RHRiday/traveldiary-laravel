@@ -49,22 +49,14 @@ class PackageController extends Controller
      */
     public function show($id)
     {
-        $package = Package::find($id);
-        $user = User::find($package->user_id) ;
-
+        $package = Package::where('id', $id)->first();
         $relatedPackage = Package::where('location', $package->location)
                 ->inRandomOrder()
                 ->limit(3)
                 ->get();
 
-        
-        $packagePic = PackagePic::where('pkg_id', $id)->get() ;
-        
-
         return view('package.show', [
             'package' => $package,
-            'user' => $user,
-            'packagePic' => $packagePic,
             'relatedPackage' => $relatedPackage,
         ]);
     }

@@ -23,8 +23,8 @@ class CreatePackagesTable extends Migration
             $table->mediumText('benefit')->nullable();
             $table->mediumText('rule')->nullable();
             $table->integer('price');
-            $table->tinyInteger('phone');
-            $table->tinyInteger('bkash')->nullable();
+            $table->string('phone');
+            $table->string('bkash')->nullable();
             $table->timestamp('deadline');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

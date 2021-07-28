@@ -15,10 +15,10 @@ class CreatePackagePicsTable extends Migration
     {
         Schema::create('package_pics', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pkg_id');
+            $table->unsignedBigInteger('package_id');
             $table->string('path');
 
-            $table->foreign('pkg_id')->references('id')->on('packages');
+            $table->foreign('package_id')->references('id')->on('packages');
         });
     }
 

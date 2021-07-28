@@ -2,6 +2,7 @@
 /public/hot
 /public/resources/places
 /public/resources/stories
+/public/resources/packages
 /public/storage
 /storage/*.key
 /vendor
