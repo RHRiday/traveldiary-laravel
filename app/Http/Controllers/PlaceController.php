@@ -7,6 +7,7 @@ use App\Models\Place;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rating;
 use App\Models\Post;
+use App\Models\Package;
 
 class PlaceController extends Controller
 {
@@ -20,6 +21,11 @@ class PlaceController extends Controller
             }
         }
 
+        $relatedPackage = Package::where('location', $id->location)
+                ->inRandomOrder()
+                ->limit(3)
+                ->get();
+
         $relatedPost = Post::where('location', $id->location)
                 ->inRandomOrder()
                 ->limit(3)
@@ -29,6 +35,7 @@ class PlaceController extends Controller
             'place' => $id,
             'alreadyRated' => $alreadyRated,
             'relatedPost' => $relatedPost,
+            'relatedPackage' => $relatedPackage,
         ]);
     }
 
