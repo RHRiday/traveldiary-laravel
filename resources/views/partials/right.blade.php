@@ -1,6 +1,9 @@
 <div class="col-3 right">
     <div class="search-diary">
-        <input class="search" type="text" placeholder="Search your diary">
+        <form action="/search" method="get">
+            <input name="key" class="search" type="text" placeholder="Search your diary">
+        </form>
+        
     </div>
     <div class="follow-people">
         <h3>Who to follow</h3>

@@ -7,6 +7,7 @@ use App\Models\Upazila;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Place;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -69,8 +70,8 @@ class HomeController extends Controller
     {
         $auth = User::where('id', Auth::id())->first();
         $user = User::where('username', $username)->first();
-        
-        if(!$user){
+
+        if (!$user) {
             abort(404);
         }
         // dd($user->following()->where('user_id', '<>', $user->id)->get());
@@ -121,14 +122,14 @@ class HomeController extends Controller
         if ($request->dp) {
             $dp = Auth::user()->username . '.' . $request->dp->getClientOriginalExtension();
             $request->dp->move(public_path('resources/profile'), $dp);
-        }else{
+        } else {
             $dp = $user->dp;
         }
 
         if ($request->cp) {
             $cp = Auth::user()->username . '.' . $request->cp->getClientOriginalExtension();
             $request->cp->move(public_path('resources/cover'), $cp);
-        }else{
+        } else {
             $cp = $user->cover;
         }
 
@@ -164,5 +165,28 @@ class HomeController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    /**
+     * Handle search query
+     * Returs users only
+     * 
+     * @returns response
+     */
+    public function search(Request $request)
+    {
+        $users = User::where('name', 'LIKE', '%' . $request->key . '%')
+            ->orWhere('username', 'LIKE', $request->key . '%');
+        $places = Place::where('name', 'LIKE', '%' . $request->key . '%')
+            ->orWhere('location', 'LIKE', '%' . $request->key . '%');
+        // dd($places);
+        if ($request->price) {
+            $places = $places->where('budget', '<=', $request->price);
+            // dd($places->get());
+        }
+        return view('search', [
+            'users' => $users->get(),
+            'places' => $places->get(),
+        ]);
     }
 }

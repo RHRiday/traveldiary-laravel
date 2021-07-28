@@ -33,9 +33,7 @@ class PlaceController extends Controller
     }
 
     public function saveRating(Request $request, $place_id) {
-        $user_id = Auth::id();
-
-
+        
         Rating::create([
             'user_id' => Auth::id(),
             'place_id' => $place_id,

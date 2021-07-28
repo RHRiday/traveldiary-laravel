@@ -14,6 +14,6 @@ class PackagePic extends Model
 
     public function package()
     {
-        $this->belongsTo(Package::class);
+        return $this->belongsTo(Package::class);
     }
 }

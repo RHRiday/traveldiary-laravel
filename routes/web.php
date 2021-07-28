@@ -24,9 +24,9 @@ Route::get('/profile/edit', [App\Http\Controllers\HomeController::class, 'edit']
 Route::put('/profile/edit', [App\Http\Controllers\HomeController::class, 'update']);
 Route::get('/profile/{username}', [App\Http\Controllers\HomeController::class, 'show']);
 Route::get('/follow/{id}', [App\Http\Controllers\HomeController::class, 'followRequest']);
+Route::get('/search', [App\Http\Controllers\HomeController::class, 'search']);
 
 Route::resource('/story', PostController::class);
-//Route::get('/story/{id}', [PostController::class, 'showOnlyPost']);
 Route::get('/story/report/{id}', [PostController::class, 'report'])->name('story.report');
 
 Route::resource('/admin', AdminController::class);

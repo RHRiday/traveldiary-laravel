@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    <title>{{$place->name}}</title>
+@endsection
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/place.css') }}">
@@ -206,6 +210,8 @@
                 </div>
             </div>
     </section>
+
+    @include('partials.footer')
 
     <!--main section ends-->
 @endsection
