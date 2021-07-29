@@ -17,7 +17,10 @@ class PackageController extends Controller
      */
     public function index()
     {
-        //
+        // dd(Package::where('deadline', '>', now())->first());
+        return view('package.index', [
+            'packages' => Package::where('deadline', '>', now())->orderBy('deadline')->get(),
+        ]);
     }
 
     /**

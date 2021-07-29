@@ -155,19 +155,23 @@
 
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
-                                    <button type="button" class="btn btn-dark">Add Packages <span><i
-                                                class="far fa-plus-square"></i></span> </button>
                                     <h3>Related Packages</h3>
-                                    <a href="">See All</a>
+                                    <a href="" class="my-auto">See All</a>
                                 </div>
-                                <div class="card-deck">
+                                <div class="d-flex justify-content-start">
                                     @foreach ($relatedPackage as $pack)
-                                        <div class="card">
-                                            <a href="/packages/{{ $pack->id }}"><img src="/resources/packages/{{ $pack->packagePics->first()->path }}" width="50" class="card-img-top" alt="..." /> </a>
-                                            <div class="card-body">
+                                        <div class="card col-sm-12 col-md-6 col-lg-4">
+                                            <div class="place-img">
+                                                <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
+                                                    class="position-relative">
+                                            </div>
+                                            <div class="card-body pl-0">
                                                 <h5 class="card-title">
-                                                    {{ $pack->title }}
+                                                    <a href="/packages/{{ $pack->id }}">
+                                                        {{ $pack->title }}
+                                                    </a>
                                                 </h5>
+                                                <p class="my-0">{{$pack->price}} টাকা</p>
                                             </div>
                                         </div>
                                     @endforeach
@@ -181,17 +185,20 @@
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h3>Related Posts</h3>
-                                    <a href="">See All</a>
+                                    <a href="" class="my-auto">See All</a>
                                 </div>
-                                <div class="card-deck">
+                                <div class="d-flex justify-content-start">
                                     @foreach ($relatedPost as $post)
-                                        <div class="card">
-                                            <a href="/story/{{ $post->id }}"><img
-                                                    src="/resources/stories/{{ $post->postPics->first()->path }}"
-                                                    width="50" class="card-img-top" alt="..." /> </a>
-                                            <div class="card-body">
+                                        <div class="card col-sm-12 col-md-6 col-lg-4">
+                                            <div class="place-img">
+                                                <img src="/resources/stories/{{ $post->postPics->first()->path }}"
+                                                    class="position-relative">
+                                            </div>
+                                            <div class="card-body pl-0">
                                                 <h5 class="card-title">
-                                                    {{ $post->title }}
+                                                    <a href="/story/{{ $post->id }}">
+                                                        {{ $post->title }}
+                                                    </a>
                                                 </h5>
                                             </div>
                                         </div>

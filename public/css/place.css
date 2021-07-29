@@ -89,10 +89,6 @@ fieldset {
     text-transform: uppercase
 }
 
-.btn:hover {
-    background-color: #D32F2F !important
-}
-
 .display-4 {
     font-size: 2rem !important;
 }

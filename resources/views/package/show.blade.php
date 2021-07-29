@@ -46,8 +46,8 @@
                                     </div>
                                     <div class="p-2 bd-highlight">
                                         <h4 class="mb-1"><a href="/profile/{{$package->user->username}}">{{ $package->user->name }}</a></h4>
-                                        <p class="mb-0"><strong>Deadline :</strong> {{ $package->deadline }} </p>
-                                        <p class="mb-0"><strong>Price :</strong> {{ $package->price }} BDT</p>
+                                        <p class="mb-0"><strong>সময়সীমা :</strong> {{ $package->deadline }} </p>
+                                        <p class="mb-0"><strong>মূল্য :</strong> জনপ্রতি {{ $package->price }} টাকা</p>
                                     </div>
                                 </div>
                             </div>
@@ -121,16 +121,22 @@
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h3>Related Packages</h3>
-                                    <a href="/packages">See All</a>
+                                    <a href="" class="my-auto">See All</a>
                                 </div>
-                                <div class="card-deck">
+                                <div class="d-flex justify-content-start">
                                     @foreach ($relatedPackage as $pack)
-                                        <div class="card">
-                                            <a href="/packages/{{ $pack->id }}"><img src="/resources/packages/{{ $pack->packagePics->first()->path }}" width="50" class="card-img-top" alt="..." /> </a>
-                                            <div class="card-body">
+                                        <div class="card col-sm-12 col-md-6 col-lg-4">
+                                            <div class="place-img">
+                                                <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
+                                                    class="position-relative">
+                                            </div>
+                                            <div class="card-body pl-0">
                                                 <h5 class="card-title">
-                                                    {{ $pack->title }}
+                                                    <a href="/packages/{{ $pack->id }}">
+                                                        {{ $pack->title }}
+                                                    </a>
                                                 </h5>
+                                                <p class="my-0">{{$pack->price}} টাকা</p>
                                             </div>
                                         </div>
                                     @endforeach

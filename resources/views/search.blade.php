@@ -55,7 +55,8 @@
                                     @forelse ( array_unique($places->pluck('type')->toArray()) as $type)
                                         <option value="{{ $type }}">{{ $type }}</option>
                                     @empty
-                                        <option value="{{ request()->get('type') }}">{{ request()->get('type') }}</option>
+                                        <option value="{{ request()->get('type') }}">{{ request()->get('type') }}
+                                        </option>
                                     @endforelse
                                 </select>
                             </div>
@@ -164,7 +165,7 @@
                     @endforeach
                 @endif
 
-                @if ($users->count() < 1 && $places->count() < 1)
+                @if ($users->count() < 1 && $places->count() < 1 && $packages->count() < 1)
                     <div class="my-2 text-center alert alert-danger rounded">
                         Nothing found!!
                     </div>
