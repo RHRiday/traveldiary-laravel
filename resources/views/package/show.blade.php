@@ -131,7 +131,7 @@
                                 <div class="card-deck">
                                     @foreach ($relatedPackage as $pack)
                                         <div class="card">
-                                            {{-- <a href="/packages/{{ $pack->id }}"><img src="/resources/packages/{{ $pack->packagePics->first()->path }}" width="50" class="card-img-top" alt="..." /> </a> --}}
+                                            <a href="/packages/{{ $pack->id }}"><img src="/resources/packages/{{ $pack->packagePics->first()->path }}" width="50" class="card-img-top" alt="..." /> </a>
                                             <div class="card-body">
                                                 <h5 class="card-title">
                                                     {{ $pack->title }}
