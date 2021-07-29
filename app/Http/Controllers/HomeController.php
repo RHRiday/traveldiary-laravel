@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Package;
 use App\Models\Post;
 use App\Models\Upazila;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['root']);
+        $this->middleware('auth')->except(['root', 'search']);
     }
 
     public function root()
@@ -179,14 +180,23 @@ class HomeController extends Controller
             ->orWhere('username', 'LIKE', $request->key . '%');
         $places = Place::where('name', 'LIKE', '%' . $request->key . '%')
             ->orWhere('location', 'LIKE', '%' . $request->key . '%');
-        // dd($places);
+        $packages = Package::where('title', 'LIKE', '%' . $request->key . '%')
+            ->orWhere('location', 'LIKE', '%' . $request->key . '%');
+            
         if ($request->price) {
             $places = $places->where('budget', '<=', $request->price);
-            // dd($places->get());
+            $packages = $packages->where('price', '<=', $request->price);
         }
+        if ($request->type) {
+            $places = $places->where('type', $request->type);
+            $packages = $packages->where('location_type', $request->type);
+        }
+
+
         return view('search', [
             'users' => $users->get(),
             'places' => $places->get(),
+            'packages' => $packages->get(),
         ]);
     }
 }

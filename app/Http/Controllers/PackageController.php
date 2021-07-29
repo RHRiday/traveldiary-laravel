@@ -50,6 +50,9 @@ class PackageController extends Controller
     public function show($id)
     {
         $package = Package::where('id', $id)->first();
+        if (!$package) {
+            abort(404);
+        }
         $relatedPackage = Package::where('location', $package->location)
                 ->inRandomOrder()
                 ->limit(3)

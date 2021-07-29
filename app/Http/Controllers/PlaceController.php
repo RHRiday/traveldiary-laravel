@@ -15,7 +15,7 @@ class PlaceController extends Controller
         $alreadyRated = false ;
 
         foreach($id->ratings as $rating) {
-            if($rating->user_id == Auth::id()) {
+            if($rating->user_id == Auth::id() && $rating->place_id == $id->id) {
                 $alreadyRated = true ;
             }
         }

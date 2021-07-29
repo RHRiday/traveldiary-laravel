@@ -1,5 +1,4 @@
-
-.post-content .post-tags  {
+.post-content .post-tags {
     float: left;
     margin: 0;
     padding: 0;
@@ -41,14 +40,12 @@
 }
 
 
-fieldset,
-label {
-    margin: 0;
-    padding: 0
+fieldset {
+    max-width: 155px !important;
+    margin-bottom: 0 !important;
 }
 
 .myratings {
-    margin-left: 10px;
     font-size: 20px;
     color: green
 }
@@ -63,9 +60,10 @@ label {
     display: inline-block;
     content: "\f005"
 }
+
 .rating>label {
     color: #ddd;
-    float: right
+    float: right;
 }
 
 .rating>[id^="star"]:checked~label,
@@ -98,3 +96,14 @@ label {
 .display-4 {
     font-size: 2rem !important;
 }
+.place-img{
+    height: 150px;
+    overflow: hidden;
+}
+
+.place-img img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }

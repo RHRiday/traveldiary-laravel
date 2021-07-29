@@ -28,7 +28,7 @@
                 <div class="col-sm-12 col-md-12">
                     <div class="content">
                         <div class="post-content">
-                            <div class="mt-5">
+                            <div class="mt-3">
                                 <h1 class="title">
                                     {{ $package->title }}
                                 </h1>
@@ -45,15 +45,10 @@
                                             width="60" />
                                     </div>
                                     <div class="p-2 bd-highlight">
-                                        <h4 class="mb-1">{{ $package->user->username }}</h4>
+                                        <h4 class="mb-1"><a href="/profile/{{$package->user->username}}">{{ $package->user->name }}</a></h4>
                                         <p class="mb-0"><strong>Deadline :</strong> {{ $package->deadline }} </p>
                                         <p class="mb-0"><strong>Price :</strong> {{ $package->price }} BDT</p>
                                     </div>
-                                    @if (Auth::check())
-                                        <div class="ml-auto p-2 bd-highlight">
-                                            <button class="btn btn-outline-dark btn-md px-2 ml-5 ">Follow</button>
-                                        </div>
-                                    @endif
                                 </div>
                             </div>
                             <!--profile section ends-->
