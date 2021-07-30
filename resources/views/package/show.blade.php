@@ -19,8 +19,8 @@
                 <div class="col-12">
                     <div class="container">
                         <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item"><a href="">{{ $package->location }}</a></li>
-                            <li class="list-group-item"><a href="">{{ $package->location_type }}</a></li>
+                            <li class="list-group-item"><a href="/packages?location={{ $package->location }}">{{ $package->location }}</a></li>
+                            <li class="list-group-item"><a href="/packages?type={{ $package->location_type }}">{{ $package->location_type }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="p-2 bd-highlight">
                                         <h4 class="mb-1"><a href="/profile/{{$package->user->username}}">{{ $package->user->name }}</a></h4>
-                                        <p class="mb-0"><strong>সময়সীমা :</strong> {{ $package->deadline }} </p>
+                                        <p class="mb-0"><strong>সময়সীমা :</strong> {{ date('F d, Y', strtotime($package->deadline)) }} </p>
                                         <p class="mb-0"><strong>মূল্য :</strong> জনপ্রতি {{ $package->price }} টাকা</p>
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h3>Related Packages</h3>
-                                    <a href="" class="my-auto">See All</a>
+                                    <a href="/packages" class="my-auto">See All</a>
                                 </div>
                                 <div class="d-flex justify-content-start">
                                     @foreach ($relatedPackage as $pack)

@@ -18,8 +18,11 @@
             <div class="title mt-5">
                 <div class="d-flex justify-content-between">
                     <h3>Packages list</h3>
-                    <a href="{{route('packages.create')}}" class="btn btn-outline-danger my-auto">Sell</a>
+                    <a href="{{ route('packages.create') }}" class="btn btn-outline-danger my-auto">Sell</a>
                 </div>
+                @if (session()->has('message'))
+                    <p class="alert alert-success">{{ session()->get('message') }}</p>
+                @endif
             </div>
             @foreach ($packages as $package)
                 <div class="card mb-3 package">
@@ -52,7 +55,7 @@
                         </div>
                         <div class="m-auto col-md-1">
                             <div class="float-md-right mr-md-2 text-center mb-1">
-                                <h5>1000 &#2547; </h5>
+                                <h5>{{ $package->price }} &#2547; </h5>
                                 <a href="/packages/{{ $package->id }}" class="btn btn-info"> Details </a>
                             </div>
                         </div>
