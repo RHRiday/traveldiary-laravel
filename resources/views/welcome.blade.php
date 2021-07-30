@@ -14,8 +14,8 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <img class="title" src="/resources/travel-diary.png" alt="Travel-Diary">
-            <form class="search-btn" action="">
-                <input type="text" class="form-control" placeholder="Search Your Destination">
+            <form class="search-btn" action="/search" method="GET">
+                <input type="search" class="form-control" placeholder="Search Your Destination" name="key">
             </form>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,16 +24,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ABOUT US <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/home">STORIES</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">PACKAGES</a>
+                        <a class="nav-link" href="/packages">PACKAGES</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">EXPLORE</a>
+                        <a class="nav-link" href="/places">EXPLORE</a>
                     </li>
                 </ul>
             </div>

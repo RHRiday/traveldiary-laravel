@@ -21,7 +21,7 @@
                     <a class="nav-link text-light" href="/packages">Packages</a>
                 </li>
             </ul>
-            <form action="/search" method="GET" class="form-inline my-2 my-lg-0">
+            <form action="/search" method="GET" class="form-inline my-2 my-lg-0 d-none d-lg-block">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="key" value="{{request()->get('key')}}"/>
                 <button class="btn btn-success my-2 my-sm-0" type="submit">
                     Search

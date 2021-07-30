@@ -30,7 +30,6 @@ class PackageController extends Controller
         if ($request->type) {
             $packages = $packages->where('location_type', $request->type);
         }
-        // dd(Package::where('deadline', '>', now())->first());
         return view('package.index', [
             'packages' => $packages,
         ]);

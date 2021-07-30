@@ -10,21 +10,21 @@
             </li>
             <li>
                 <div class="sidemenu-link-hover-2">
-                    <a href="#">
+                    <a href="/packages">
                         <div class="icon-link"><i class="fas fa-box-open"></i></div>
                     </a>
                 </div>
             </li>
             <li>
                 <div class="sidemenu-link-hover-2">
-                    <a href="#">
+                    <a href="/">
                         <div class="icon-link"><i class="fas fa-bookmark"></i></div>
                     </a>
                 </div>
             </li>
             <li>
                 <div class="sidemenu-link-hover-2">
-                    <a href="#">
+                    <a href="/places">
                         <div class="icon-link"><i class="fas fa-hashtag"></i></div>
                     </a>
                 </div>
@@ -32,7 +32,7 @@
 
             <li>
                 <div class="sidemenu-link-hover-2">
-                    <a href="#">
+                    <a href="/search">
                         <div class="icon-link"><i class="fas fa-search"></i></div>
                     </a>
                 </div>

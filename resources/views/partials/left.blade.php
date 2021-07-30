@@ -38,7 +38,7 @@
             </li>
             <li>
                 <div class="sidemenu-link-hover">
-                    <a href="packages">
+                    <a href="/packages">
                         <div class="icon-link"><i class="fas fa-box-open"></i></div>
                         <div class="icon-link for-display">Packages</div>
                     </a>
@@ -46,7 +46,7 @@
             </li>
             <li>
                 <div class="sidemenu-link-hover">
-                    <a href="explore">
+                    <a href="/places">
                         <div class="icon-link"><i class="fas fa-hashtag"></i></div>
                         <div class="icon-link for-display">Explore</div>
                     </a>
@@ -54,7 +54,7 @@
             </li>
             <li>
                 <div class="sidemenu-link-hover">
-                    <a href="bookmarks">
+                    <a href="/bookmarks">
                         <div class="icon-link"><i class="fas fa-bookmark"></i></div>
                         <div class="icon-link for-display">Bookmarks</div>
                     </a>
@@ -62,7 +62,7 @@
             </li>
             <li class="only-mbl">
                 <div class="sidemenu-link-hover search">
-                    <a href="search">
+                    <a href="/search">
                         <div class="icon-link"><i class="fas fa-search"></i></div>
                         <div class="icon-link for-display">Search</div>
                     </a>
