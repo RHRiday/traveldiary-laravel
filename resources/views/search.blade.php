@@ -15,26 +15,6 @@
         <h5 class="mt-2 text-center display-4">Search Results</h5>
         <div class="row">
             <div class="col-lg-4 d-flex flex-column text-center order-lg-last">
-                {{-- <div class="">
-                    <div class="p-2 border-bottom shadow-sm m-1 alert-success">
-                        Search in
-                    </div>
-                    <a href="/search/all">
-                        <div class="p-2 border border-dark rounded m-1">
-                            Travelers
-                        </div>
-                    </a>
-                    <a href="/search/all">
-                        <div class="p-2 border border-dark rounded m-1">
-                            Places
-                        </div>
-                    </a>
-                    <a href="/search/all">
-                        <div class="p-2 border border-dark rounded m-1">
-                            Packages
-                        </div>
-                    </a>
-                </div> --}}
                 <div class="">
                     <div class="p-2 border-bottom shadow-sm m-1 alert-success">
                         Filter
@@ -52,7 +32,8 @@
                             <label for="type" class="mb-2">Type:</label>
                             <div class="ml-auto w-50">
                                 <select name="type" class="form-control" id="type">
-                                    @forelse ( array_unique($places->pluck('type')->toArray()) as $type)
+                                    <option value="" selected></option>
+                                    @forelse ( array_unique($types) as $type)
                                         <option value="{{ $type }}">{{ $type }}</option>
                                     @empty
                                         <option value="{{ request()->get('type') }}">{{ request()->get('type') }}
@@ -165,9 +146,37 @@
                     @endforeach
                 @endif
 
-                @if ($users->count() < 1 && $places->count() < 1 && $packages->count() < 1)
+                @if ($posts->count() > 0)
+                    <div class="mt-2 alert alert-info" id="travellers">
+                        <i class="fas fa-hashtag" aria-hidden="true"></i> Stories
+                    </div>
+                    @foreach ($posts as $post)
+                        <div class="col-12 d-flex border rounded bg-white mb-1">
+                            <div class="p-2 col-4 place-img">
+                                <img src="/resources/stories/{{ $post->postPics->first()->path }}">
+                            </div>
+                            <div class="col-7 my-auto ml-1">
+                                <h5 class="mb-1">
+                                    <a href="/story/{{ $post->id }}">{{ $post->title }}</a>
+                                </h5>
+                                <p class="mb-0">
+                                    <strong>
+                                        <i class="fa fa-map-marker-alt" title="Location" aria-hidden="true"></i>
+                                    </strong> {{ $post->location }}
+                                </p>
+                                <p class="mb-0">
+                                    <strong>
+                                        <i class="fa fa-clock" title="Time" aria-hidden="true"></i>
+                                    </strong> {{ date('F d, Y', strtotime($post->created_at)) }}
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+
+                @if ($users->count() < 1 && $places->count() < 1 && $packages->count() < 1 && $posts->count() < 1)
                     <div class="my-2 text-center alert alert-danger rounded">
-                        Nothing found!!
+                        Nothing was found!!
                     </div>
                 @endif
             </div>

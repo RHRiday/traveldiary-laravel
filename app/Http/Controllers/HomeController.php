@@ -182,6 +182,7 @@ class HomeController extends Controller
             ->orWhere('location', 'LIKE', '%' . $request->key . '%');
         $packages = Package::where('title', 'LIKE', '%' . $request->key . '%')
             ->orWhere('location', 'LIKE', '%' . $request->key . '%');
+        $posts = Post::where('location', 'LIKE', '%' . $request->key . '%');
             
         if ($request->price) {
             $places = $places->where('budget', '<=', $request->price);
@@ -197,6 +198,8 @@ class HomeController extends Controller
             'users' => $users->get(),
             'places' => $places->get(),
             'packages' => $packages->get(),
+            'posts' => $posts->get(),
+            'types' => Place::pluck('type')->union(Package::pluck('location_type'))->toArray(),
         ]);
     }
 }
