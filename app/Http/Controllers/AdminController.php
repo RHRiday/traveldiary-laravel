@@ -8,6 +8,7 @@ use App\Models\Upazila;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePlaceRequest;
+use App\Models\Guide;
 use App\Models\PlacePic;
 
 class AdminController extends Controller
@@ -171,9 +172,49 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $place = Place::find($id);
-        
+
         $place->delete();
 
         return redirect('/admin')->with('message', 'Tour spot has been deleted');
+    }
+
+    /**
+     * View the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function membership()
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        return view('admin.membership', [
+            'requests' => Guide::where('approval', 0)->get(),
+        ]);
+    }
+
+    /**
+     * Handles the specified request.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function approval(Request $request, $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        if ($request->status == 'Accept') {
+            Guide::where('id', $id)->update([
+                'approval' => 1,
+            ]);
+            $action = 'Approved';
+        } else {
+            Guide::find($id)->delete();
+            $action = 'Declined';
+        }
+
+        return redirect('/admin')->with('message', 'Request has been '. $action);
     }
 }

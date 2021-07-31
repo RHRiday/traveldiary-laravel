@@ -20,12 +20,13 @@ class GuideController extends Controller
      */
     public function index()
     {
+        // dd(Guide::where('user_id', Auth::id())->first()->approval);
         if (!Auth::id() || (Auth::id() && Guide::where('user_id', Auth::id())->first() == null)) {
             $membership = false;
         } elseif (Guide::where('user_id', Auth::id())->first()->approval == 0) {
             $membership = 'pending';
         } else {
-            $membership = true;
+            $membership = 'approved';
         }
 
         return view('guide.index', [

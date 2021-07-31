@@ -31,6 +31,9 @@ Route::resource('/story', PostController::class);
 Route::get('/story/report/{id}', [PostController::class, 'report'])->name('story.report');
 
 Route::resource('/admin', AdminController::class);
+Route::get('/memberships', [AdminController::class, 'membership']);
+Route::post('/memberships/{id}', [AdminController::class, 'approval']);
+
 Route::resource('/packages', PackageController::class);
 Route::resource('/guides', GuideController::class);
 Auth::routes();

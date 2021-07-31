@@ -86,12 +86,12 @@
             </div>
         </section>
     @else
-        @if ($membership == 'pending')
+        @if ($membership != 'pending')
+            still left to build
+        @else
             <div class="alert alert-success container mt-5 text-center">
                 Your request is submitted. Please wait for our response to become a member of this community.
             </div>
-        @else
-
         @endif
     @endif
 
