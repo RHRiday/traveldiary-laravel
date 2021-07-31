@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Rating;
 use App\Models\Post;
 use App\Models\Package;
+use App\Models\User;
 
 class PlaceController extends Controller
 {
@@ -40,6 +41,12 @@ class PlaceController extends Controller
     }
 
     public function saveRating(Request $request, $place_id) {
+
+        $point = User::find(Auth::id())->points;
+
+        User::where('id', Auth::id())->update([
+            'points' => $point + 3,
+        ]);
         
         Rating::create([
             'user_id' => Auth::id(),
