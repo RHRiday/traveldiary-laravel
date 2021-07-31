@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-light" href="/packages">Packages</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/guides">Career</a>
+                </li>
             </ul>
             <form action="/search" method="GET" class="form-inline my-2 my-lg-0 d-none d-lg-block">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="key" value="{{request()->get('key')}}"/>

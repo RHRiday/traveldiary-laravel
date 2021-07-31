@@ -17,8 +17,8 @@
             </li>
             <li>
                 <div class="sidemenu-link-hover-2">
-                    <a href="/">
-                        <div class="icon-link"><i class="fas fa-bookmark"></i></div>
+                    <a href="/guides">
+                        <div class="icon-link"><i class="fas fa-briefcase"></i></div>
                     </a>
                 </div>
             </li>

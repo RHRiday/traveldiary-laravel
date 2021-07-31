@@ -54,9 +54,9 @@
             </li>
             <li>
                 <div class="sidemenu-link-hover">
-                    <a href="/bookmarks">
-                        <div class="icon-link"><i class="fas fa-bookmark"></i></div>
-                        <div class="icon-link for-display">Bookmarks</div>
+                    <a href="/guides">
+                        <div class="icon-link"><i class="fas fa-briefcase"></i></div>
+                        <div class="icon-link for-display">Career</div>
                     </a>
                 </div>
             </li>

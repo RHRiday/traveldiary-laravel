@@ -147,7 +147,9 @@
 
                             </div>
                             <!--Budget Parts starts-->
-
+                            <a href="" class="col-12 mx-auto text-center btn btn-outline-success">
+                                Hire a guide for your tour
+                            </a>
 
 
 
@@ -171,7 +173,7 @@
                                                         {{ $pack->title }}
                                                     </a>
                                                 </h5>
-                                                <p class="my-0">{{$pack->price}} টাকা</p>
+                                                <p class="my-0">{{ $pack->price }} টাকা</p>
                                             </div>
                                         </div>
                                     @endforeach

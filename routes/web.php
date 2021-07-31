@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GuideController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PostController;
@@ -31,7 +32,9 @@ Route::get('/story/report/{id}', [PostController::class, 'report'])->name('story
 
 Route::resource('/admin', AdminController::class);
 Route::resource('/packages', PackageController::class);
+Route::resource('/guides', GuideController::class);
 Auth::routes();
 
+Route::get('/places', [PlaceController::class, 'index']);
 Route::get('/places/{id}', [PlaceController::class, 'show']);
 Route::post('/places/{id}', [PlaceController::class, 'saveRating']) ;

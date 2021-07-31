@@ -32,6 +32,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/places">EXPLORE</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/guides">CAREER</a>
+                    </li>
                 </ul>
             </div>
 
