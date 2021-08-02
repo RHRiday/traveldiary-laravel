@@ -103,3 +103,23 @@ fieldset {
     top: 50%;
     transform: translate(-50%, -50%);
   }
+
+  .places{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/mohamaya.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 70px;
+    border-radius: 10px;
+    color: #CECECE;
+}
+
+.places-bg {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+h3 {
+    font-size: 15px;
+    font-weight: bold;
+}
