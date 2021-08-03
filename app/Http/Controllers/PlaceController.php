@@ -12,6 +12,16 @@ use App\Models\User;
 
 class PlaceController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('place.index');
+    }
+
     public function show(Place $id)
     {
         $alreadyRated = false ;

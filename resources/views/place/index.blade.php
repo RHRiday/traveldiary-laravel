@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>{{ $place->name }}</title>
+    <title>dsa</title>
 @endsection
 
 @section('css')
