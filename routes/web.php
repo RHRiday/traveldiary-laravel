@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuideController;
+use App\Http\Controllers\HireController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PostController;
@@ -40,4 +41,6 @@ Auth::routes();
 
 Route::get('/places', [PlaceController::class, 'index']);
 Route::get('/places/{id}', [PlaceController::class, 'show']);
-Route::post('/places/{id}', [PlaceController::class, 'saveRating']) ;
+Route::post('/places/{id}', [PlaceController::class, 'saveRating']);
+
+Route::resource('/hires', HireController::class);

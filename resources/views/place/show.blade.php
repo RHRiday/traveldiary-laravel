@@ -147,7 +147,8 @@
 
                             </div>
                             <!--Budget Parts starts-->
-                            <a href="" class="col-12 mx-auto text-center btn btn-outline-success">
+                            <a href="/hires/create/{{ $place->id }}"
+                                class="col-12 mx-auto text-center btn btn-outline-success">
                                 Hire a guide for your tour
                             </a>
 
