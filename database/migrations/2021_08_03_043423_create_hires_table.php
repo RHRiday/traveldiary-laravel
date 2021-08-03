@@ -21,9 +21,9 @@ class CreateHiresTable extends Migration
             $table->mediumText('info_letter');
             $table->timestamp('date');
 
-            $table->foreign('user_id')->references('users')->on('id');
-            $table->foreign('place_id')->references('places')->on('id');
-            $table->foreign('guide_id')->references('guides')->on('id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('place_id')->references('id')->on('places');
+            $table->foreign('guide_id')->references('id')->on('guides');
             $table->timestamps();
         });
     }

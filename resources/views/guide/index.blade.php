@@ -87,7 +87,64 @@
         </section>
     @else
         @if ($membership != 'pending')
-            still left to build
+            <div class="container mt-3">
+                <h1 class="text-center border-bottom mb-3">
+                    Guide opportunities
+                    <span class="float-right">
+                        <a href="/guides?sort=own" class="btn btn-sm btn-primary">My posts</a>
+                    </span>
+                </h1>
+                @if ($data->count() < 1)
+                    <div class="alert bg-white">
+                        <p class="text-center mb-0">
+                            No request at the moment. Please be patient
+                        </p>
+                    </div>
+                @endif
+                @foreach ($data as $request)
+                    <div class="card mb-3 package">
+
+                        <div class="row no-gutters">
+                            <div class="col-md-4 placeholder-img overflow-hidden my-auto">
+                                <img src="/resources/places/{{ $request->place->placePics->first()->path }}">
+                            </div>
+                            <div class="col-md-7 my-auto">
+                                <div class="card-body">
+                                    <h4><a href="/places/{{ $request->place->id }}">{{ $request->place->name }}</a>
+                                    </h4>
+                                    <p class="mb-1">
+                                        <i class="fa fa-map-marker-alt" title="Location" aria-hidden="true"></i>
+                                        {{ $request->place->location }}
+                                    </p>
+                                    <p class="mb-0">
+                                        <i class="fa fa-clock" title="Time" aria-hidden="true"></i>
+                                        {{ $request->date }}
+                                    </p>
+                                    <p class="mb-0">
+                                        <i class="fa fa-info" title="Letter" aria-hidden="true"></i>
+                                        {{ $request->info_letter }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="m-auto col-md-1">
+                                <div class="float-md-right mr-md-2 text-center mb-1">
+                                    <form action="/guides/{{ $request->id }}/apply" method="POST">
+                                        @csrf
+                                        @if ($request->user_id != Auth::id())
+                                            <input type="submit" class="btn btn-sm btn-success m-1" name="apply"
+                                                value="Apply">
+                                        @else
+                                            <a class="btn btn-sm btn-info m-1"
+                                                href="{{ route('guides.show', $request->id) }}">Applicants</a>
+                                        @endif
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         @else
             <div class="alert alert-success container mt-5 text-center">
                 Your request is submitted. Please wait for our response to become a member of this community.

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GuideRequest;
 use App\Models\Guide;
+use App\Models\Hire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,9 +19,9 @@ class GuideController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // dd(Guide::where('user_id', Auth::id())->first()->approval);
+        // dd(Hire::all());
         if (!Auth::id() || (Auth::id() && Guide::where('user_id', Auth::id())->first() == null)) {
             $membership = false;
         } elseif (Guide::where('user_id', Auth::id())->first()->approval == 0) {
@@ -28,9 +29,15 @@ class GuideController extends Controller
         } else {
             $membership = 'approved';
         }
+        $data = Hire::all();
+
+        if ($request->sort == 'own') {
+            $data = $data->where('user_id', Auth::id());
+        }
 
         return view('guide.index', [
             'membership' => $membership,
+            'data' => $data,
         ]);
     }
 
@@ -41,7 +48,7 @@ class GuideController extends Controller
      */
     public function create()
     {
-        if (Guide::where('user_id', Auth::id())){
+        if (Guide::where('user_id', Auth::id()) == null){
             return redirect('/guides');
         }
         return view('guide.create');
@@ -53,7 +60,7 @@ class GuideController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GuideRequest $request)
+    public function store(Request $request)
     {
         Guide::create([
             'national_id' => $request->nid,

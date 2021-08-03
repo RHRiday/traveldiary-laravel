@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Hire extends Model
 {
     use HasFactory;
-    public $guided = ['id'];
+    public $guarded = ['id'];
 
 
     public function user()
@@ -22,5 +22,9 @@ class Hire extends Model
     public function guide()
     {
         return $this->belongsTo(Guide::class);
+    }
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
     }
 }
