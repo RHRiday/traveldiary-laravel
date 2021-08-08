@@ -15,4 +15,8 @@ class Application extends Model
     {
         return $this->belongsTo(Hire::class);
     }
+    public function guide()
+    {
+        return $this->belongsTo(Guide::class);
+    }
 }

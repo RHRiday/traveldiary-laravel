@@ -128,11 +128,15 @@
                             </div>
                             <div class="m-auto col-md-1">
                                 <div class="float-md-right mr-md-2 text-center mb-1">
-                                    <form action="/guides/{{ $request->id }}/apply" method="POST">
+                                    <form action="{{ route('guides.apply', $request->id) }}" method="POST">
                                         @csrf
                                         @if ($request->user_id != Auth::id())
-                                            <input type="submit" class="btn btn-sm btn-success m-1" name="apply"
-                                                value="Apply">
+                                            @if(!$request->applications->where('guide_id', $user->where('id', Auth::id())->first()->guide->id)->first())    
+                                                <input type="submit" class="btn btn-sm btn-success m-1" name="apply"
+                                                        value="Apply">
+                                            @else
+                                                <p class="badge bg-primary text-white p-1">Applied</p>
+                                            @endif
                                         @else
                                             <a class="btn btn-sm btn-info m-1"
                                                 href="{{ route('guides.show', $request->id) }}">Applicants</a>

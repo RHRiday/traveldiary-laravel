@@ -15,7 +15,12 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('hire_id');
+            $table->unsignedBigInteger('guide_id');
             $table->timestamps();
+
+            $table->foreign('hire_id')->references('id')->on('hires');
+            $table->foreign('guide_id')->references('id')->on('guides');
         });
     }
 

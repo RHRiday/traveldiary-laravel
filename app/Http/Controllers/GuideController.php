@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\GuideRequest;
 use App\Models\Guide;
 use App\Models\Hire;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,7 @@ class GuideController extends Controller
             $membership = 'approved';
         }
         $data = Hire::all();
+        $user = User::all();
 
         if ($request->sort == 'own') {
             $data = $data->where('user_id', Auth::id());
@@ -38,6 +40,7 @@ class GuideController extends Controller
         return view('guide.index', [
             'membership' => $membership,
             'data' => $data,
+            'user' => $user,
         ]);
     }
 

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
+use App\Models\Guide;
 use App\Models\Hire;
 use App\Models\Place;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -100,5 +103,19 @@ class HireController extends Controller
     {
         $hire->delete();
         
+    }
+
+    public function applications($id)
+    {
+        // dd(Application::where('guide_id', User::where('id', Auth::id())->first()->guide->id)->exists());
+        if (Guide::where('user_id', Auth::id())->get() == null || Hire::findOrFail($id)->guide_id != null) {
+            abort(404);
+        }
+        Application::create([
+            'hire_id' => $id,
+            'guide_id' => Guide::where('user_id', Auth::id())->first()->id,
+        ]);
+
+        return redirect('/guides');
     }
 }
