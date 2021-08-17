@@ -101,6 +101,50 @@ class UpazilaSeeder extends Seeder
         ]);
 
         DB::table('upazilas')->insert([
+            'division' => 'Chattogram',
+            'district' => 'Coxs Bazar',
+            'upazila' => 'Kutubdia',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Chattogram',
+            'district' => 'Khagrachari',
+            'upazila' => 'Panchhari',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Chattogram',
+            'district' => 'Bandarban',
+            'upazila' => 'Bandarban Sadar',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Chattogram',
+            'district' => 'Bandarban',
+            'upazila' => 'Thanchi',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Chattogram',
+            'district' => 'Rangamati',
+            'upazila' => 'Rangamati Sadar',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Chattogram',
+            'district' => 'Rangamati',
+            'upazila' => 'Baghaichhari',
+        ]);
+
+
+        DB::table('upazilas')->insert([
+            'division' => 'Dhaka',
+            'district' => 'Narayanganj',
+            'upazila' => 'Rupganj',
+        ]);
+
+
+        DB::table('upazilas')->insert([
             'division' => 'Cumilla',
             'district' => 'Cumilla',
             'upazila' => 'Debidwar',
@@ -152,6 +196,36 @@ class UpazilaSeeder extends Seeder
             'division' => 'Cumilla',
             'district' => 'Cumilla',
             'upazila' => 'Barura',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Cumilla',
+            'district' => 'Cumilla',
+            'upazila' => 'Cumilla Sadar',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Khulna',
+            'district' => 'Narail',
+            'upazila' => 'Kalia',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Khulna',
+            'district' => 'Satkhira',
+            'upazila' => 'Shamnagor',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Khulna',
+            'district' => 'Meherpur',
+            'upazila' => 'Mujibnagar',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Barishal',
+            'district' => 'Jhalokati',
+            'upazila' => 'Jhalokathi Sadar',
         ]);
 
         DB::table('upazilas')->insert([
@@ -210,6 +284,12 @@ class UpazilaSeeder extends Seeder
 
         DB::table('upazilas')->insert([
             'division' => 'Sylhet',
+            'district' => 'Moulvibazar',
+            'upazila' => ' Kamalganj',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Sylhet',
             'district' => 'Sylhet',
             'upazila' => 'Dakshin Surma',
         ]);
@@ -230,6 +310,17 @@ class UpazilaSeeder extends Seeder
             'division' => 'Sylhet',
             'district' => 'Sylhet',
             'upazila' => 'Gowainghat',
+        ]);
+        DB::table('upazilas')->insert([
+            'division' => 'Sylhet',
+            'district' => 'Sunamganj',
+            'upazila' => 'Dharmapasha',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Sylhet',
+            'district' => 'Sunamganj',
+            'upazila' => 'Tahirpur',
         ]);
     }
 }
