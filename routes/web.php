@@ -37,11 +37,15 @@ Route::post('/memberships/{id}', [AdminController::class, 'approval']);
 
 Route::resource('/packages', PackageController::class);
 Route::resource('/guides', GuideController::class);
+Route::post('/guides/{id}/apply', [HireController::class, 'applications'])->name('guides.apply');
 Auth::routes();
 
 Route::get('/places', [PlaceController::class, 'index']);
 Route::get('/places/{id}', [PlaceController::class, 'show']);
+Route::post('/places/{id}', [PlaceController::class, 'saveRating']);
 Route::get('/places/{id}/hire', [HireController::class, 'create']);
 Route::post('/places/{id}/hire', [HireController::class, 'store'])->name('hires.store');
-Route::post('/guides/{id}/apply', [HireController::class, 'applications'])->name('guides.apply');
-Route::post('/places/{id}', [PlaceController::class, 'saveRating']);
+
+Route::get('/hires', [HireController::class, 'index']);
+Route::get('/hires/{id}', [HireController::class, 'show'])->name('hires.show');
+Route::post('/hires/{id}', [HireController::class, 'hire'])->name('hires.hire');

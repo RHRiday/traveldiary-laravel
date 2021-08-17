@@ -139,7 +139,7 @@
                                             @endif
                                         @else
                                             <a class="btn btn-sm btn-info m-1"
-                                                href="{{ route('guides.show', $request->id) }}">Applicants</a>
+                                                href="{{ route('hires.show', $request->id) }}">Applicants</a>
                                         @endif
 
                                     </form>

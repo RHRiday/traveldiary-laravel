@@ -14,7 +14,7 @@ class HireController extends Controller
 {
     public function __construct()
     {
-        return $this->middleware('auth');   
+        return $this->middleware('auth');
     }
 
     /**
@@ -34,7 +34,7 @@ class HireController extends Controller
      */
     public function create($id)
     {
-        return view('hire.create',[
+        return view('hire.create', [
             'place' => Place::find($id),
         ]);
     }
@@ -63,11 +63,23 @@ class HireController extends Controller
      * @param  \App\Models\Hire  $hire
      * @return \Illuminate\Http\Response
      */
-    public function show(Hire $hire)
+    public function show($id)
     {
-        return view('hire.show', [
-            'data' => $hire,
-        ]);
+        $hire = Hire::findOrFail($id);
+        // dd($hire->applications->first()->guide->user->name);
+        if ($hire->user_id == Auth::id()) {
+            if($hire->guide_id !== null) {
+                $hired = true;
+            }else {
+                $hired = false;
+            }
+            return view('hire.show', [
+                'data' => $hire,
+                'status' => $hired,
+            ]);
+        }else{
+            abort(404);
+        }
     }
 
     /**
@@ -102,7 +114,6 @@ class HireController extends Controller
     public function destroy(Hire $hire)
     {
         $hire->delete();
-        
     }
 
     public function applications($id)
@@ -117,5 +128,22 @@ class HireController extends Controller
         ]);
 
         return redirect('/guides');
+    }
+
+    public function hire(Request $request, $id)
+    {
+        $hire = Hire::findOrFail($id);
+        $guide = Guide::findOrFail($request->guide);
+        $point = User::findOrFail($guide->user->id)->points;
+
+        $hire->update([
+            'guide_id' => $request->guide,
+        ]);
+
+        User::where('id', $guide->user->id)->update([
+            'points' => $point + 5,
+        ]);
+
+        return redirect()->back();
     }
 }

@@ -51,7 +51,7 @@ class GuideController extends Controller
      */
     public function create()
     {
-        if (Guide::where('user_id', Auth::id()) == null){
+        if (Guide::where('user_id', Auth::id())->exists()){
             return redirect('/guides');
         }
         return view('guide.create');
@@ -81,7 +81,7 @@ class GuideController extends Controller
      */
     public function show(Guide $guide)
     {
-        //
+        
     }
 
     /**
