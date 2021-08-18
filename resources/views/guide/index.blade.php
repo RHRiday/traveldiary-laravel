@@ -97,7 +97,7 @@
                     Guide opportunities
                 </h1>
                 <div class="d-flex flex-column flex-md-row my-3">
-                    <a href="/guides?sort=own" class="btn btn-sm btn-primary my-1 mx-md-1 col-md-4">My posts</a>
+                    {{-- <a href="/guides?sort=own" class="btn btn-sm btn-primary my-1 mx-md-1 col-md-4">My posts</a> --}}
                     <a href="/places/contribute" class="btn btn-sm btn-primary my-1 mx-md-1 col-md-4">Contribute</a>
                 </div> 
                 @if ($data->count() < 1)

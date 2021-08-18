@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GuideRequest;
+use App\Models\Application;
 use App\Models\Guide;
 use App\Models\Hire;
 use App\Models\User;
@@ -30,12 +31,14 @@ class GuideController extends Controller
         } else {
             $membership = 'approved';
         }
-        $data = Hire::whereNull('guide_id')->where('date', '>', now())->orderBy('date')->get();
+        $data = Hire::whereNull('guide_id')
+                        ->where('user_id', '<>', Auth::id())
+                        ->where('date', '>', now())->orderBy('date')->get();
         $user = User::all();
 
-        if ($request->sort == 'own') {
-            $data = $data->where('user_id', Auth::id());
-        }
+        // if ($request->sort == 'own') {
+        //     Application::where('guide_id', User::where('id', Auth::id())->first()->guide->id);
+        // }
 
         return view('guide.index', [
             'membership' => $membership,
