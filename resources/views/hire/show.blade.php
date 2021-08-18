@@ -15,6 +15,13 @@
         <h3 class="text-center mt-5">{{ $data->place->name }}</h3>
         <h4 class="text-center mt-2 alert alert-info">Applicants</h4>
         @if ($status === false)
+            @if ($data->applications->count() < 1)
+                <div class="alert bg-white">
+                    <p class="text-center mb-0">
+                        No applications at the moment. Please be patient!
+                    </p>
+                </div>
+            @endif
             @foreach ($data->applications->all() as $application)
                 <div class="row">
                     <div class="card mb-3 package col-lg-6">
@@ -69,11 +76,10 @@
                             <h4>
                                 <a
                                     href="/profile/{{ $data->guide->user->username }}">{{ $data->guide->user->name }}</a>
-                                    is hired
+                                is hired
                             </h4>
                             <p class="mb-0">
-                                <i class="fa fa-clock" title="Time" aria-hidden="true"></i><span
-                                    class="sr-only">Time</span>
+                                <i class="fa fa-clock" title="Time" aria-hidden="true"></i><span class="sr-only">Time</span>
                                 {{ $data->date }}
                             </p>
                             <p class="mb-0">

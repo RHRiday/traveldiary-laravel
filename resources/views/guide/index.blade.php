@@ -108,7 +108,6 @@
                     </div>
                 @endif
                 @foreach ($data as $request)
-                @if($request->guide_id == null)
                     <div class="card mb-3 package">
 
                         <div class="row no-gutters">
@@ -154,7 +153,6 @@
                             </div>
                         </div>
                     </div>
-                    @endif
                 @endforeach
             </div>
         @else

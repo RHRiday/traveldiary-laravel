@@ -30,7 +30,7 @@ class GuideController extends Controller
         } else {
             $membership = 'approved';
         }
-        $data = Hire::all();
+        $data = Hire::whereNull('guide_id')->where('date', '>', now())->orderBy('date')->get();
         $user = User::all();
 
         if ($request->sort == 'own') {
