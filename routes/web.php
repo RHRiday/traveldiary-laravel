@@ -41,6 +41,8 @@ Route::post('/guides/{id}/apply', [HireController::class, 'applications'])->name
 Auth::routes();
 
 Route::get('/places', [PlaceController::class, 'index']);
+Route::get('/places/contribute', [PlaceController::class, 'create']);
+Route::post('/places/contribute', [PlaceController::class, 'store'])->name('place.store');
 Route::get('/places/{id}', [PlaceController::class, 'show']);
 Route::post('/places/{id}', [PlaceController::class, 'saveRating']);
 Route::get('/places/{id}/hire', [HireController::class, 'create']);

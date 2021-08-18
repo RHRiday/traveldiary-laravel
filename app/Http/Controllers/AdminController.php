@@ -42,7 +42,7 @@ class AdminController extends Controller
     {
         if (Auth::user()->role !== 'admin') {
             abort(404);
-        };
+        }
 
         $upazila = Upazila::pluck('upazila');
         $type = Place::pluck('type');
@@ -63,7 +63,7 @@ class AdminController extends Controller
     {
         if (Auth::user()->role !== 'admin') {
             abort(404);
-        };
+        }
 
         Place::create([
             'name' => $request->name,
@@ -110,7 +110,7 @@ class AdminController extends Controller
     {
         if (Auth::user()->role !== 'admin') {
             abort(404);
-        };
+        }
 
         $upazila = Upazila::pluck('upazila');
         $type = Place::pluck('type');
@@ -133,7 +133,7 @@ class AdminController extends Controller
     {
         if (Auth::user()->role !== 'admin') {
             abort(404);
-        };
+        }
         $place = Place::where('id', $id);
 
         $place->update([

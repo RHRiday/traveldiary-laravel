@@ -10,6 +10,11 @@
 
 @section('content')
     @include('partials.nav')
+    @if (session()->has('message'))
+        <div class="container alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
 
     @if (!$membership)
         <section id="services" class="mt-4 services section-bg">
@@ -36,7 +41,7 @@
                             <div class="col-md-6 d-flex align-items-stretch">
                                 <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
                                     <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                                    <h5><a href="">Contribute</a></h6>
+                                    <h5><a href="/places/contribute">Contribute</a></h6>
                                         <p class="text-justify">As our site is still new, we'd like you to take this
                                             opportunity
                                             to contribute to our site and earn points from doing so. If your contribution is
@@ -90,10 +95,11 @@
             <div class="container mt-3">
                 <h1 class="text-center border-bottom mb-3">
                     Guide opportunities
-                    <span class="float-right">
-                        <a href="/guides?sort=own" class="btn btn-sm btn-primary">My posts</a>
-                    </span>
                 </h1>
+                <div class="d-flex flex-column flex-md-row my-3">
+                    <a href="/guides?sort=own" class="btn btn-sm btn-primary my-1 mx-md-1 col-md-4">My posts</a>
+                    <a href="/places/contribute" class="btn btn-sm btn-primary my-1 mx-md-1 col-md-4">Contribute</a>
+                </div> 
                 @if ($data->count() < 1)
                     <div class="alert bg-white">
                         <p class="text-center mb-0">
@@ -102,6 +108,7 @@
                     </div>
                 @endif
                 @foreach ($data as $request)
+                @if($request->guide_id == null)
                     <div class="card mb-3 package">
 
                         <div class="row no-gutters">
@@ -147,6 +154,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
         @else
