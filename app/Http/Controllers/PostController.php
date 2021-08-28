@@ -6,6 +6,7 @@ use App\Http\Requests\CreateStoryRequest;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\PostPic;
+use App\Models\Report;
 use App\Models\Upazila;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\PotentiallyMissing;
@@ -147,5 +148,15 @@ class PostController extends Controller
         $post->delete();
 
         return redirect('/home');
+    }
+
+    public function report($id)
+    {
+        Report::create([
+            'post_id' => $id,
+            'status' => 0,
+        ]);
+
+        return redirect()->back();
     }
 }
