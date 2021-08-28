@@ -8,8 +8,10 @@ use App\Models\Upazila;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePlaceRequest;
+use App\Models\Contribution;
 use App\Models\Guide;
 use App\Models\PlacePic;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -195,11 +197,27 @@ class AdminController extends Controller
     }
 
     /**
+     * View the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function contribution()
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        return view('admin.contribution', [
+            'requests' => Contribution::where('status', 0)->get(),
+        ]);
+    }
+
+    /**
      * Handles the specified request.
      *
      * @return \Illuminate\Http\Response
      */
-    public function approval(Request $request, $id)
+    public function m_approval(Request $request, $id)
     {
         if (Auth::user()->role !== 'admin') {
             abort(404);
@@ -212,6 +230,34 @@ class AdminController extends Controller
             $action = 'Approved';
         } else {
             Guide::find($id)->delete();
+            $action = 'Declined';
+        }
+
+        return redirect('/admin')->with('message', 'Request has been '. $action);
+    }
+    /**
+     * Handles the specified request.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function c_approval(Request $request, $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        $contribution = Contribution::where('id', $id);
+
+        if ($request->status == 'Accept') {
+            $contribution->update([
+                'status' => 1,
+            ]);
+
+            GuideController::give_points($contribution->first()->user->id, 10);
+
+            $action = 'Approved';
+        } else {
+            Contribution::find($id)->place->delete();
             $action = 'Declined';
         }
 

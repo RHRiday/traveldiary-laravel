@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GuideRequest;
-use App\Models\Application;
 use App\Models\Guide;
 use App\Models\Hire;
 use App\Models\User;
@@ -119,5 +117,14 @@ class GuideController extends Controller
     public function destroy(Guide $guide)
     {
         //
+    }
+
+    public static function give_points($user_id, $point_to_give)
+    {
+        $point = User::findOrFail($user_id)->points;
+
+        User::where('id', $user_id)->update([
+            'points' => $point + $point_to_give,
+        ]);
     }
 }

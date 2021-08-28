@@ -18,9 +18,9 @@
             <form id="logout-form" action="http://localhost:8080/logout" method="POST" hidden>
                 @csrf
             </form>
-            <a title="Logout" href="http://localhost:8080/logout" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();"><i
-                    class="fas fa-sign-out-alt"></i>
+            <a title="Logout" href="http://localhost:8080/logout"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                 Logout
             </a>
         </div>
@@ -30,7 +30,7 @@
             <div class="container">
                 <h1>Admin Panel</h1>
                 <a href="{{ route('admin.create') }}" class="btn btn-primary my-2">Add More Places</a>
-                <a href="#" class="btn btn-secondary my-2">Contribution Requests</a>
+                <a href="/contributions" class="btn btn-secondary my-2">Contribution Requests</a>
                 <a href="/memberships" class="btn btn-secondary my-2">Membership Requests</a>
                 @if (session()->has('message'))
                     <p class="alert alert-success">{{ session()->get('message') }}</p>

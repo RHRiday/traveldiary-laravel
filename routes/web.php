@@ -33,7 +33,9 @@ Route::get('/story/report/{id}', [PostController::class, 'report'])->name('story
 
 Route::resource('/admin', AdminController::class);
 Route::get('/memberships', [AdminController::class, 'membership']);
-Route::post('/memberships/{id}', [AdminController::class, 'approval']);
+Route::post('/memberships/{id}', [AdminController::class, 'm_approval']);
+Route::get('/contributions', [AdminController::class, 'contribution']);
+Route::post('/contributions/{id}', [AdminController::class, 'c_approval']);
 
 Route::resource('/packages', PackageController::class);
 Route::resource('/guides', GuideController::class);
