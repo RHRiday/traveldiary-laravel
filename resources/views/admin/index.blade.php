@@ -32,6 +32,7 @@
                 <a href="{{ route('admin.create') }}" class="btn btn-primary my-2">Add More Places</a>
                 <a href="/contributions" class="btn btn-secondary my-2">Contribution Requests</a>
                 <a href="/memberships" class="btn btn-secondary my-2">Membership Requests</a>
+                <a href="/reports" class="btn btn-secondary my-2">Story Reports</a>
                 @if (session()->has('message'))
                     <p class="alert alert-success">{{ session()->get('message') }}</p>
                 @endif

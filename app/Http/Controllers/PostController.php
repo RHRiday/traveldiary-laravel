@@ -55,8 +55,8 @@ class PostController extends Controller
             'location' => $request->location,
         ]);
 
-        foreach ($request->image as $image){
-            $name = $request->location . time() . mt_rand(9,999) . '.' . $image->extension();
+        foreach ($request->image as $image) {
+            $name = $request->location . time() . mt_rand(9, 999) . '.' . $image->extension();
 
             PostPic::create([
                 'post_id' => Post::max('id'),
@@ -77,7 +77,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        if(!$post){
+        if (!$post) {
             abort(404);
         }
         $user = User::find(Auth::id());
@@ -101,7 +101,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        if(!Post::find($id) || Post::find($id)->user->id !== Auth::id()){
+        if (!Post::find($id) || Post::find($id)->user->id !== Auth::id()) {
             abort(404);
         }
         $upazila = Upazila::pluck('upazila');
@@ -120,7 +120,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Post::find($id)->user->id !== Auth::id()){
+        if (Post::find($id)->user->id !== Auth::id()) {
             abort(404);
         }
         $post = Post::find($id);
@@ -141,7 +141,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        if(Post::find($id)->user->id !== Auth::id()){
+        if (Post::find($id)->user->id !== Auth::id()) {
             abort(404);
         }
         $post = Post::find($id);
@@ -152,11 +152,14 @@ class PostController extends Controller
 
     public function report($id)
     {
-        Report::create([
-            'post_id' => $id,
-            'status' => 0,
-        ]);
-
-        return redirect()->back();
+        $report = Report::where('post_id', $id)->where('user_id', Auth::id())->first();
+        if (is_null($report)) {
+            Report::create([
+                'post_id' => $id,
+                'status' => 0,
+                'user_id' => Auth::id(),
+            ]);
+        }
+        return redirect()->back()->with('reported', true);
     }
 }
