@@ -37,7 +37,7 @@ Route::post('/memberships/{id}', [AdminController::class, 'm_approval']);
 Route::get('/contributions', [AdminController::class, 'contribution']);
 Route::post('/contributions/{id}', [AdminController::class, 'c_approval']);
 Route::get('/reports', [AdminController::class, 'report']);
-Route::post('/report/{id}', [AdminController::class, 'r_approval']);
+Route::post('/reports/{id}', [AdminController::class, 'r_approval']);
 
 Route::resource('/packages', PackageController::class);
 Route::resource('/guides', GuideController::class);

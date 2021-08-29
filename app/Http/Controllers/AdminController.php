@@ -11,7 +11,9 @@ use App\Http\Requests\CreatePlaceRequest;
 use App\Models\Contribution;
 use App\Models\Guide;
 use App\Models\PlacePic;
+use App\Models\Report;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -213,6 +215,25 @@ class AdminController extends Controller
     }
 
     /**
+     * View the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function report()
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        return view('admin.report', [
+            'requests' => Report::where('status', 0)
+                            ->groupBy('post_id')
+                            ->havingRaw('count(*) > 5')
+                            ->get(),
+        ]);
+    }
+
+    /**
      * Handles the specified request.
      *
      * @return \Illuminate\Http\Response
@@ -258,6 +279,37 @@ class AdminController extends Controller
             $action = 'Approved';
         } else {
             Contribution::find($id)->place->delete();
+            $action = 'Declined';
+        }
+
+        return redirect('/admin')->with('message', 'Request has been '. $action);
+    }
+    /**
+     * Handles the specified request.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function r_approval(Request $request, $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        $report = Report::findOrFail($id);
+
+        if ($request->status == 'Accept') {
+            //give negative feedback to post publisher
+            GuideController::give_points($report->first()->post->user->id, -5);
+            //then delete that post
+            $report->post->delete();
+
+            $action = 'Approved';
+        } else {
+            // dd(Report::where('post_id', $report->post_id));
+            Report::where('post_id', $report->post_id)
+                    ->update([
+                        'status' => 1
+                    ]);
             $action = 'Declined';
         }
 
