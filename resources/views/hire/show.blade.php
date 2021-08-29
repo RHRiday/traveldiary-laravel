@@ -54,11 +54,13 @@
                             </div>
                             <div class="m-auto col-2">
                                 <div class="float-md-right text-center mb-1">
-                                    <form action="{{ route('hires.hire', $data->id) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" value="{{ $application->guide->id }}" name="guide">
-                                        <input type="submit" value="Hire" class="btn btn-success">
-                                    </form>
+                                    @if ($data->guide_id == null && $data->date > now())
+                                        <form action="{{ route('hires.hire', $data->id) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" value="{{ $application->guide->id }}" name="guide">
+                                            <input type="submit" value="Hire" class="btn btn-success">
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -24,7 +24,9 @@ class HireController extends Controller
      */
     public function index()
     {
-        //
+        return view('hire.index', [
+            'data' => Hire::where('user_id', Auth::id())->orderBy('updated_at')->get(),
+        ]);
     }
 
     /**

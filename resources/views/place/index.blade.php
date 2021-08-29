@@ -13,7 +13,6 @@
 
     @include('partials.nav')
 
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <div class="d-flex justify-content-around">
@@ -36,6 +35,8 @@
     </nav>
 
     <div class="container">
+      
+    <p class="text-dark">Did you request for a guide? Check <a href="/hires">here</a>.</p>
         @if ($places->count() > 0)
             @php
                 $random = rand(0, $places->count() - 1);
