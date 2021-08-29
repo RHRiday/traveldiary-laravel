@@ -20,8 +20,10 @@
                 <div class="col-12">
                     <div class="container">
                         <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item"><a href="">{{ $place->location }}</a></li>
-                            <li class="list-group-item"><a href=""> {{ $place->type }} </a></li>
+                            <li class="list-group-item"><a
+                                    href="/places?location={{ $place->location }}">{{ $place->location }}</a></li>
+                            <li class="list-group-item"><a href="/places?type={{ $place->type }}"> {{ $place->type }}
+                                </a></li>
                         </ul>
                     </div>
                 </div>

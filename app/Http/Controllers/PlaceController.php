@@ -25,9 +25,24 @@ class PlaceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('place.index');
+        $places = Place::inRandomOrder();
+
+        //filter
+        if ($request->location != null) {
+            $places->where('location', $request->location);
+        }
+        if ($request->type != null) {
+            $places->where('type', $request->type);
+        }
+
+        $divisions = Upazila::pluck('division');
+        return view('place.index', [
+            'places' => $places->get(),
+            'divisions' => array_unique($divisions->toArray()),
+            'upazilas' => Upazila::all(),
+        ]);
     }
 
     /**
