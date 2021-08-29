@@ -24,7 +24,9 @@ class HireController extends Controller
      */
     public function index()
     {
-        //
+        return view('hire.index', [
+            'data' => Hire::where('user_id', Auth::id())->orderBy('updated_at')->get(),
+        ]);
     }
 
     /**
@@ -134,15 +136,12 @@ class HireController extends Controller
     {
         $hire = Hire::findOrFail($id);
         $guide = Guide::findOrFail($request->guide);
-        $point = User::findOrFail($guide->user->id)->points;
 
         $hire->update([
             'guide_id' => $request->guide,
         ]);
 
-        User::where('id', $guide->user->id)->update([
-            'points' => $point + 5,
-        ]);
+        GuideController::give_points($guide->user->id, 5);
 
         return redirect()->back();
     }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>dsa</title>
+    <title>TravelDiary | Explore</title>
 @endsection
 
 @section('css')
@@ -11,92 +11,78 @@
 
 @section('content')
 
-@include('partials.nav')
+    @include('partials.nav')
 
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav">
-    
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                  </li>
-    
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        বাংলাদেশ ভ্রমণ
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Dhaka</a>
-                      <a class="dropdown-item" href="#">Chittagong</a>
-                      <a class="dropdown-item" href="#">Barishal</a>
-                      <a class="dropdown-item" href="#">Rajshahi</a>
-                      <a class="dropdown-item" href="#">Sylhet</a>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <div class="d-flex justify-content-around">
+                @foreach ($divisions as $div)
+                    <div class="col-4">
+                        <a class="nav-link dropdown dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ $div }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @foreach ($upazilas->where('division', $div) as $upazila)
+                                <a class="dropdown-item"
+                                    href="/places?location={{ $upazila->upazila }}">{{ $upazila->upazila }}</a>
+                            @endforeach
+                        </div>
                     </div>
-                  </li>
-    
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        জনপ্রিয় স্থান
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Cox's Bazar</a>
-                      <a class="dropdown-item" href="#">Saint Martin</a>
-                      <a class="dropdown-item" href="#">Tanguar Haor</a>
-                    </div>
-                  </li>
-    
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        যোগাযোগ  
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Advertisement</a>
-                      
-                    </div>
-                  </li>
-              </ul>
+                @endforeach
             </div>
         </div>
-          </nav>
+    </nav>
 
-<div class="container">
-
-    <div class="row align-items-center places mt-5">
-        <div class="col-md-6 ">
-            <h1>Cox's Bazar</h1>
-        </div>
+    <div class="container">
+      
+    <p class="text-dark">Did you request for a guide? Check <a href="/hires">here</a>.</p>
+        @if ($places->count() > 0)
+            @php
+                $random = rand(0, $places->count() - 1);
+            @endphp
+            <a href="/places/{{ $places[$random]->id }}" class="row align-items-center places mt-5 text-decoration-none"
+                style="background-image: linear-gradient(
+                                      rgba(0, 0, 0, 0.2), 
+                                      rgba(0, 0, 0, 0.2)
+                                      ), url('/resources/places/{{ $places[$random]->placePics->first()->path }}')">
+                <div class="col-md-6">
+                    <h1 class="text-white">{{ $places[$random]->name }}</h1>
+                </div>
+            </a>
+            <div class="row g-4 rounded mt-5 mb-3">
+                @foreach ($places as $place)
+                    <a class="col-md-6 col-lg-4 text-dark text-decoration-none" href="/places/{{ $place->id }}">
+                        <div class="placeholder-img col-auto overflow-hidden rounded">
+                            <img class="card-img-top rounded"
+                                src="/resources/places/{{ $place->placePics->first()->path }}">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="mt-2 d-flex flex-row">
+                                <i class="fas fa-map-marker-alt mx-2"></i>
+                                <h5 class="mr-1"><span>{{ $place->location }}</span></h5>
+                            </div>
+                            <div class="mt-2 d-flex flex-row">
+                                <i class="fas fa-bookmark mx-2"></i>
+                                <h5 class="mr-1"><span>{{ $place->type }}</span></h5>
+                            </div>
+                        </div>
+                        <div class="my-3">
+                            <h3 class="text-justify">{{ $place->name }}</h3>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        @else
+            <div class="alert bg-white">
+                <p class="text-center mb-0">
+                    Sorry. No match found!!
+                </p>
+            </div>
+        @endif
     </div>
 
-    <div class="row g-4 rounded mt-5 mb-3">
-        <div class="col-md-6 col-lg-4">
-            <div class="places-bg">
-                <img class="p-1 img-fluid" src="images/rupshi jhorna.jpg" class="card-img-top" alt="...">
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mt-2"><span>jhorna</span></h5>
-                <i class="fas fa-bookmark"></i>
-            </div>
 
-            <div class="my-3">
-                <h3>বোয়ালিয়া ট্রেইল এবং খইয়াছড়া ঝর্ণা অভিযানে টিজিবি</h3>
-                <h6 class="mt-2"><span>Mirsharai</span></h6>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
-
-@include('partials.footer')
+    @include('partials.footer')
 
 @endsection
