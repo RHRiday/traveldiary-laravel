@@ -13,11 +13,10 @@
 
     @include('partials.nav')
 
-    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <div class="d-flex justify-content-around">
+            <div class="row justify-content-center my-3">
                 @foreach ($divisions as $div)
-                    <div class="col-4">
+                    <div class="text-center">
                         <a class="nav-link dropdown dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ $div }}
@@ -32,7 +31,6 @@
                 @endforeach
             </div>
         </div>
-    </nav>
 
     <div class="container">
       

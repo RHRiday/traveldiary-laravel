@@ -137,11 +137,7 @@ class PlaceController extends Controller
 
     public function saveRating(Request $request, $place_id) {
 
-        $point = User::find(Auth::id())->points;
-
-        User::where('id', Auth::id())->update([
-            'points' => $point + 3,
-        ]);
+        GuideController::give_points(Auth::id(), 3);
         
         Rating::create([
             'user_id' => Auth::id(),

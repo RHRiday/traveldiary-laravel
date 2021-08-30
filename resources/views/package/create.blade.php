@@ -98,7 +98,7 @@
 
                         <div class="col-md-4 mb-3">
                             <label for="deadline">Registration deadline </label>
-                            <input type="date" name="begin" class="form-control" required>
+                            <input type="date" name="deadline" class="form-control" required>
                         </div>
 
                         <div class="col-12 mb-3">

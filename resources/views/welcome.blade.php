@@ -136,7 +136,7 @@
                                     @enderror
                                     <input id="password" type="password"
                                         class="mb-2 mr-sm-2 form-control @error('password') is-invalid @enderror"
-                                        name="password" placeholder="Password" required autocomplete="new-password">
+                                        name="password" placeholder="Password (Min. 6 characters)" required autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">

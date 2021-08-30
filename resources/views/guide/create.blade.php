@@ -37,8 +37,8 @@
                     <div class="row">
                         <div class="col-12 col-lg-6 mb-3">
                             <label for="nid">National ID</label>
-                            <input name="nid" type="text" pattern="[0-9]*" class="form-control" id="nid"
-                                placeholder="NID number" value="{{ old('nid') }}" required>
+                            <input name="nid" type="text" pattern="^(\d{10}|\d{16})$" class="form-control" id="nid"
+                                placeholder="NID number (10 digit / 16 digit)" value="{{ old('nid') }}" required>
                         </div>
                         <div class="col-12 col-lg-6 mb-3">
                             <label for="contact">Contact no.</label>

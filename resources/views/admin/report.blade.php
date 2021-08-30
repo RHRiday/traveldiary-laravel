@@ -2,7 +2,7 @@
 {{-- @dd($requests) --}}
     <div class="container mt-3">
         <h1 class="text-center border-bottom mb-3">
-            Contribution Requests
+            Story reports
         </h1>
         @if ($requests->count() < 1)
             <div class="alert bg-white">
