@@ -136,6 +136,12 @@ class UpazilaSeeder extends Seeder
             'upazila' => 'Baghaichhari',
         ]);
 
+        DB::table('upazilas')->insert([
+            'division' => 'Chattogram',
+            'district' => 'Rangamati',
+            'upazila' => 'Belaichhari',
+        ]);
+
 
         DB::table('upazilas')->insert([
             'division' => 'Dhaka',
@@ -214,6 +220,18 @@ class UpazilaSeeder extends Seeder
             'division' => 'Khulna',
             'district' => 'Satkhira',
             'upazila' => 'Shamnagor',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Khulna',
+            'district' => 'Satkhira',
+            'upazila' => 'Satkhira Sadar',
+        ]);
+
+        DB::table('upazilas')->insert([
+            'division' => 'Khulna',
+            'district' => 'Bagerhat',
+            'upazila' => 'Bagerhat Sadar',
         ]);
 
         DB::table('upazilas')->insert([

@@ -30,6 +30,7 @@
                     </div>
                 @endforeach
             </div>
+            </nav>
         </div>
 
     <div class="container">
