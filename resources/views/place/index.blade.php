@@ -13,8 +13,9 @@
 
     @include('partials.nav')
 
-    <nav class="navbar navbar-expand-lg">
+    
         <div class="container">
+        <nav class="navbar navbar-expand-lg">
             <div class="d-flex justify-content-around">
                 @foreach ($divisions as $div)
                     <div class="col-4">
@@ -31,8 +32,9 @@
                     </div>
                 @endforeach
             </div>
+            </nav>
         </div>
-    </nav>
+   
 
     <div class="container">
       
