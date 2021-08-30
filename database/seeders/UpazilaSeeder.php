@@ -273,7 +273,7 @@ class UpazilaSeeder extends Seeder
         DB::table('upazilas')->insert([
             'division' => 'Sylhet',
             'district' => 'Sylhet',
-            'upazila' => 'Fenchuganj ',
+            'upazila' => 'Fenchuganj',
         ]);
 
         DB::table('upazilas')->insert([
@@ -291,7 +291,7 @@ class UpazilaSeeder extends Seeder
         DB::table('upazilas')->insert([
             'division' => 'Sylhet',
             'district' => 'Moulvibazar',
-            'upazila' => 'Moulvibazar Sadar ',
+            'upazila' => 'Moulvibazar Sadar',
         ]);
 
         DB::table('upazilas')->insert([
@@ -303,7 +303,7 @@ class UpazilaSeeder extends Seeder
         DB::table('upazilas')->insert([
             'division' => 'Sylhet',
             'district' => 'Moulvibazar',
-            'upazila' => ' Kamalganj',
+            'upazila' => 'Kamalganj',
         ]);
 
         DB::table('upazilas')->insert([
