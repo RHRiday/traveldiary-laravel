@@ -116,9 +116,11 @@
                             </p>
                             <p class="display-4">প্যাকেজ সংক্রান্ত তথ্যের জন্য যোগাযোগ করুন <span
                                     class="alert-dark">{{ $package->phone }}</span> নম্বরে</p>
+
                             <div>
-                                <a class="btn btn-success">Buy Package</a>
+                                <a href="/buypackage/{{ $package->id }}" class="btn btn-success">Buy Package</a>
                             </div>
+                            {{-- exampleEasycheckout --}}
                             <!--Budget Parts starts-->
 
                             <!--related package section-->

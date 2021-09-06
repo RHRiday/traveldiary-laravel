@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,3 +36,18 @@ Auth::routes();
 
 Route::get('/places/{id}', [PlaceController::class, 'show']);
 Route::post('/places/{id}', [PlaceController::class, 'saveRating']) ;
+
+
+// SSLCOMMERZ Start
+Route::get('/example1/{id}', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/buypackage/{id}', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
