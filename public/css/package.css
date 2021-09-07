@@ -3,20 +3,6 @@
     border-radius: 3px;
     margin-top: 2em;
 	box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.37);
-    padding: 2em 0;
-}
-
-.package-right {
-    text-align: right;
-    padding: 3em 2em;
-    
-}
-
-.package-middle {
-    padding: 1em;
-    float:left;
-    width: 100%;
-    padding-left: 12px;
 }
 
 h3 {
@@ -28,7 +14,7 @@ h3 {
 h4 {
     font-size: 1.5em;
     font-weight: 700;
-    color: #ad0087;
+    color: #072400;
 }
 
 h5 {
@@ -37,13 +23,7 @@ h5 {
     color: #999;
 }
 
-h6 {
-    font-size: 1em;
-    font-weight: 700;
-    margin: 0.5em 0;
-}
-
 p {
-    font-size: 15px;
+    font-size: 1em;
     color: rgb(104, 102, 102);
 }

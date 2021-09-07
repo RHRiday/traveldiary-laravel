@@ -8,7 +8,12 @@ use App\Models\Upazila;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePlaceRequest;
+use App\Models\Contribution;
+use App\Models\Guide;
 use App\Models\PlacePic;
+use App\Models\Report;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -41,7 +46,7 @@ class AdminController extends Controller
     {
         if (Auth::user()->role !== 'admin') {
             abort(404);
-        };
+        }
 
         $upazila = Upazila::pluck('upazila');
         $type = Place::pluck('type');
@@ -62,7 +67,7 @@ class AdminController extends Controller
     {
         if (Auth::user()->role !== 'admin') {
             abort(404);
-        };
+        }
 
         Place::create([
             'name' => $request->name,
@@ -109,7 +114,7 @@ class AdminController extends Controller
     {
         if (Auth::user()->role !== 'admin') {
             abort(404);
-        };
+        }
 
         $upazila = Upazila::pluck('upazila');
         $type = Place::pluck('type');
@@ -132,7 +137,7 @@ class AdminController extends Controller
     {
         if (Auth::user()->role !== 'admin') {
             abort(404);
-        };
+        }
         $place = Place::where('id', $id);
 
         $place->update([
@@ -171,9 +176,143 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $place = Place::find($id);
-        
+
         $place->delete();
 
         return redirect('/admin')->with('message', 'Tour spot has been deleted');
+    }
+
+    /**
+     * View the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function membership()
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        return view('admin.membership', [
+            'requests' => Guide::where('approval', 0)->get(),
+        ]);
+    }
+
+    /**
+     * View the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function contribution()
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        return view('admin.contribution', [
+            'requests' => Contribution::where('status', 0)->get(),
+        ]);
+    }
+
+    /**
+     * View the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function report()
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        return view('admin.report', [
+            'requests' => Report::where('status', 0)
+                            ->groupBy('post_id')
+                            ->havingRaw('count(*) > 5')
+                            ->get(),
+        ]);
+    }
+
+    /**
+     * Handles the specified request.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function m_approval(Request $request, $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        if ($request->status == 'Accept') {
+            Guide::where('id', $id)->update([
+                'approval' => 1,
+            ]);
+            $action = 'Approved';
+        } else {
+            Guide::find($id)->delete();
+            $action = 'Declined';
+        }
+
+        return redirect('/admin')->with('message', 'Request has been '. $action);
+    }
+    /**
+     * Handles the specified request.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function c_approval(Request $request, $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        $contribution = Contribution::where('id', $id);
+
+        if ($request->status == 'Accept') {
+            $contribution->update([
+                'status' => 1,
+            ]);
+
+            GuideController::give_points($contribution->first()->user->id, 10);
+
+            $action = 'Approved';
+        } else {
+            Contribution::find($id)->place->delete();
+            $action = 'Declined';
+        }
+
+        return redirect('/admin')->with('message', 'Request has been '. $action);
+    }
+    /**
+     * Handles the specified request.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function r_approval(Request $request, $id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        $report = Report::findOrFail($id);
+
+        if ($request->status == 'Accept') {
+            //give negative feedback to post publisher
+            GuideController::give_points($report->first()->post->user->id, -5);
+            //then delete that post
+            $report->post->delete();
+
+            $action = 'Approved';
+        } else {
+            // dd(Report::where('post_id', $report->post_id));
+            Report::where('post_id', $report->post_id)
+                    ->update([
+                        'status' => 1
+                    ]);
+            $action = 'Declined';
+        }
+
+        return redirect('/admin')->with('message', 'Request has been '. $action);
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>{{$place->name}}</title>
+    <title>{{ $place->name }}</title>
 @endsection
 
 @section('css')
@@ -20,8 +20,10 @@
                 <div class="col-12">
                     <div class="container">
                         <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item"><a href="">{{ $place->location }}</a></li>
-                            <li class="list-group-item"><a href=""> {{ $place->type }} </a></li>
+                            <li class="list-group-item"><a
+                                    href="/places?location={{ $place->location }}">{{ $place->location }}</a></li>
+                            <li class="list-group-item"><a href="/places?type={{ $place->type }}"> {{ $place->type }}
+                                </a></li>
                         </ul>
                     </div>
                 </div>
@@ -31,44 +33,49 @@
                         <div class="post-content">
                             <div class="post-title mt-5">
                                 <h1 class="title">
-                                   {{ $place->name }}
+                                    {{ $place->name }}
                                 </h1>
                             </div>
                             <div class="post-meta mt-3">
-                                @if(Auth::check())
-                                        <div class="d-flex justify-content-center px-5">
-                                            <div class="row text-center">
-                                                @if(!$alreadyRated)
-                                                    <fieldset class="rating">
-                                                        <input type="radio" id="star5" name="rating" value="5" />
-                                                        <label class="full" for="star5" title="Awesome - 5 stars"></label>
-                                                        <input type="radio" id="star4" name="rating" value="4" />
-                                                        <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                <div class="d-flex justify-content-center px-5">
+                                    <div class="row text-center">
+                                        <div class="mx-auto my-2 alert alert-info">
+                                            <strong>Rating : </strong> {{ $place->ratings->avg('rating') }}
+                                        </div>
+                                        @if (Auth::check())
+                                            @if (!$alreadyRated)
+                                                <div class="col-12">
+                                                    <fieldset class="rating alert mx-auto">
+                                                        <input type="radio" id="star1" name="rating" value="5" />
+                                                        <label class="full" for="star1"
+                                                            title="Sucks big time - 1 star"></label>
+                                                        <input type="radio" id="star2" name="rating" value="4" />
+                                                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
                                                         <input type="radio" id="star3" name="rating" value="3" />
                                                         <label class="full" for="star3" title="Meh - 3 stars"></label>
-                                                        <input type="radio" id="star2" name="rating" value="2" />
-                                                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                        <input type="radio" id="star1" name="rating" value="1" />
-                                                        <label class="full" for="star1" title="Sucks big time - 1 star"></label>
-                                                        <input type="radio" class="reset-option" name="rating" value="reset" />
+                                                        <input type="radio" id="star4" name="rating" value="2" />
+                                                        <label class="full" for="star4"
+                                                            title="Pretty good - 4 stars"></label>
+                                                        <input type="radio" id="star5" name="rating" value="1" />
+                                                        <label class="full" for="star5" title="Awesome - 5 stars"></label>
                                                     </fieldset>
                                                     <span class="myratings"></span>
-                                                    
+
                                                     <form action="" method="POST">
                                                         @csrf
                                                         <input type="number" name="rated" id="rating" hidden>
-                                                        <button type="submit" class="btn btn-sm btn-success ml-3">Rate This</button>
+                                                        <button type="submit" class="btn btn-sm btn-success">Rate
+                                                            This</button>
                                                     </form>
-                                                @else 
-                                                    <b> <span class="h2"> Ratings: </span> {{ round($place->ratings->avg('rating'), 2) }}</b>
-                                                @endif
+                                                </div>
+                                            @endif
+                                        @else
+                                            <div class="ml-sm-1 mx-auto my-2 alert alert-danger">
+                                                Please <a href="/">login</a> to rate this place !!
                                             </div>
-                                        </div>
-                                @else
-                                    <div class="text-center alert alert-danger">
-                                        Please <a href="/">login</a> to rate this place !!
+                                        @endif
                                     </div>
-                                @endif
+                                </div>
                             </div>
 
                             <div class="post-text text-style fzaWUy">
@@ -80,9 +87,10 @@
                                     </ol>
 
                                     <div class="carousel-inner">
-                                        @foreach($place->placePics as $pic)
-                                            <div class="carousel-item @if($loop->first) active @endif">
-                                                <img src="/resources/places/{{ $pic->path }}" class="d-block w-100" alt="...">
+                                        @foreach ($place->placePics as $pic)
+                                            <div class="carousel-item @if ($loop->first) active @endif">
+                                                <img src="/resources/places/{{ $pic->path }}" class="d-block w-100"
+                                                    alt="...">
                                             </div>
                                         @endforeach
                                     </div>
@@ -108,7 +116,7 @@
                                     </figcaption>
                                 </figure>
                                 <p>
-                                    {{ $place->description}}
+                                    {{ $place->description }}
                                 </p>
 
                                 <!--Description parts Ends-->
@@ -119,7 +127,7 @@
                                 <p>
                                     {{ $place->direction }}
                                 </p>
-                                
+
 
                                 <!--Direction parts Ends-->
 
@@ -127,7 +135,7 @@
                                 <p><strong class="display-4">বিশেষ দ্রষ্টব্য :</strong> </p>
                                 <ul>
                                     <li>
-                                        {{ $place->additional_info}}
+                                        {{ $place->additional_info }}
                                     </li>
                                 </ul>
                             </div>
@@ -141,7 +149,10 @@
 
                             </div>
                             <!--Budget Parts starts-->
-
+                            <a href="/places/{{ $place->id }}/hire"
+                                class="col-12 mx-auto text-center btn btn-outline-success">
+                                Hire a guide for your tour
+                            </a>
 
 
 
@@ -149,19 +160,23 @@
 
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
-                                    <button type="button" class="btn btn-dark">Add Packages <span><i
-                                                class="far fa-plus-square"></i></span> </button>
                                     <h3>Related Packages</h3>
-                                    <a href="">See All</a>
+                                    <a href="" class="my-auto">See All</a>
                                 </div>
-                                <div class="card-deck">
+                                <div class="d-flex justify-content-start">
                                     @foreach ($relatedPackage as $pack)
-                                        <div class="card">
-                                            <a href="/packages/{{ $pack->id }}"><img src="/resources/packages/{{ $pack->packagePics->first()->path }}" width="50" class="card-img-top" alt="..." /> </a>
-                                            <div class="card-body">
+                                        <div class="card col-sm-12 col-md-6 col-lg-4">
+                                            <div class="place-img">
+                                                <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
+                                                    class="position-relative">
+                                            </div>
+                                            <div class="card-body pl-0">
                                                 <h5 class="card-title">
-                                                    {{ $pack->title }}
+                                                    <a href="/packages/{{ $pack->id }}">
+                                                        {{ $pack->title }}
+                                                    </a>
                                                 </h5>
+                                                <p class="my-0">{{ $pack->price }} টাকা</p>
                                             </div>
                                         </div>
                                     @endforeach
@@ -175,19 +190,24 @@
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h3>Related Posts</h3>
-                                    <a href="">See All</a>
+                                    <a href="" class="my-auto">See All</a>
                                 </div>
-                                <div class="card-deck">
-                                    @foreach($relatedPost as $post)
-                                        <div class="card">
-                                            <a href="/story/{{ $post->id }}"><img src="/resources/stories/{{ $post->postPics->first()->path }}" width="50" class="card-img-top" alt="..." /> </a>
-                                            <div class="card-body">
+                                <div class="d-flex justify-content-start">
+                                    @foreach ($relatedPost as $post)
+                                        <div class="card col-sm-12 col-md-6 col-lg-4">
+                                            <div class="place-img">
+                                                <img src="/resources/stories/{{ $post->postPics->first()->path }}"
+                                                    class="position-relative">
+                                            </div>
+                                            <div class="card-body pl-0">
                                                 <h5 class="card-title">
-                                                    {{ $post->title }}
+                                                    <a href="/story/{{ $post->id }}">
+                                                        {{ $post->title }}
+                                                    </a>
                                                 </h5>
                                             </div>
                                         </div>
-                                    @endforeach  
+                                    @endforeach
                                 </div>
                             </div>
                             <!--related posts section-->

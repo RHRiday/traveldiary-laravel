@@ -47,4 +47,8 @@ class Post extends Model
     {
         return $this->hasMany(PostPic::class);
     }
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
 }

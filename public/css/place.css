@@ -1,5 +1,4 @@
-
-.post-content .post-tags  {
+.post-content .post-tags {
     float: left;
     margin: 0;
     padding: 0;
@@ -41,14 +40,12 @@
 }
 
 
-fieldset,
-label {
-    margin: 0;
-    padding: 0
+fieldset {
+    max-width: 155px !important;
+    margin-bottom: 0 !important;
 }
 
 .myratings {
-    margin-left: 10px;
     font-size: 20px;
     color: green
 }
@@ -63,9 +60,10 @@ label {
     display: inline-block;
     content: "\f005"
 }
+
 .rating>label {
     color: #ddd;
-    float: right
+    float: right;
 }
 
 .rating>[id^="star"]:checked~label,
@@ -91,10 +89,45 @@ label {
     text-transform: uppercase
 }
 
-.btn:hover {
-    background-color: #D32F2F !important
-}
-
 .display-4 {
     font-size: 2rem !important;
+}
+.place-img{
+    height: 150px;
+    overflow: hidden;
+}
+
+.place-img img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .places{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 70px;
+    border-radius: 10px;
+    color: #CECECE;
+}
+
+.dropdown-menu {
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.text-decoration-none:hover{
+    background-color: rgba(102, 255, 102, 0.144);
+}
+@media screen and (max-width: 600px) {
+    .places {
+        padding: 35px;
+    }
+  }
+
+h3 {
+    font-size: 15px;
+    font-weight: bold;
 }

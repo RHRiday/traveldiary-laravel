@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GuideController;
+use App\Http\Controllers\HireController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PostController;
@@ -31,12 +33,31 @@ Route::resource('/story', PostController::class);
 Route::get('/story/report/{id}', [PostController::class, 'report'])->name('story.report');
 
 Route::resource('/admin', AdminController::class);
+Route::get('/memberships', [AdminController::class, 'membership']);
+Route::post('/memberships/{id}', [AdminController::class, 'm_approval']);
+Route::get('/contributions', [AdminController::class, 'contribution']);
+Route::post('/contributions/{id}', [AdminController::class, 'c_approval']);
+Route::get('/reports', [AdminController::class, 'report']);
+Route::post('/reports/{id}', [AdminController::class, 'r_approval']);
+
 Route::resource('/packages', PackageController::class);
+Route::resource('/guides', GuideController::class);
+Route::post('/guides/{id}/apply', [HireController::class, 'applications'])->name('guides.apply');
 Auth::routes();
 
+Route::get('/places', [PlaceController::class, 'index']);
+Route::get('/places/contribute', [PlaceController::class, 'create']);
+Route::post('/places/contribute', [PlaceController::class, 'store'])->name('place.store');
 Route::get('/places/{id}', [PlaceController::class, 'show']);
-Route::post('/places/{id}', [PlaceController::class, 'saveRating']) ;
 
+Route::post('/places/{id}', [PlaceController::class, 'saveRating']) ;
+Route::post('/places/{id}', [PlaceController::class, 'saveRating']);
+Route::get('/places/{id}/hire', [HireController::class, 'create']);
+Route::post('/places/{id}/hire', [HireController::class, 'store'])->name('hires.store');
+
+Route::get('/hires', [HireController::class, 'index']);
+Route::get('/hires/{id}', [HireController::class, 'show'])->name('hires.show');
+Route::post('/hires/{id}', [HireController::class, 'hire'])->name('hires.hire');
 
 // SSLCOMMERZ Start
 Route::get('/example1/{id}', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
@@ -51,3 +72,4 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
