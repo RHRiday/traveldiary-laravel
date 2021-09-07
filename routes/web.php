@@ -6,6 +6,7 @@ use App\Http\Controllers\HireController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +49,8 @@ Route::get('/places', [PlaceController::class, 'index']);
 Route::get('/places/contribute', [PlaceController::class, 'create']);
 Route::post('/places/contribute', [PlaceController::class, 'store'])->name('place.store');
 Route::get('/places/{id}', [PlaceController::class, 'show']);
+
+Route::post('/places/{id}', [PlaceController::class, 'saveRating']) ;
 Route::post('/places/{id}', [PlaceController::class, 'saveRating']);
 Route::get('/places/{id}/hire', [HireController::class, 'create']);
 Route::post('/places/{id}/hire', [HireController::class, 'store'])->name('hires.store');
@@ -55,3 +58,18 @@ Route::post('/places/{id}/hire', [HireController::class, 'store'])->name('hires.
 Route::get('/hires', [HireController::class, 'index']);
 Route::get('/hires/{id}', [HireController::class, 'show'])->name('hires.show');
 Route::post('/hires/{id}', [HireController::class, 'hire'])->name('hires.hire');
+
+// SSLCOMMERZ Start
+Route::get('/example1/{id}', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/buypackage/{id}', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
