@@ -13,6 +13,16 @@
     @include('partials.nav')
     <!--main section starts-->
     <section id="main">
+        <section class="my-5">
+            <div class="container text-center">
+                @if (session()->has('tran_msg'))
+                    <div style="background: rgb(158, 158, 219); color:rgb(1, 1, 1); text:center; padding:1% 1%" 
+                    class="alert alert-success" role="alert">
+                        {{ session()->get('tran_msg') }}
+                    </div>
+                @endif
+            </div>
+        </section>
         <div class="container">
             <div class="row" id="post-content">
                 <div class="col-12" style="margin-top: 20px"></div>

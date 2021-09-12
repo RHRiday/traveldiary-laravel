@@ -40,7 +40,7 @@ Route::post('/places/{id}', [PlaceController::class, 'saveRating']) ;
 
 // SSLCOMMERZ Start
 Route::get('/example1/{id}', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-Route::get('/buypackage/{id}', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+Route::get('/buypackage/{id}', [SslCommerzPaymentController::class, 'paymentGetWayCheckout']);
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
