@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Package;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 
@@ -26,9 +26,9 @@ class SslCommerzPaymentController extends Controller
         $package = Package::where('id', $id)->first();
         $user = User::find(Auth::id());
 
-        return view('exampleHosted', [
+        return view('package.checkout', [
             'package' => $package,
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -85,7 +85,6 @@ class SslCommerzPaymentController extends Controller
                 'phone' => $post_data['cus_phone'],
                 'amount' => $post_data['total_amount'],
                 'status' => 'Pending',
-                'address' => $post_data['cus_add1'],
                 'transaction_id' => $post_data['tran_id'],
                 'currency' => $post_data['currency']
             ]);
