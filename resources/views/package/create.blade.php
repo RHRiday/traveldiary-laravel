@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Admin Panel</title>
+    <title>Packages</title>
 @endsection
 
 @section('css')
@@ -9,106 +9,100 @@
 @endsection
 
 @section('content')
-    <!-- <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-            <a href="" class="navbar-brand d-flex align-items-center">
-                <img src="" alt="logo" width="30x">
-                <strong>&nbsp;TravelDiary</strong>
-            </a>
-            <form id="logout-form" action="" method="POST" hidden>
-            </form>
-            <a title="Logout" href="" ><i class="fas fa-sign-out-alt"></i>
-                Logout
-            </a>
-        </div>
-    </div> -->
+    @include('partials.nav')
     <div class="container">
         <div class="mt-3 text-center">
-            <!-- <img class="d-block mx-auto mb-4" src="" alt="" width="72" height="72"> -->
-            <h2 class="bg-dark py-2 mx-5 rounded text-light">Add Package</h2>
+            <h2 class="bg-dark py-2 mx-5 rounded text-light">Sell your package</h2>
         </div>
 
         <div class="row">
             <div class="col-md-10 mx-auto">
 
-                <!-- <div class="alert alert-danger">
-                    <strong>Sorry!</strong> There were some problems with your input.
-                    <ul>
-
-                        <li>error </li>
-                    </ul>
-                </div> -->
-                <form class="needs-validation" action="" method="POST" enctype="multipart/form-data">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Sorry!</strong> There were some problems with your input.
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="{{ route('packages.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
                         <div class="col-12 mb-3">
                             <label for="name">Title</label>
-                            <input name="name" type="text" class="form-control" id="name"
-                                placeholder="Write a title here" value="" required>
+                            <input name="name" type="text" class="form-control" id="name" placeholder="Write a title here"
+                                value="{{ old('name') }}" required>
                         </div>
-                        <div class="col-md-5 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="location">Location (Upazila)</label>
-                            <select name="location" type="text" class="form-control" id="location"
-                                placeholder="ex: Sitakunda" required>
-
-                                <option value=""></option>
-
+                            <select name="location" type="text" class="form-control" id="location" required>
+                                @foreach ($upazilas as $upazila)
+                                    <option value="{{ $upazila }}">{{ $upazila }}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="Type">Type</label>
-                            <input name="type" class="form-control" list="types" placeholder="" value="" required>
+                        <div class="col-md-3 mb-3">
+                            <label for="type">Package type</label>
+                            <input name="type" class="form-control" list="types" placeholder="Ex: এক দিনের ট্যুর"
+                                value="{{ old('type') }}" required>
                             <datalist id="types">
-
                                 <option value="">
-
                             </datalist>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="budget">Price</label>
-                            <input name="budget" type="number" class="form-control" id="budget" placeholder="(in BDT)"
-                                pattern="[0-9]*" value="" required>
+                            <label for="exp_type">Experience type</label>
+                            <input name="exp_type" class="form-control" list="exp_types" placeholder="Ex: ঝর্ণা"
+                                value="{{ old('exp_type') }}" required>
+                            <datalist id="exp_types">
+                                <option value="">
+                            </datalist>
                         </div>
-                        <div class="col-12 mb-3">
-                            <label for="location type">Location Type</label>
-                            <input name="location type" type="text" class="form-control" id="location_type"
-                            placeholder="" value="" required>
+                        <div class="col-md-3 mb-3">
+                            <label for="price">Price</label>
+                            <input name="price" type="number" class="form-control" id="price" placeholder="(in BDT)"
+                                pattern="[0-9]*" value="{{ old('price') }}" required>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="description">Description</label>
                             <textarea name="description" rows="3" class="form-control" id="description"
-                                placeholder="An attracting detail of the package" required></textarea>
-                           
+                                placeholder="An attracting detail of the package"
+                                required>{{ old('description') }}</textarea>
+
                         </div>
                         <div class="col-12 mb-3">
                             <label for="benefit">Benefit</label>
-                            <input name="benefit" type="text" class="form-control" id="benefit"
-                            placeholder="" value="" required>
+                            <textarea name="benefit" rows="3" class="form-control" id="description"
+                                placeholder="What will the travellers benefit from this package"
+                                required>{{ old('benefit') }}</textarea>
+
                         </div>
                         <div class="col-12 mb-3">
                             <label for="rule">Rule</label>
-                            <textarea name="rule" rows="3" class="form-control" id="rule"
-                                placeholder=""></textarea>
+                            <textarea name="rule" rows="3" class="form-control" id="rule" placeholder="Rules and alertness"
+                                required>{{ old('rule') }}</textarea>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="phone">Contact no. <small>+88</small></label>
+                            <input name="phone" type="tel" class="form-control" id="phone" placeholder="ex: 01234567890"
+                                value="" pattern="[0-9]*" required>
                         </div>
 
-                        <div class="col-md-12 mb-3">
-                            <label for="phone">Phone</label>
-                            <input name="phone" type="tel" class="form-control" id="phone"
-                            placeholder="ex: +880123456789" value=""  pattern="[0-9]*" required >
-                        </div>
-                       
-                        <div class="col-md-12 mb-3">
-                            <label for="bkash">bkash</label>
-                            <input name="bkash" type="tel" class="form-control" id="bkash" placeholder="Enter Your bkash number"
+                        <div class="col-md-4 mb-3">
+                            <label for="bkash">bKash no. <small>+88</small></label>
+                            <input name="bkash" type="tel" class="form-control" id="bkash" placeholder="ex: 01234567890"
                                 pattern="[0-9]*" value="" required>
                         </div>
 
-                        <div class="col-md-12 mb-3">
-                            <label for="deadline">Deadline : </label>
-                            <input type="date" name="begin" placeholder="dd-mm-yyyy" value="" required>
+                        <div class="col-md-4 mb-3">
+                            <label for="deadline">Registration deadline </label>
+                            <input type="date" name="deadline" class="form-control" required>
                         </div>
 
                         <div class="col-12 mb-3">
-                            <label for="image">Image(s)</label>
+                            <label for="image">Banner(s)</label>
                             <input name="image[]" type="file" accept="image/*" class="form-control" id="image" multiple
                                 required>
                         </div>
@@ -118,9 +112,7 @@
                 </form>
             </div>
         </div>
-
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">© 2020-2021 TravelDiary</p>
-        </footer>
     </div>
+
+    @include('partials.footer')
 @endsection

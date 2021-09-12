@@ -33,13 +33,20 @@
                 @include('partials.phone')
 
                 <a class="middleContent post-story" href="{{ route('story.create') }}">Post your story</a>
+                @if (session()->has('reported'))
+                    <div class="middleContent">
+                        <div class="row end-of-post">
+                            <p style="font-weight: initial">Story has been reported!!</p>
+                        </div>
+                    </div>
+                @endif
                 <!-- //posts of users followed by the logged user// -->
                 @foreach ($posts as $post)
                     <div class="middleContent">
                         <div class="row">
                             <div class="col-2 DP-circular-img">
                                 <a href="/profile/{{ $post->user->username }}">
-                                    <img src="/resources/profile/{{$post->user->dp}}">
+                                    <img src="/resources/profile/{{ $post->user->dp }}">
                                 </a>
                             </div>
                             <div class="col-10">
@@ -57,7 +64,7 @@
                                         <a class="name"
                                             href="/profile/{{ $post->user->username }}">{{ $post->user->name }}</a>
                                         &nbsp;<span>.</span>&nbsp;
-                                        <a href="/story/{{$post->id}}" style="font-size: 60%;"
+                                        <a href="/story/{{ $post->id }}" style="font-size: 60%;"
                                             class="name">{{ $post->time($post->created_at) }}</a>
                                         <a href="#post-option{{ $post->id }}" rel="modal:open"><i
                                                 class="fas fa-ellipsis-h"></i></a>
