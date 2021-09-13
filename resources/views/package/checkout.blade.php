@@ -56,6 +56,10 @@
                         <input type="email" value={{ $user->email }} name="email" class="form-control" readonly>
                     </div>
                     <div class="mb-3">
+                        <input hidden type="number" value={{ $package->id }} name="package_id" class="form-control" id="id"
+                                 required>
+                    </div>
+                    <div class="mb-3">
                         <label for="mobile">Phone <span class="text-muted">(Account with payment apps)</span></label>
                         <div class="input-group">
                             <div class="input-group-prepend">

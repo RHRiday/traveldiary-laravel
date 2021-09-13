@@ -108,7 +108,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <input hidden type="number" value={{ $package->id }} name="id" class="form-control" id="id"
+                    <input type="number" value={{ $package->id }} name="id" class="form-control" id="id"
                              required>
                 </div>
 

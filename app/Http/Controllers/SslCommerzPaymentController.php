@@ -21,7 +21,7 @@ class SslCommerzPaymentController extends Controller
         ]);
     }
 
-    public function paymentGetWayCheckout($id)
+    public function checkout($id)
     {
         $package = Package::where('id', $id)->first();
         $user = User::find(Auth::id());
@@ -46,6 +46,7 @@ class SslCommerzPaymentController extends Controller
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $request->name;
         $post_data['cus_email'] = $request->email;
+        $post_data['package_id'] = $request->package_id;
         $post_data['cus_add1'] = 'Customer address';
         $post_data['cus_add2'] = "";
         $post_data['cus_city'] = "";
@@ -80,6 +81,7 @@ class SslCommerzPaymentController extends Controller
         $update_product = DB::table('orders')
             ->where('transaction_id', $post_data['tran_id'])
             ->updateOrInsert([
+                'package_id' => $post_data['package_id'],
                 'name' => $post_data['cus_name'],
                 'email' => $post_data['cus_email'],
                 'phone' => $post_data['cus_phone'],
@@ -196,7 +198,7 @@ class SslCommerzPaymentController extends Controller
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
                 
-                return redirect('/home')->with('tran_msg', 'Transaction is successfully Completed');
+                return redirect('/packages')->with('tran_msg', 'Transaction is successfully Completed');
                 
             } else {
                 /*
@@ -207,7 +209,7 @@ class SslCommerzPaymentController extends Controller
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Failed']);
 
-                return redirect('/home')->with('tran_msg', 'validation Fail');
+                return redirect('/packages')->with('tran_msg', 'validation Fail');
             }
         } else if ($order_detials->status == 'Processing' || $order_detials->status == 'Complete') {
             /*

@@ -23,6 +23,7 @@
                 @endif
             </div>
         </section>
+
         <div class="container">
             <div class="row" id="post-content">
                 <div class="col-12" style="margin-top: 20px"></div>
@@ -34,6 +35,16 @@
                         </ul>
                     </div>
                 </div>
+                @if( $user->id == $package->user_id )
+                    <div class="col-12" style="margin-top: 20px"></div>
+                    <div class="col-12">
+                        <div class="container">
+                            <a href="/orderlist/{{ $package->id }}" class="btn btn-success">Order list</a>
+                        </div>
+                    </div>
+                @endif
+
+
 
                 <div class="col-sm-12 col-md-12">
                     <div class="content">
