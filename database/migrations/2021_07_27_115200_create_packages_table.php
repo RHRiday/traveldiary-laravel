@@ -26,7 +26,7 @@ class CreatePackagesTable extends Migration
             $table->string('phone');
             $table->string('bkash')->nullable();
             $table->timestamp('deadline');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 
             $table->foreign('location')->references('upazila')->on('upazilas');
