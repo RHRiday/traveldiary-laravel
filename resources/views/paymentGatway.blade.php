@@ -108,6 +108,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <input type="number" value={{ $package->id }} name="id" class="form-control" id="id"
+                             required>
+                </div>
+
+                <div class="mb-3">
                     <label for="address">Address</label>
                     <input type="text" class="form-control" id="address" placeholder="1234 Main St"
                            value={{ $user->location }} required>
@@ -153,7 +158,7 @@
                 <hr class="mb-4">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="same-address">
-                    <input type="text" value={{ $package->price }} name="amount" id="total_amount" required/>
+                    <input type="fixed" value={{ $package->price }} name="amount" id="total_amount" required/>
                     <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
                         address</label>
                 </div>
@@ -162,7 +167,7 @@
                     <label class="custom-control-label" for="save-info">Save this information for next time</label>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout (Hosted)</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to pay</button>
             </form>
         </div>
     </div>

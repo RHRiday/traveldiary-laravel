@@ -7,6 +7,7 @@ use App\Models\Package;
 use App\Models\PackagePic;
 use App\Models\Upazila;
 use App\Models\User;
+use App\Models\Orders;
 use Illuminate\Support\Facades\Auth;
 
 class PackageController extends Controller
@@ -92,6 +93,7 @@ class PackageController extends Controller
     public function show($id)
     {
         $package = Package::where('id', $id)->first();
+        $user = User::find(Auth::id()); 
         if (!$package) {
             abort(404);
         }
@@ -103,6 +105,18 @@ class PackageController extends Controller
         return view('package.show', [
             'package' => $package,
             'relatedPackage' => $relatedPackage,
+            'user' => $user
+        ]);
+    }
+    /*
+        $id -> package_id
+    */
+    public function orderList($id){
+        $user = User::find(Auth::id());
+        $orderList = Orders::where('package_id', $id)->get();
+    
+        return view('package.showOrders', [
+            'orderList' => $orderList
         ]);
     }
 }

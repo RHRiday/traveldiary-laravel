@@ -23,6 +23,9 @@
                 @if (session()->has('message'))
                     <p class="alert alert-success">{{ session()->get('message') }}</p>
                 @endif
+                @if (session()->has('tran_msg'))
+                <p class="alert alert-success">{{ session()->get('tran_msg') }}</p>
+                @endif
             </div>
             @foreach ($packages as $package)
                 <div class="card mb-3 package">
