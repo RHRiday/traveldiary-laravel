@@ -25,7 +25,7 @@ class CreatePackagesTable extends Migration
             $table->integer('price');
             $table->string('phone');
             $table->string('bkash')->nullable();
-            $table->timestamp('deadline');
+            $table->date('deadline');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 
