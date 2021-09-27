@@ -104,7 +104,7 @@
                             </div>
 
                             <!--carousel ends-->
-
+                            <h5 class="mt-3 text-center text-muted">ছবি : প্যাকেজ মালিকের তত্বাবধায়নে ব্যবহৃত</h5>
 
                             <!--Description parts starts-->
                             <figure class="figureClass mt-5">

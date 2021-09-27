@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             PlacesSeeder::class,
             PlacePicsSeeder::class,
             PackageSeeder::class,
+            PackagePicsSeeder::class,
         ]);
     }
 }

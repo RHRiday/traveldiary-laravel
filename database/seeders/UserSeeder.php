@@ -19,26 +19,32 @@ class UserSeeder extends Seeder
             'name' => 'Dokko Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('012345'),
-            'username' => 'rhriday',
+            'username' => 'dokkoadmin',
             'role' => 'admin',
         ]);
         DB::table('users')->insert([
             'name' => 'Rifat Hossen Riday',
             'email' => 'rifat@gmail.com',
             'password' => Hash::make('012345'),
-            'username' => 'rifathr',
+            'username' => 'rhriday',
+            'dp' => 'rhriday.jpg',
+            'cover' => 'rhriday.jpg',
         ]);
         DB::table('users')->insert([
             'name' => 'Shajjadul Kabir',
             'email' => 'abir@gmail.com',
             'password' => Hash::make('012345'),
-            'username' => 'shajjad',
+            'username' => 'shajjad71',
+            'dp' => 'shajjad71.jpg',
+            'cover' => 'shajjad71.jpg',
         ]);
         DB::table('users')->insert([
             'name' => 'Sajjad Hossen Noyon',
             'email' => 'noyon@gmail.com',
             'password' => Hash::make('012345'),
-            'username' => 'shnoyon',
+            'username' => 'noyon31',
+            'dp' => 'noyon31.jpg',
+            'cover' => 'noyon31.jpg',
         ]);
     }
 }
