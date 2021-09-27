@@ -41,6 +41,7 @@ Route::get('/reports', [AdminController::class, 'report']);
 Route::post('/reports/{id}', [AdminController::class, 'r_approval']);
 
 Route::resource('/packages', PackageController::class);
+Route::get('/orderlist/{id}', [PackageController::class, 'orderList']);
 Route::resource('/guides', GuideController::class);
 Route::post('/guides/{id}/apply', [HireController::class, 'applications'])->name('guides.apply');
 Auth::routes();

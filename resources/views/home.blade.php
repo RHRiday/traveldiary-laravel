@@ -21,7 +21,6 @@
             <!-------- LEFT CONTENT-------->
             @include('partials.left')
             <!-------- MIDDLE CONTENT-------->
-
             <div class="col-6 middle">
                 <div class="middleContent page-head">
                     <a class="title" href="">
