@@ -14,23 +14,23 @@ class PackagePicsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('package_pics')->create([
+        DB::table('package_pics')->insert([
             'package_id' => 1,
             'path' => 'Belaichhari.jpg',
         ]);
-        DB::table('package_pics')->create([
+        DB::table('package_pics')->insert([
             'package_id' => 1,
             'path' => 'Belaichhari162764038385.jpg',
         ]);
-        DB::table('package_pics')->create([
+        DB::table('package_pics')->insert([
             'package_id' => 2,
             'path' => 'Chandronath162764038385.jpg',
         ]);
-        DB::table('package_pics')->create([
+        DB::table('package_pics')->insert([
             'package_id' => 3,
             'path' => 'Thanchi16755463135.jpg',
         ]);
-        DB::table('package_pics')->create([
+        DB::table('package_pics')->insert([
             'package_id' => 4,
             'path' => 'Sundarbans199853354756.jpg',
         ]);
