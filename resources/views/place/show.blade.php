@@ -106,7 +106,7 @@
                                     </a>
                                 </div>
                                 <!--carousel ends-->
-
+                                <div class="mt-3 h5 text-muted text-center">ছবি : ইন্টারনেট </div>
                                 <!--carousel pic caption starts-->
                                 <br>
                                 <!--Description parts starts-->

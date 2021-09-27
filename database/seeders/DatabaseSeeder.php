@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             UpazilaSeeder::class,
             UserSeeder::class,
             PlacesSeeder::class,
+            PlacePicsSeeder::class,
             PackageSeeder::class,
         ]);
     }
