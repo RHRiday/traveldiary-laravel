@@ -57,7 +57,7 @@ class PackageSeeder extends Seeder
             'price' => '৫৫০০',
             'phone' => '01712444444',
             'bkash' => '01712444444',
-            'deadline' => '18-08-2021',
+            'deadline' => '18-08-2022',
         ]);
 
         DB::table('packages')->insert([
@@ -78,7 +78,7 @@ class PackageSeeder extends Seeder
             'price' => '৪০৯',
             'phone' => '01818888888',
             'bkash' => '01818888888',
-            'deadline' => '19-08-2021',
+            'deadline' => '19-08-2022',
         ]);
 
         DB::table('packages')->insert([
@@ -120,7 +120,7 @@ class PackageSeeder extends Seeder
             'price' => '৬২০০',
             'phone' => '01818888888',
             'bkash' => '01818888888',
-            'deadline' => '18-08-2021',
+            'deadline' => '18-12-2021',
         ]);
 
         DB::table('packages')->insert([
@@ -149,7 +149,7 @@ class PackageSeeder extends Seeder
             'price' => '৭৯৯৯',
             'phone' => '0171244444',
             'bkash' => '0171244444',
-            'deadline' => '22-08-2021',
+            'deadline' => '22-12-2021',
         ]);
 
     }
