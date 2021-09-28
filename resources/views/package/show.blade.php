@@ -7,6 +7,12 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/place.css') }}">
+    <style>
+        .card-header {
+            background-color: #eaf6f3 !important;
+        }
+
+    </style>
 @endsection
 
 @section('content')
@@ -16,8 +22,8 @@
         <section class="my-5">
             <div class="container text-center">
                 @if (session()->has('tran_msg'))
-                    <div style="background: rgb(158, 158, 219); color:rgb(1, 1, 1); text:center; padding:1% 1%" 
-                    class="alert alert-success" role="alert">
+                    <div style="background: rgb(158, 158, 219); color:rgb(1, 1, 1); text:center; padding:1% 1%"
+                        class="alert alert-success" role="alert">
                         {{ session()->get('tran_msg') }}
                     </div>
                 @endif
@@ -30,12 +36,15 @@
                 <div class="col-12">
                     <div class="container">
                         <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item"><a href="/packages?location={{ $package->location }}">{{ $package->location }}</a></li>
-                            <li class="list-group-item"><a href="/packages?type={{ $package->location_type }}">{{ $package->location_type }}</a></li>
+                            <li class="list-group-item"><a
+                                    href="/packages?location={{ $package->location }}">{{ $package->location }}</a></li>
+                            <li class="list-group-item"><a
+                                    href="/packages?type={{ $package->location_type }}">{{ $package->location_type }}</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
-                @if( $user->id == $package->user_id )
+                @if ($user->id == $package->user_id)
                     <div class="col-12" style="margin-top: 20px"></div>
                     <div class="col-12">
                         <div class="container">
@@ -66,9 +75,13 @@
                                             width="60" />
                                     </div>
                                     <div class="p-2 bd-highlight">
-                                        <h4 class="mb-1"><a href="/profile/{{$package->user->username}}">{{ $package->user->name }}</a></h4>
-                                        <p class="mb-0"><strong>সময়সীমা :</strong> {{ date('F d, Y', strtotime($package->deadline)) }} </p>
-                                        <p class="mb-0"><strong>মূল্য :</strong> জনপ্রতি {{ $package->price }} টাকা</p>
+                                        <h4 class="mb-1"><a
+                                                href="/profile/{{ $package->user->username }}">{{ $package->user->name }}</a>
+                                        </h4>
+                                        <p class="mb-0"><strong>সময়সীমা :</strong>
+                                            {{ date('F d, Y', strtotime($package->deadline)) }} </p>
+                                        <p class="mb-0"><strong>মূল্য :</strong> জনপ্রতি {{ $package->price }}
+                                            টাকা</p>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +94,8 @@
                             <!--carousel starts-->
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+                                    </li>
                                 </ol>
                                 <div class="carousel-inner">
                                     @foreach ($package->packagePics as $pic)
@@ -106,38 +120,27 @@
                             <!--carousel ends-->
                             <h5 class="mt-3 text-center text-muted">ছবি : প্যাকেজ মালিকের তত্বাবধায়নে ব্যবহৃত</h5>
 
-                            <!--Description parts starts-->
-                            <figure class="figureClass mt-5">
-                                <figcaption class="captionClass">
-                                    <strong class="display-4"> বিস্তারিত:</strong>
-                                </figcaption>
-                            </figure>
-                            <p>
-                                {{ $package->description }}
-                            </p>
+                            <!-- Description parts starts -->
+                            <x-package-card header="বিস্তারিত:">
+                                {!! $package->description !!}
+                            </x-package-card>
 
-                            <!--Description parts Ends-->
+                            <!-- Benefit parts starts -->
+                            <x-package-card header="এক্সপেরিয়েন্সটিতে থাকছে:">
+                                {!! $package->benefit !!}
+                            </x-package-card>
 
-                            <!--Direction Parts Start-->
-                            <p><strong class="display-4">এক্সপেরিয়েন্সটিতে থাকছে:</strong></p>
-                            <p>
-                                {{ $package->benefit }}
-                            </p>
+                            <!-- Rules parts starts -->
+                            <x-package-card header="বুকিংয়ের নিয়মাবলী ও সতর্কতা:">
+                                {!! $package->rule ? $package->rule : 'N/A' !!}
+                            </x-package-card>
 
-                            <!--Direction parts Ends-->
-                            <p><strong class="display-4">বুকিংয়ের নিয়মাবলী ও সতর্কতা:</strong> </p>
-
-                            <p>
-                                {{ $package->rule }}
-                            </p>
-                            <p class="display-4">প্যাকেজ সংক্রান্ত তথ্যের জন্য যোগাযোগ করুন <span
+                            <p class="h3">প্যাকেজ সংক্রান্ত তথ্যের জন্য যোগাযোগ করুন <span
                                     class="alert-dark">{{ $package->phone }}</span> নম্বরে</p>
 
-                            <div>
-                                <a href="/buypackage/{{ $package->id }}" class="btn btn-success">Buy Package</a>
+                            <div class="mt-3">
+                                <a href="/packages/{{ $package->id }}/book" class="btn btn-success">Book Package</a>
                             </div>
-                            {{-- exampleEasycheckout --}}
-                            <!--Budget Parts starts-->
 
                             <!--related package section-->
 
@@ -159,7 +162,7 @@
                                                         {{ $pack->title }}
                                                     </a>
                                                 </h5>
-                                                <p class="my-0">{{$pack->price}} টাকা</p>
+                                                <p class="my-0">{{ $pack->price }} টাকা</p>
                                             </div>
                                         </div>
                                     @endforeach

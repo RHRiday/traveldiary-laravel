@@ -11,79 +11,33 @@
         <!-- Content Row -->
         <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Total places</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $places->count() }}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Earnings (Monthly) -->
+            <x-info-card mark="success" title="Total places" :value="$places->count()"
+                icon="calendar" />
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Total packages (active)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Earnings (Monthly) -->
+            <x-info-card mark="success" title="Total packages (active)" value="$215,000"
+                icon="clipboard-list" />
 
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Pending Requests</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    {{ $guides->count() + $contributions->count() }}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-pause fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Pending Requests -->
+            <x-info-card mark="warning" title="Pending Requests" :value="$guides->count() + $contributions->count()"
+                icon="pause" />
 
-            <!-- Pending Reports Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                    Pending Reports</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    {{ $guides->count() + $contributions->count() }}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-exclamation-circle fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Pending Reports -->
+            <x-info-card mark="danger" title="Pending Reports" :value="$reports->count()"
+                icon="exclamation-circle" />
+
+            <!-- Total User -->
+            <x-info-card mark="info" title="Total users" value="3"
+                icon="users" />
+
+            <!-- Total stories -->
+            <x-info-card mark="info" title="Total stories" value="4"
+                icon="car-side" />
+
+            <!-- Total stories -->
+            <x-info-card mark="info" title="Total guides" value="2"
+                icon="address-card" />
         </div>
     </main>
 @endsection

@@ -18,7 +18,7 @@
             <div class="title mt-5">
                 <div class="d-flex justify-content-between">
                     <h3>Packages list</h3>
-                    <a href="{{ route('packages.create') }}" class="btn btn-outline-danger my-auto">Sell</a>
+                    <a href="{{ route('packages.create') }}" class="btn btn-outline-danger my-auto">Advertise</a>
                 </div>
                 @if (session()->has('message'))
                     <p class="alert alert-success">{{ session()->get('message') }}</p>
@@ -51,7 +51,13 @@
                                 <p class="mb-0 text-justify">
                                     <strong>
                                         <i class="fa fa-info-circle" title="Details" aria-hidden="true"></i>
-                                        {{ $package->benefit }}
+                                        {{ strip_tags($package->description) }}
+                                    </strong>
+                                </p>
+                                <p class="mb-0 text-justify">
+                                    <strong>
+                                        <i class="fa fa-check-square" title="Booked" aria-hidden="true"></i>
+                                        by {{ strip_tags($package->description) }} People
                                     </strong>
                                 </p>
                             </div>

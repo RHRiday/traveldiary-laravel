@@ -10,15 +10,41 @@
 
     @yield('title')
     <!-- Icon -->
-    <link rel="shortcut icon" href="{{asset('logo.ico')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('logo.ico') }}" type="image/x-icon">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-   
+
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/datatables.bootstrap4.min.css"/>
     @yield('css')
+    <style>
+        /* scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px #0000004d;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: #e2ffe06e;
+            box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+            -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #cbffc7fa;
+        }
+
+    </style>
+
 
 </head>
 
@@ -31,7 +57,7 @@
     <!-- datatable cdn -->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
     </script>
@@ -40,8 +66,9 @@
     <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js">
     </script>
     <script>
-            $('.oorderDataTable').DataTable();
+        $('.oorderDataTable').DataTable();
     </script>
+    <script src="{{ asset('js/trix.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 </body>

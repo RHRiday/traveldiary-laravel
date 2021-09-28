@@ -43,6 +43,9 @@ Route::get('/reports', [AdminController::class, 'report']);
 Route::post('/reports/{id}', [AdminController::class, 'r_approval']);
 
 Route::resource('/packages', PackageController::class);
+Route::get('/packages/{id}/book', [PackageController::class, 'book']);
+Route::post('/packages/{id}/book', [PackageController::class, 'confirmBook'])->name('packages.book');
+
 Route::get('/orderlist/{id}', [PackageController::class, 'orderList']);
 Route::resource('/guides', GuideController::class);
 Route::post('/guides/{id}/apply', [HireController::class, 'applications'])->name('guides.apply');
@@ -64,7 +67,6 @@ Route::post('/hires/{id}', [HireController::class, 'hire'])->name('hires.hire');
 
 // SSLCOMMERZ Start
 Route::get('/example1/{id}', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-Route::get('/buypackage/{id}', [SslCommerzPaymentController::class, 'checkout']);
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);

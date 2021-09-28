@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\PackagePic;
@@ -56,6 +57,12 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'description' => 'required',
+            'benefit' => 'required',
+            'rule' => 'required',
+        ]);
+        dd($request->description);
         Package::create([
             'title' => $request->name,
             'location' => $request->location,
@@ -93,7 +100,7 @@ class PackageController extends Controller
     public function show($id)
     {
         $package = Package::where('id', $id)->first();
-        $user = User::find(Auth::id()); 
+        $user = User::find(Auth::id());
         if (!$package) {
             abort(404);
         }
@@ -111,12 +118,54 @@ class PackageController extends Controller
     /*
         $id -> package_id
     */
-    public function orderList($id){
+    public function orderList($id)
+    {
         $user = User::find(Auth::id());
         $orderList = Orders::where('package_id', $id)->get();
-    
+
         return view('package.showOrders', [
             'orderList' => $orderList
+        ]);
+    }
+
+    /**
+     * Register a booking for a package
+     * @param $package_id, $request
+     * 
+     * saves into database
+     */
+    public function confirmBook(Request $request, $id)
+    {
+        $package = Package::where('id', $id)->first();
+
+        Booking::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'amount' => $request->book_for,
+            'package_id' => $request->id,
+            'user_id' => Auth::id(),
+            'token' => uniqid('pkgToken-'),
+        ]);
+
+        return redirect(route('packages.index'))
+            ->with('massage', 'Your booking has been confirmed! Thank you');
+    }
+
+    /**
+     * Display registering a booking for a package page
+     * @param $package_id
+     * 
+     * return view with resource
+     */
+    public function book($id)
+    {
+        $package = Package::where('id', $id)->first();
+        $user = User::find(Auth::id());
+
+        return view('package.book', [
+            'package' => $package,
+            'user' => $user,
         ]);
     }
 }

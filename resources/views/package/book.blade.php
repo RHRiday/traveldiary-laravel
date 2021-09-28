@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Buy Package</title>
+    <title>Packages</title>
 @endsection
 
 @section('css')
@@ -16,7 +16,7 @@
     <div class="container">
         <div class="my-4 text-center">
             <h2>{{ $package->title }}</h2>
-            <p class="lead">{{ $package->description }}</p>
+            <p class="lead">{!! $package->description !!}</p>
         </div>
 
         <div class="row">
@@ -39,42 +39,45 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Price (BDT)</span>
-                        <strong>{{ $package->price }}</strong>
+                        <strong id="package_price">{{ $package->price }}</strong>
                     </li>
                 </ul>
             </div>
             <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Billing information</h4>
-                <form action="{{ url('/pay') }}" method="POST" class="needs-validation">
+                <h4 class="mb-3">Booking information</h4>
+                <form action="{{ route('packages.book', $package->id) }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label>Full name</label>
-                        <input type="text" name="name" class="form-control" value={{ $user->name }} readonly>
+                        <input type="text" name="name" class="form-control" value="{{ $user->name }}" readonly>
                     </div>
                     <div class="mb-3">
                         <label>Email</label>
-                        <input type="email" value={{ $user->email }} name="email" class="form-control" readonly>
+                        <input type="email" value="{{ $user->email }}" name="email" class="form-control" readonly>
                     </div>
                     <div class="mb-3">
-                        <input hidden type="number" value={{ $package->id }} name="package_id" class="form-control" id="id"
-                                 required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="mobile">Phone <span class="text-muted">(Account with payment apps)</span></label>
+                        <label for="phone">Phone</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">+88</span>
                             </div>
-                            <input type="text" name="phone" class="form-control" id="mobile" placeholder="ex: 01912345678"
+                            <input type="text" name="phone" class="form-control" id="phone" placeholder="ex: 01912345678"
                                 pattern="01[0-9]{9}" required>
-                            <div class="invalid-feedback" style="width: 100%;">
-                                Your Mobile number is required.
-                            </div>
                         </div>
                     </div>
-                    <input type="hidden" name="amount" value="{{ $package->price }}">
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label for="book_for">Book for</label>
+                            <input type="number" name="book_for" min="1" class="form-control" id="book_for"
+                                placeholder="Number of people you want to book for" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="total_price">Total price (BDT)</label>
+                            <input type="number" name="total_price" value="0" class="form-control" id="total_price" readonly>
+                        </div>
+                    </div>
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to book</button>
                 </form>
             </div>
         </div>
