@@ -37,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
                 <img src="{{ asset('logo.ico') }}" alt="logo" width="50px">
                 <div class="sidebar-brand-text mx-1">Travel Diary</div>
             </a>
@@ -46,7 +46,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item {{ request()->path() == 'admin' ? 'active' : '' }}">
                 <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -61,45 +61,21 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse0"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <span>Places</span>
-                </a>
-                <div id="collapse0" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-success py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/admin/places">View all</a>
-                        <a class="collapse-item" href="{{ route('admin.create') }}">Add more</a>
-                    </div>
-                </div>
-            </li>
+            <x-nav-item id="collapse0" title="Places">
+                <a class="collapse-item" href="/admin/places">View all</a>
+                <a class="collapse-item" href="{{ route('admin.create') }}">Add more</a>
+            </x-nav-item>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <span>Requests</span>
-                </a>
-                <div id="collapse1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-success py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/contributions">Contributions</a>
-                        <a class="collapse-item" href="/memberships">Memberships</a>
-                    </div>
-                </div>
-            </li>
+            <x-nav-item id="collapse1" title="Requests">
+                <a class="collapse-item" href="/contributions">Contributions</a>
+                <a class="collapse-item" href="/memberships">Memberships</a>
+            </x-nav-item>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse2"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <span>Reports</span>
-                </a>
-                <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-success py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/reports">Stories</a>
-                    </div>
-                </div>
-            </li>
+            <x-nav-item id="collapse2" title="Reports">
+                <a class="collapse-item" href="/reports">Stories</a>
+            </x-nav-item>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
