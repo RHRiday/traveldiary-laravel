@@ -7,6 +7,7 @@ use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +33,7 @@ Route::get('/search', [App\Http\Controllers\HomeController::class, 'search']);
 Route::resource('/story', PostController::class);
 Route::get('/story/report/{id}', [PostController::class, 'report'])->name('story.report');
 
+Route::get('/admin/places', [AdminController::class, 'places']);
 Route::resource('/admin', AdminController::class);
 Route::get('/memberships', [AdminController::class, 'membership']);
 Route::post('/memberships/{id}', [AdminController::class, 'm_approval']);
@@ -74,3 +76,7 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
+Route::get('/test', function ()
+{
+   return view('admin.app'); 
+});

@@ -34,6 +34,12 @@ class AdminController extends Controller
 
         return view('admin.index', [
             'places' => Place::all(),
+            'guides' => Guide::where('approval', 0)->get(),
+            'contributions' => Contribution::where('status', 0)->get(),
+            'reports' => Report::where('status', 0)
+                            ->groupBy('post_id')
+                            ->havingRaw('count(*) > 5')
+                            ->get(),
         ]);
     }
 
@@ -180,6 +186,22 @@ class AdminController extends Controller
         $place->delete();
 
         return redirect('/admin')->with('message', 'Tour spot has been deleted');
+    }
+
+    /**
+     * View the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function places()
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        return view('admin.places', [
+            'places' => Place::all(),
+        ]);
     }
 
     /**
