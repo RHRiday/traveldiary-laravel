@@ -44,16 +44,6 @@
                         </ul>
                     </div>
                 </div>
-                @if ($user->id == $package->user_id)
-                    <div class="col-12" style="margin-top: 20px"></div>
-                    <div class="col-12">
-                        <div class="container">
-                            <a href="/orderlist/{{ $package->id }}" class="btn btn-success">Order list</a>
-                        </div>
-                    </div>
-                @endif
-
-
 
                 <div class="col-sm-12 col-md-12">
                     <div class="content">
@@ -139,7 +129,39 @@
                                     class="alert-dark">{{ $package->phone }}</span> নম্বরে</p>
 
                             <div class="mt-3">
-                                <a href="/packages/{{ $package->id }}/book" class="btn btn-success">Book Package</a>
+                                @if ($package->user_id === Auth::id())
+                                    <x-package-card header="বুকিং লিস্ট:">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Phone</th>
+                                                    <th scope="col">Amount</th>
+                                                    <th scope="col">Token</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $i = 1;
+                                                @endphp
+                                                @foreach ($package->bookings as $booking)
+                                                    <tr>
+                                                        <th scope="row">{{ $i++ }}</th>
+                                                        <td>{{ $booking->name }}</td>
+                                                        <td>{{ $booking->email }}</td>
+                                                        <td>{{ $booking->phone }}</td>
+                                                        <td>{{ $booking->amount }}</td>
+                                                        <td>{{ $booking->token }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </x-package-card>
+                                @else
+                                    <a href="/packages/{{ $package->id }}/book" class="btn btn-success">Book Package</a>
+                                @endif
                             </div>
 
                             <!--related package section-->

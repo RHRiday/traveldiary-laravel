@@ -21,10 +21,9 @@
                     <a href="{{ route('packages.create') }}" class="btn btn-outline-danger my-auto">Advertise</a>
                 </div>
                 @if (session()->has('message'))
-                    <p class="alert alert-success">{{ session()->get('message') }}</p>
-                @endif
-                @if (session()->has('tran_msg'))
-                <p class="alert alert-success">{{ session()->get('tran_msg') }}</p>
+                    <p class="alert alert-success">
+                        <i class="fa fa-check-circle"></i> {{ session()->get('message') }}
+                    </p>
                 @endif
             </div>
             @foreach ($packages as $package)
@@ -57,7 +56,7 @@
                                 <p class="mb-0 text-justify">
                                     <strong>
                                         <i class="fa fa-check-square" title="Booked" aria-hidden="true"></i>
-                                        by {{ strip_tags($package->description) }} People
+                                        by {{ $package->bookings->count() }} People
                                     </strong>
                                 </p>
                             </div>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePlaceRequest;
 use App\Models\Contribution;
 use App\Models\Guide;
+use App\Models\Package;
 use App\Models\PlacePic;
 use App\Models\Report;
 use App\Models\User;
@@ -40,6 +41,7 @@ class AdminController extends Controller
                             ->groupBy('post_id')
                             ->havingRaw('count(*) > 5')
                             ->get(),
+            'packages' => Package::where('deadline', '>', now())->get(),
         ]);
     }
 

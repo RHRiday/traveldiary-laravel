@@ -16,7 +16,7 @@
                 icon="calendar" />
 
             <!-- Earnings (Monthly) -->
-            <x-info-card mark="success" title="Total packages (active)" value="$215,000"
+            <x-info-card mark="success" title="Total packages (active)" :value="$packages->count()"
                 icon="clipboard-list" />
 
             <!-- Pending Requests -->

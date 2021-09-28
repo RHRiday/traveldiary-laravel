@@ -136,20 +136,18 @@ class PackageController extends Controller
      */
     public function confirmBook(Request $request, $id)
     {
-        $package = Package::where('id', $id)->first();
-
         Booking::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'amount' => $request->book_for,
-            'package_id' => $request->id,
+            'package_id' => $id,
             'user_id' => Auth::id(),
             'token' => uniqid('pkgToken-'),
         ]);
 
         return redirect(route('packages.index'))
-            ->with('massage', 'Your booking has been confirmed! Thank you');
+            ->with('message', 'Your booking has been confirmed! Thank you');
     }
 
     /**
