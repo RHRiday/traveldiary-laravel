@@ -9,7 +9,7 @@
                 @foreach ($places as $place)
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
-                            <div class="placeholder-img col-auto overflow-hidden">
+                            <div class="placeholder-img overflow-hidden">
                                 <img class="card-img-top"
                                     src="{{ asset('resources/places/' . $place->placePics->first()->path) }}">
                             </div>
