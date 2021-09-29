@@ -16,7 +16,8 @@ use App\Models\User;
 
 class PlaceController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         return $this->middleware('auth')->only(['create']);
     }
 
@@ -109,42 +110,50 @@ class PlaceController extends Controller
      */
     public function show(Place $id)
     {
-        $alreadyRated = false ;
+        $alreadyRated = false;
+        $alreadyHired = false;
 
-        foreach($id->ratings as $rating) {
-            if($rating->user_id == Auth::id() && $rating->place_id == $id->id) {
-                $alreadyRated = true ;
+        foreach ($id->ratings as $rating) {
+            if ($rating->user_id == Auth::id() && $rating->place_id == $id->id) {
+                $alreadyRated = true;
+            }
+        }
+        foreach ($id->hires as $hire) {
+            if ($hire->user_id == Auth::id() && $hire->place_id == $id->id && $hire->date > now()) {
+                $alreadyHired = true;
             }
         }
 
         $relatedPackage = Package::where('location', $id->location)
-                ->inRandomOrder()
-                ->limit(3)
-                ->get();
+            ->inRandomOrder()
+            ->limit(3)
+            ->get();
 
         $relatedPost = Post::where('location', $id->location)
-                ->inRandomOrder()
-                ->limit(3)
-                ->get();
+            ->inRandomOrder()
+            ->limit(3)
+            ->get();
 
         return view('place.show', [
             'place' => $id,
             'alreadyRated' => $alreadyRated,
+            'alreadyHired' => $alreadyHired,
             'relatedPost' => $relatedPost,
             'relatedPackage' => $relatedPackage,
         ]);
     }
 
-    public function saveRating(Request $request, $place_id) {
+    public function saveRating(Request $request, $place_id)
+    {
 
         GuideController::give_points(Auth::id(), 3);
-        
+
         Rating::create([
             'user_id' => Auth::id(),
             'place_id' => $place_id,
             'rating' => $request->rated,
         ]);
 
-        return redirect('/places/' . $place_id) ;
+        return redirect('/places/' . $place_id);
     }
 }

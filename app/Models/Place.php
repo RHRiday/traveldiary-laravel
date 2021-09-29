@@ -14,10 +14,11 @@ class Place extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    // public function users()
-    // {
-    //     $this->hasMany(User::class);
-    // }
+
+    public function hires()
+    {
+        return $this->hasMany(Hire::class);
+    }
 
     // public function posts()
     // {
