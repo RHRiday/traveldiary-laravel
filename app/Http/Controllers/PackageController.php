@@ -44,6 +44,9 @@ class PackageController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->guide) {
+            return redirect('/guides');
+        }
         return view('package.create', [
             'upazilas' => Upazila::pluck('upazila'),
         ]);
@@ -88,6 +91,8 @@ class PackageController extends Controller
             $image->move(public_path('resources/packages'), $name);
         }
 
+        GuideController::give_points(Auth::id(), 1);
+
         return redirect('/packages')->with('message', 'Your package has been added');
     }
 
@@ -105,6 +110,7 @@ class PackageController extends Controller
             abort(404);
         }
         $relatedPackage = Package::where('location', $package->location)
+            ->where('id', '<>', $id)
             ->inRandomOrder()
             ->limit(3)
             ->get();
