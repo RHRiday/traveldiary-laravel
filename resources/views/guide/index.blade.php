@@ -50,14 +50,14 @@
                                         </p>
                                 </div>
                             </div>
-
                             <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
                                 <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
                                     <div class="icon"><i class="bx bx-file"></i></div>
-                                    <h5><a href="/packages">Selling packages</a></h5>
-                                    <p class="text-justify">We are giving you an opportunity to sell packages as a tour
-                                        organizer.
-                                        Make your profile rich by selling your packages.</p>
+                                    <h5><a href="/packages">Advertising packages</a></h5>
+                                    <p class="text-justify">We are giving you an opportunity to advertise your packages as a tour
+                                        organizer. Make sure not to advertise false information in order to avoid penalty.
+                                        <span class="text-danger">You must acquire a membership before advertising you package.</span>
+                                    </p>
                                 </div>
                             </div>
 

@@ -165,32 +165,36 @@
                             </div>
 
                             <!--related package section-->
-
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h3>Related Packages</h3>
                                     <a href="/packages" class="my-auto">See All</a>
                                 </div>
-                                <div class="d-flex justify-content-start">
-                                    @foreach ($relatedPackage as $pack)
-                                        <div class="card col-sm-12 col-md-6 col-lg-4">
-                                            <div class="place-img">
-                                                <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
-                                                    class="position-relative">
-                                            </div>
-                                            <div class="card-body pl-0">
-                                                <h5 class="card-title">
-                                                    <a href="/packages/{{ $pack->id }}">
-                                                        {{ $pack->title }}
-                                                    </a>
-                                                </h5>
-                                                <p class="my-0">{{ $pack->price }} টাকা</p>
+                                <div class="row d-flex justify-content-start">
+                                    @forelse ($relatedPackage as $pack)
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="card mb-4 shadow-sm">
+                                                <div class="placeholder-img overflow-hidden">
+                                                    <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
+                                                        class="position-relative">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <a href="/packages/{{ $pack->id }}">
+                                                            {{ $pack->title }}
+                                                        </a>
+                                                    </h5>
+                                                    <p class="my-0">{{ $pack->price }} টাকা</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="col-12 bg-white py-2">
+                                            Nothing was found
+                                        </div>
+                                    @endforelse
                                 </div>
                             </div>
-                            <!--related package section-->
 
                         </div>
                     </div>

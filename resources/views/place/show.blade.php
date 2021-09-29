@@ -126,6 +126,11 @@
                                 </x-package-card>
 
                                 <!--Direction Parts Start-->
+                                <x-package-card header="চেকপয়েন্ট :">
+                                    {{ $place->checkpoint }}
+                                </x-package-card>
+
+                                <!--Direction Parts Start-->
                                 <x-package-card header="যেভাবে যাবেন :">
                                     {!! $place->direction !!}
                                 </x-package-card>
@@ -144,17 +149,20 @@
                             </div>
 
                             <!--Guide Part starts-->
-                            @if (Auth::id() && $alreadyHired == true)
-                                <p class="text-dark">Did you request for a guide? Check <a href="/hires">here</a>.</p>
-                            @else
-                                <a href="/places/{{ $place->id }}/hire"
-                                    class="col-12 mx-auto text-center btn btn-outline-success">
-                                    Hire a guide for your tour
-                                </a>
+                            @if (!Auth::check() || Auth::user()->role != 'admin')
+                                @if (Auth::id() && $alreadyHired == true)
+                                    <p class="text-dark">Did you request for a guide? Check <a href="/hires">here</a>.
+                                    </p>
+                                @else
+                                    <a href="/places/{{ $place->id }}/hire"
+                                        class="col-12 mx-auto text-center btn btn-outline-success">
+                                        Hire a guide for your tour
+                                    </a>
+                                @endif
                             @endif
 
-                            <!--related package section-->
 
+                            <!--related package section-->
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h3>Related Packages</h3>

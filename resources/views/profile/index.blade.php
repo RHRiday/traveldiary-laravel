@@ -12,6 +12,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <style>
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.25rem !important;
+            font-size: .7rem !important;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 50%;
+            background-color: #21b573 !important;
+            color: white !important;
+        }
+
+    </style>
 @endsection
 
 @section('content')
@@ -113,10 +129,10 @@
                 <div class="middleContent">
                     <div class="details-profile">
                         <div class="cover-picture">
-                            <img src="{{ asset('resources/cover/'.$user->cover) }}" class="zoom medium-zoom-image">
+                            <img src="{{ asset('resources/cover/' . $user->cover) }}" class="zoom medium-zoom-image">
                         </div>
                         <div class="profile-picture">
-                            <img src="{{ asset('resources/profile/'.$user->dp) }}" class="zoom medium-zoom-image">
+                            <img src="{{ asset('resources/profile/' . $user->dp) }}" class="zoom medium-zoom-image">
                         </div>
 
                         <div>
@@ -126,17 +142,23 @@
                                 </a>
                             @else
                                 <a href="/follow/{{ $user->id }}">
-                                    <button class="profile-btn">{{$user->status($user->id) ? 'Unfollow' : 'Follow'}}</button>
+                                    <button
+                                        class="profile-btn">{{ $user->status($user->id) ? 'Unfollow' : 'Follow' }}</button>
                                 </a>
                             @endif
                         </div>
                     </div>
                     <div class="details-profile2">
                         <div class="name-and-handle">
-                            <h4 class="profile-name">{{ $user->name }}</h4>
+                            <h4 class="profile-name">{{ $user->name }}
+                                @if ($user->username == 'rhriday' || $user->username == 'noyon31' || $user->username == 'shajjad71')
+                                    <i class="fas fa-code badge" title="Dev Badge"></i>
+                                @endif
+                            </h4>
                             <p class="profile-handle" title="Username">@ {{ $user->username }}</p>
-                            <p class="profile-name"><i class="fa fa-map-marker-alt" title="Location" aria-hidden="true"></i>
-                                {{$user->location ? $user->location : 'N/A'}}</p>
+                            <p class="profile-name"><i class="fa fa-map-marker-alt" title="Location"
+                                    aria-hidden="true"></i>
+                                {{ $user->location ? $user->location : 'N/A' }}</p>
                             <p class="profile-handle"><i class="fa fa-bookmark" title="Points"></i> {{ $user->points }}
                             </p>
                         </div>
@@ -156,7 +178,7 @@
                         <div class="row">
                             <div class="col-2 DP-circular-img">
                                 <a href="/profile/{{ $user->username }}">
-                                    <img src="/resources/profile/{{$user->dp}}">
+                                    <img src="/resources/profile/{{ $user->dp }}">
                                 </a>
                             </div>
                             <div class="col-10">
@@ -171,9 +193,10 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <a class="name" href="/profile/{{ $user->username }}">{{ $user->name }}</a>
+                                        <a class="name"
+                                            href="/profile/{{ $user->username }}">{{ $user->name }}</a>
                                         &nbsp;<span>.</span>&nbsp;
-                                        <a href="/story/{{$post->id}}" style="font-size: 60%;"
+                                        <a href="/story/{{ $post->id }}" style="font-size: 60%;"
                                             class="name">{{ $post->time($post->created_at) }}</a>
                                         <a href="#post-option{{ $post->id }}" rel="modal:open"><i
                                                 class="fas fa-ellipsis-h"></i></a>
