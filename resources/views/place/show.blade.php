@@ -161,53 +161,62 @@
                                     <a href="" class="my-auto">See All</a>
                                 </div>
                                 <div class="row d-flex justify-content-start">
-                                    @foreach ($relatedPackage as $pack)
-                                        <div class="card col-sm-12 col-md-6 col-lg-4">
-                                            <div class="place-img">
-                                                <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
-                                                    class="position-relative">
-                                            </div>
-                                            <div class="card-body pl-0">
-                                                <h5 class="card-title">
-                                                    <a href="/packages/{{ $pack->id }}">
-                                                        {{ $pack->title }}
-                                                    </a>
-                                                </h5>
-                                                <p class="my-0">{{ $pack->price }} টাকা</p>
+                                    @forelse ($relatedPackage as $pack)
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="card mb-4 shadow-sm">
+                                                <div class="placeholder-img overflow-hidden">
+                                                    <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
+                                                        class="position-relative">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <a href="/packages/{{ $pack->id }}">
+                                                            {{ $pack->title }}
+                                                        </a>
+                                                    </h5>
+                                                    <p class="my-0">{{ $pack->price }} টাকা</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="col-12 bg-white py-2">
+                                            Nothing was found
+                                        </div>
+                                    @endforelse
                                 </div>
                             </div>
-                            <!--related package section-->
-
 
                             <!--related posts section-->
 
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
-                                    <h3>Related Posts</h3>
-                                    <a href="" class="my-auto">See All</a>
+                                    <h3>Related Stories</h3>
+                                    <a href="/home" class="my-auto">See All</a>
                                 </div>
-                                <div class="d-flex justify-content-start">
-                                    @foreach ($relatedPost as $post)
-                                        <div class="card col-sm-12 col-md-6 col-lg-4">
-                                            <div class="place-img">
-                                                <img src="/resources/stories/{{ $post->postPics->first()->path }}"
-                                                    class="position-relative">
-                                            </div>
-                                            <div class="card-body pl-0">
-                                                <h5 class="card-title">
-                                                    <a href="/story/{{ $post->id }}">
-                                                        {{ $post->title }}
-                                                    </a>
-                                                </h5>
+                                <div class="row d-flex justify-content-start">
+                                    @forelse ($relatedPost as $post)
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="card mb-4 shadow-sm">
+                                                <div class="placeholder-img overflow-hidden">
+                                                    <img src="/resources/packages/{{ $pack->postPics->first()->path }}"
+                                                        class="position-relative">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <a href="/packages/{{ $post->id }}">
+                                                            {{ $post->title }}
+                                                        </a>
+                                                    </h5>
+                                                </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="col-12 bg-white py-2">
+                                            Nothing was found
+                                        </div>
+                                    @endforelse
                                 </div>
                             </div>
-                            <!--related posts section-->
                             <br> <br>
 
                         </div>

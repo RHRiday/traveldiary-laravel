@@ -202,7 +202,7 @@ class AdminController extends Controller
         }
 
         return view('admin.places', [
-            'places' => Place::all(),
+            'places' => Place::inRandomOrder()->get(),
         ]);
     }
 
