@@ -13,13 +13,12 @@
                 </p>
             </div>
         @else
-            <div class="card-body">
+            <div class="row card-body">
                 @foreach ($requests as $request)
-                    <div class="card mb-3 package">
-
+                    <div class="card col-xl-6 mb-3">
                         <div class="row no-gutters">
-                            <div class="col-md-4 placeholder-img overflow-hidden my-auto">
-                                <img src="/resources/profile/{{ $request->user->dp }}">
+                            <div class="col-md-3 placeholder-img overflow-hidden my-auto">
+                                <img src="/resources/profile/{{ $request->user->dp }}" style="width:100%">
                             </div>
                             <div class="col-md-7 my-auto">
                                 <div class="card-body">
@@ -30,7 +29,7 @@
                                         {{ $request->user->location }}
                                     </p>
                                     <p class="mb-0">
-                                        <i class="fa fa-user" title="NID" aria-hidden="true"></i>
+                                        <i class="fa fa-id-card" title="NID" aria-hidden="true"></i>
                                         {{ $request->national_id }}
                                     </p>
                                     <p class="mb-0 text-justify">

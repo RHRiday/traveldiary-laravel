@@ -38,7 +38,7 @@
                                     <p class="mb-1">
                                         <i class="fa fa-map-marker-alt" title="Location" aria-hidden="true"></i><span
                                             class="sr-only">Location</span>
-                                        {{ $application->guide->user->location }}
+                                        {{ $application->guide->user->location ? $application->guide->user->location : 'N/A' }}
                                     </p>
                                     <p class="mb-0">
                                         <i class="fa fa-bookmark" title="Points" aria-hidden="true"></i><span
@@ -70,10 +70,10 @@
         @else
             <div class="card mb-3 package col-md-8 mx-auto">
                 <div class="row no-gutters">
-                    <div class="col-3 my-auto">
+                    <div class="col-lg-3 my-auto">
                         <img src="/resources/profile/{{ $data->guide->user->dp }}" width="100%">
                     </div>
-                    <div class="col-7 my-auto">
+                    <div class="col-lg-7 my-auto">
                         <div class="card-body">
                             <h4>
                                 <a
@@ -81,7 +81,8 @@
                                 is hired
                             </h4>
                             <p class="mb-0">
-                                <i class="fa fa-clock" title="Time" aria-hidden="true"></i><span class="sr-only">Time</span>
+                                <i class="fa fa-clock" title="Time" aria-hidden="true"></i><span
+                                    class="sr-only">Time</span>
                                 {{ $data->date }}
                             </p>
                             <p class="mb-0">
@@ -89,6 +90,19 @@
                                     class="sr-only">Contact</span>
                                 {{ $data->guide->contact }}
                             </p>
+                        </div>
+                    </div>
+                    <div class="m-auto col-lg-2">
+                        <div class="float-md-right text-center mb-1">
+                            @if ($data->date > now() && $data->recommended == 0)
+                                <form action="{{ route('hires.recommend', $data->id) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="guide" value="{{ $data->guide_id }}">
+                                    <input type="number" class="form-control my-1" placeholder="Points" max="5" min="0"
+                                        step="0.5" name="r_points">
+                                    <input type="submit" value="Recommend" class="btn btn-success">
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>

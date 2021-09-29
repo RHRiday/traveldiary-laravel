@@ -146,7 +146,7 @@
                                                 @php
                                                     $i = 1;
                                                 @endphp
-                                                @foreach ($package->bookings as $booking)
+                                                @forelse ($package->bookings as $booking)
                                                     <tr>
                                                         <th scope="row">{{ $i++ }}</th>
                                                         <td>{{ $booking->name }}</td>
@@ -155,7 +155,11 @@
                                                         <td>{{ $booking->amount }}</td>
                                                         <td>{{ $booking->token }}</td>
                                                     </tr>
-                                                @endforeach
+                                                @empty
+                                                <tr>
+                                                    <td colspan="6" class="text-center">Nothing was found</td>
+                                                </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </x-package-card>

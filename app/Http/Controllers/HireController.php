@@ -56,7 +56,7 @@ class HireController extends Controller
             'date' => $request->date,
         ]);
 
-        return redirect('/guides');
+        return redirect('/hires');
     }
 
     /**
@@ -141,7 +141,20 @@ class HireController extends Controller
             'guide_id' => $request->guide,
         ]);
 
-        GuideController::give_points($guide->user->id, 5);
+        GuideController::give_points($guide->user->id, 1);
+
+        return redirect()->back();
+    }
+
+    public function recommend(Request $request, $id)
+    {
+        $hire = Hire::findOrFail($id);
+        $guide = Guide::findOrFail($request->guide);
+
+        GuideController::give_points($guide->user->id, (int) round($request->r_points/5*3));
+        $hire->update([
+            'recommended' => 1,
+        ]);
 
         return redirect()->back();
     }

@@ -64,6 +64,7 @@ Route::post('/places/{id}/hire', [HireController::class, 'store'])->name('hires.
 Route::get('/hires', [HireController::class, 'index']);
 Route::get('/hires/{id}', [HireController::class, 'show'])->name('hires.show');
 Route::post('/hires/{id}', [HireController::class, 'hire'])->name('hires.hire');
+Route::post('/recommend/{id}', [HireController::class, 'recommend'])->name('hires.recommend');
 
 // SSLCOMMERZ Start
 Route::get('/example1/{id}', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
