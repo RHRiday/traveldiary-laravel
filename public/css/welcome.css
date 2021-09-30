@@ -43,6 +43,16 @@ body{
 .search-btn{
   float: left;
 }
+@media (max-width: 992px) {
+  .search-btn {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
+  .phone-search {
+    display: none !important;
+  }
+}
 .navbar-nav li {
   padding: 8px 10px;
 }

@@ -43,6 +43,12 @@
             background: #cbffc7fa;
         }
 
+        @media (min-width: 992px) {
+            .phone-search {
+                display: none !important;
+            }
+        }
+
     </style>
 
 

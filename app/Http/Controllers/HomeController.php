@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['root', 'search']);
+        $this->middleware('auth')->except(['root', 'search', 'dev']);
     }
 
     public function root()
@@ -201,5 +201,10 @@ class HomeController extends Controller
             'posts' => $posts->get(),
             'types' => Place::pluck('type')->union(Package::pluck('location_type'))->toArray(),
         ]);
+    }
+
+    public function dev()
+    {
+        return view('teams');
     }
 }

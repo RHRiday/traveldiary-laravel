@@ -18,7 +18,7 @@
                 <div class="col-lg-4 d-flex flex-column text-center order-lg-last">
                     <div class="">
                         <div class="p-2 border-bottom shadow-sm m-1 alert-success">
-                            Filter
+                            Filter <small class="small">(Places / Packages)</small>
                         </div>
                         <form class="py-2" action="/search" method="get">
                             <input type="hidden" name="key" value="{{ request()->get('key') }}">
@@ -51,7 +51,7 @@
                 <div class="col-lg-8 order-lg-first">
                     @if ($users->count() > 0)
                         <div class="mt-2 alert alert-info" id="travellers">
-                            <i class="fas fa-user" aria-hidden="true"></i> Travellers
+                            <i class="fas fa-user" aria-hidden="true"></i> Travelers
                         </div>
                         @foreach ($users as $user)
                             <div class="col-12 d-flex border rounded bg-white mb-1">
@@ -65,7 +65,7 @@
                                     <p class="mb-0">
                                         <strong>
                                             <i class="fa fa-map-marker-alt" title="Location" aria-hidden="true"></i>
-                                        </strong> {{ $user->location }}
+                                        </strong> {{ $user->location ? $user->location : 'N/A' }}
                                     </p>
                                     <p class="mb-0">
                                         <strong>

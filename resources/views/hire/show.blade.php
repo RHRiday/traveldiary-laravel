@@ -94,7 +94,7 @@
                     </div>
                     <div class="m-auto col-lg-2">
                         <div class="float-md-right text-center mb-1">
-                            @if ($data->date > now() && $data->recommended == 0)
+                            @if ($data->date < now() && $data->recommended == 0)
                                 <form action="{{ route('hires.recommend', $data->id) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="guide" value="{{ $data->guide_id }}">

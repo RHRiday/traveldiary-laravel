@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('/');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dev', [App\Http\Controllers\HomeController::class, 'dev'])->name('dev');
 Route::get('/profile/edit', [App\Http\Controllers\HomeController::class, 'edit']);
 Route::put('/profile/edit', [App\Http\Controllers\HomeController::class, 'update']);
 Route::get('/profile/{username}', [App\Http\Controllers\HomeController::class, 'show']);
