@@ -12,6 +12,7 @@ use App\Models\Contribution;
 use App\Models\Guide;
 use App\Models\Package;
 use App\Models\PlacePic;
+use App\Models\Post;
 use App\Models\Report;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -42,6 +43,9 @@ class AdminController extends Controller
                             ->havingRaw('count(*) > 5')
                             ->get(),
             'packages' => Package::where('deadline', '>', now())->get(),
+            'users' => User::where('role', 'visitor')->get(),
+            'stories' => Post::all(),
+            'guides' => Guide::all(),
         ]);
     }
 

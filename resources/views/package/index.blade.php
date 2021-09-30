@@ -50,7 +50,7 @@
                                 <p class="mb-0 text-justify">
                                     <strong>
                                         <i class="fa fa-info-circle" title="Details" aria-hidden="true"></i>
-                                        {{ strip_tags($package->description) }}
+                                        {{ mb_substr(strip_tags($package->description), 0, 250) }} . . .
                                     </strong>
                                 </p>
                                 <p class="mb-0 text-justify">
@@ -64,7 +64,7 @@
                         <div class="m-auto col-md-1">
                             <div class="float-md-right mr-md-2 text-center mb-1">
                                 <h5>{{ $package->price }} &#2547; </h5>
-                                <a href="/packages/{{ $package->id }}" class="btn btn-info"> Details </a>
+                                <a href="/packages/{{ $package->id }}" class="btn btn-primary"> Details </a>
                             </div>
                         </div>
                     </div>

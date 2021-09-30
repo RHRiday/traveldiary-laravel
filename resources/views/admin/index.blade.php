@@ -25,13 +25,13 @@
             <x-info-card mark="danger" title="Pending Reports" :value="$reports->count()" icon="exclamation-circle" />
 
             <!-- Total User -->
-            <x-info-card mark="info" title="Total users" value="3" icon="users" />
+            <x-info-card mark="info" title="Total users" :value="$users->count()" icon="users" />
 
             <!-- Total stories -->
-            <x-info-card mark="info" title="Total stories" value="4" icon="car-side" />
+            <x-info-card mark="info" title="Total stories" :value="$stories->count()" icon="car-side" />
 
             <!-- Total stories -->
-            <x-info-card mark="info" title="Total guides" value="2" icon="address-card" />
+            <x-info-card mark="info" title="Total guides" :value="$guides->count()" icon="address-card" />
         </div>
 
         <div class="row">
@@ -52,6 +52,10 @@
                             <a href="/packages" class="col-auto text-center text-info">
                                 <i class="fas fa-fw fa-folder fa-5x"></i>
                                 <p class="font-weight-bold">Packages</p>
+                            </a>
+                            <a href="/dev" class="col-auto text-center text-info">
+                                <i class="fas fa-fw fa-folder fa-5x"></i>
+                                <p class="font-weight-bold">Dev</p>
                             </a>
                         </div>
                     </div>
