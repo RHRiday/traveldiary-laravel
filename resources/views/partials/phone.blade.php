@@ -45,7 +45,7 @@
                             <div class="icon-link"><i class="fas fa-user"></i></div>
                         </a>
                     @else
-                        <a title="Logout" href="http://localhost:8080/logout"
+                        <a title="Logout" href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <div class="icon-link"><i class="fas fa-sign-out-alt"></i></div>
                         </a>

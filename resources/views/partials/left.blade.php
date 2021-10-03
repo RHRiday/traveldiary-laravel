@@ -14,10 +14,10 @@
                     </div>
                 </a>
                 <div class="col-4">
-                    <form id="logout-form" action="http://localhost:8080/logout" method="POST" hidden>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>
                         @csrf
                     </form>
-                    <a title="Logout" href="http://localhost:8080/logout"
+                    <a title="Logout" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                                                             document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                     </a>

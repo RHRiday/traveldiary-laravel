@@ -59,68 +59,70 @@
                 <h2>Team</h2>
                 <p>Meet the developers <i class="fas fa-fire orange"></i></p>
             </header>
-            <div class="row gy-4 container">
-                <div class="col-lg-4 d-flex align-items-stretch my-1" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member">
-                        <div class="member-img">
-                            <img src="{{ asset('resources/profile/rhriday.jpg') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="member-info">
-                            <h4>Rifat Hossen Riday</h4>
-                            <span>Lead Dev</span>
-                            <p>Project leader | UX/UI designer | Database model designer | Director of operations</p>
-                        </div>
-                        <div class="container d-flex justify-content-around">
-                            <a href="https://github.com/rhriday" class="git"><i
-                                    class="fab fa-2x fa-github"></i></a>
-                            <a href="https://facebook.com/riffatriday" class="fb"><i
-                                    class="fab fa-2x fa-facebook"></i></a>
-                            <a href="https://twitter.com/rhriday" class="tw"><i
-                                    class="fab fa-2x fa-twitter"></i></a>
-                            <a href="https://linkedin.com/in/rhriday" class="in"><i
-                                    class="fab fa-2x fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 d-flex align-items-stretch my-1" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member">
-                        <div class="member-img">
-                            <img src="{{ asset('resources/profile/shajjad71.jpg') }}" class="img-fluid" alt="">
-                        </div>
-                        <div class="member-info">
-                            <h4>Sajjadul Kabir Abir</h4>
-                            <span>Asst. Dev</span>
-                            <p>Technical writer | Asst. front-end developer | Data analyst</p>
-                        </div>
-                        <div class="container d-flex justify-content-around">
-                            <a href="https://github.com/shajjadKabir" class="git"><i
-                                    class="fab fa-2x fa-github"></i></a>
-                            <a href="https://www.facebook.com/SajjadAbir71" class="fb"><i
-                                    class="fab fa-2x fa-facebook"></i></a>
-                            <a href="#" class="tw"><i class="fab fa-2x fa-twitter"></i></a>
-                            <a href="https://linkedin.com/in/shajjadabir" class="in"><i
-                                    class="fab fa-2x fa-linkedin"></i></a>
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-4 d-flex align-items-stretch my-1" data-aos="fade-up" data-aos-delay="100">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="{{ asset('resources/profile/rhriday.jpg') }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>Rifat Hossen Riday</h4>
+                                <span>Lead Dev</span>
+                                <p>Project leader | UX/UI designer | Database model designer | Director of operations</p>
+                            </div>
+                            <div class="container d-flex justify-content-around">
+                                <a href="https://github.com/rhriday" class="git"><i
+                                        class="fab fa-2x fa-github"></i></a>
+                                <a href="https://facebook.com/riffatriday" class="fb"><i
+                                        class="fab fa-2x fa-facebook"></i></a>
+                                <a href="https://twitter.com/rhriday" class="tw"><i
+                                        class="fab fa-2x fa-twitter"></i></a>
+                                <a href="https://linkedin.com/in/rhriday" class="in"><i
+                                        class="fab fa-2x fa-linkedin"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 d-flex align-items-stretch my-1" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member">
-                        <div class="member-img">
-                            <img src="{{ asset('resources/profile/noyon31.jpg') }}" class="img-fluid" alt="">
+                    <div class="col-lg-4 d-flex align-items-stretch my-1" data-aos="fade-up" data-aos-delay="100">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="{{ asset('resources/profile/shajjad71.jpg') }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>Sajjadul Kabir Abir</h4>
+                                <span>Asst. Dev</span>
+                                <p>Technical writer | Asst. front-end developer | Data analyst</p>
+                            </div>
+                            <div class="container d-flex justify-content-around">
+                                <a href="https://github.com/shajjadKabir" class="git"><i
+                                        class="fab fa-2x fa-github"></i></a>
+                                <a href="https://www.facebook.com/SajjadAbir71" class="fb"><i
+                                        class="fab fa-2x fa-facebook"></i></a>
+                                <a href="#" class="tw"><i class="fab fa-2x fa-twitter"></i></a>
+                                <a href="https://linkedin.com/in/shajjadabir" class="in"><i
+                                        class="fab fa-2x fa-linkedin"></i></a>
+                            </div>
                         </div>
-                        <div class="member-info">
-                            <h4>Md. Sajjad Hossen Noyon</h4>
-                            <span>Asst. Dev</span>
-                            <p>Asst. back-end developer | Social Media designer | Code analyst</p>
-                        </div>
-                        <div class="container d-flex justify-content-around">
-                            <a href="https://github.com/NYN31" class="git"><i
-                                    class="fab fa-2x fa-github"></i></a>
-                            <a href="https://www.facebook.com/md.noyon.9440" class="fb"><i
-                                    class="fab fa-2x fa-facebook"></i></a>
-                            <a href="#" class="tw"><i class="fab fa-2x fa-twitter"></i></a>
-                            <a href="https://linkedin.com/in/noyon31" class="in"><i
-                                    class="fab fa-2x fa-linkedin"></i></a>
+                    </div>
+                    <div class="col-lg-4 d-flex align-items-stretch my-1" data-aos="fade-up" data-aos-delay="100">
+                        <div class="member">
+                            <div class="member-img">
+                                <img src="{{ asset('resources/profile/noyon31.jpg') }}" class="img-fluid" alt="">
+                            </div>
+                            <div class="member-info">
+                                <h4>Md. Sajjad Hossen Noyon</h4>
+                                <span>Asst. Dev</span>
+                                <p>Asst. back-end developer | App developer | Social Media designer</p>
+                            </div>
+                            <div class="container d-flex justify-content-around">
+                                <a href="https://github.com/NYN31" class="git"><i
+                                        class="fab fa-2x fa-github"></i></a>
+                                <a href="https://www.facebook.com/md.noyon.9440" class="fb"><i
+                                        class="fab fa-2x fa-facebook"></i></a>
+                                <a href="#" class="tw"><i class="fab fa-2x fa-twitter"></i></a>
+                                <a href="https://linkedin.com/in/noyon31" class="in"><i
+                                        class="fab fa-2x fa-linkedin"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>

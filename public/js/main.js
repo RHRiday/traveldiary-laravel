@@ -1,3 +1,9 @@
+//window loader
+
+$(window).on('load', function(){
+    $('.wait').fadeOut(500);
+});
+
 // forms animation
 var hiders = $('h1, .search-btn, .navbar-toggler');
 var windowSize = $(window).height();

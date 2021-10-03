@@ -7,10 +7,25 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    <style>
+        .wait {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            text-align: center;
+            background-color: white;
+            z-index: 99;
+        }
+    </style>
 @endsection
 
 @section('content')
     {{-- top navbar --}}
+    <div class="wait">
+        <img src="/loader.jpg" style="max-width: 100%; margin-top: 100px">
+        <br>
+        <h2 class="text-success">Travel Diary loading . . .</h2>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <img class="title" src="/resources/travel-diary.png" alt="Travel-Diary">
