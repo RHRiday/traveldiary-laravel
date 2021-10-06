@@ -56,13 +56,15 @@ class PostController extends Controller
         ]);
 
         foreach ($request->image as $image) {
-            $name = $request->location . time() . mt_rand(9, 999) . '.' . $image->extension();
+            $name = $image->store('', 'google');
+            // $name = $request->location . time() . mt_rand(9, 999) . '.' . $image->extension();
 
             PostPic::create([
                 'post_id' => Post::max('id'),
                 'path' => $name,
             ]);
-            $image->move(public_path('resources/stories'), $name);
+
+            // $image->move(public_path('resources/stories'), $name);
         }
 
         return redirect('/home');
