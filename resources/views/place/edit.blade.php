@@ -62,23 +62,34 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label for="description">Short description</label>
-                            <input name="description" type="text" class="form-control" id="description"
-                                placeholder="An attracting detail of the place" value="{{ $place->description }}"
-                                required>
+                            <p>
+                                <input id="description" type="hidden" name="description" value="{{ $place->description }}"
+                                    required />
+                                <trix-editor input="description" placeholder="A good detail attracts more visitors">
+                                </trix-editor>
+                            </p>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="direction">Direction</label>
-                            <textarea name="direction" rows="5" class="form-control" id="direction"
-                                placeholder="Direction from the checkpoint" required>{{ $place->direction }}</textarea>
+                            <p>
+                                <input id="direction" type="hidden" name="direction" value="{{ $place->direction }}"
+                                    required />
+                                <trix-editor input="direction" placeholder="Direction from the checkpoint">
+                                </trix-editor>
+                            </p>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="info">Additional info (Optional)</label>
-                            <textarea name="info" rows="3" class="form-control" id="info"
-                                placeholder="ex: Don't dust the place">{{ $place->additional_info }}</textarea>
+                            <p>
+                                <input id="info" type="hidden" name="info" value="{{ $place->additional_info }}"
+                                    required />
+                                <trix-editor input="info" placeholder="Cautions and regulations to take in account">
+                                </trix-editor>
+                            </p>
                         </div>
                         @foreach ($place->placePics as $pic)
                             <div class="col-4 mb-3">
-                                <img src="/resources/places/{{ $pic->path }}" width="100%">
+                                <img src="{{ $pic->path }}" class="zoom" width="100%">
                             </div>
                         @endforeach
                         <div class="col-12 mb-3">
@@ -87,7 +98,7 @@
                         </div>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-info btn-lg btn-block mb-3" type="submit">Add to the site</button>
+                    <button class="btn btn-info btn-lg btn-block mb-3" type="submit">Update the site</button>
                 </form>
                 <form action="{{route('admin.destroy', $place->id)}}" method="POST">
                     @csrf

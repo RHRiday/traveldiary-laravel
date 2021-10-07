@@ -11,13 +11,13 @@
                         <div class="card mb-4 shadow-sm">
                             <div class="placeholder-img overflow-hidden">
                                 <img class="card-img-top" style="max-height:250px; min-height:250px;"
-                                    src="{{ asset('resources/places/' . $place->placePics->first()->path) }}">
+                                    src="{{ $place->placePics->first()->path }}">
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">{{ $place->name }}</h4>
                                 <p class="card-text">{{ $place->location }}</p>
                                 <p class="card-text">
-                                    {{ mb_substr($place->description,0, 250) }}</p>
+                                    {{ mb_substr(strip_tags($place->description),0, 250) }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <a href="/places/{{ $place->id }}"

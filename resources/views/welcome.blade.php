@@ -13,7 +13,7 @@
             height: 100vh;
             position: absolute;
             text-align: center;
-            background-color: white;
+            background-color: #000000d9;
             z-index: 99;
         }
     </style>
