@@ -78,7 +78,7 @@
                                 <div class="pic-post">
                                     @foreach ($post->postPics as $pic)
                                         <div class="pic-post-img">
-                                            <img class="zoom" src="/resources/stories/{{ $pic->path }}">
+                                            <img class="zoom" src="{{ $pic->path }}">
                                         </div>
                                     @endforeach
                                 </div>

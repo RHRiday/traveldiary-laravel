@@ -9,8 +9,8 @@ use App\Models\PostPic;
 use App\Models\Report;
 use App\Models\Upazila;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\PotentiallyMissing;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -48,7 +48,7 @@ class PostController extends Controller
      */
     public function store(CreateStoryRequest $request)
     {
-        Post::create([
+        $post = Post::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
             'story' => $request->story,
@@ -56,15 +56,12 @@ class PostController extends Controller
         ]);
 
         foreach ($request->image as $image) {
-            $name = $image->store('', 'google');
-            // $name = $request->location . time() . mt_rand(9, 999) . '.' . $image->extension();
-
+            $name = $image->store('12oWZSIWf-VAhdlmOau9UhJSXhp2P8j2x', 'google');
+            //uploads in the stories folder
             PostPic::create([
-                'post_id' => Post::max('id'),
-                'path' => $name,
+                'post_id' => $post->id,
+                'path' => Storage::disk('google')->url($name), //it works although shows error
             ]);
-
-            // $image->move(public_path('resources/stories'), $name);
         }
 
         return redirect('/home');
