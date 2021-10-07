@@ -204,13 +204,13 @@
                                     <p class="profile-name">at — {{ $post->location }}</p>
                                     <h2 class="title">{{ $post->title }}</h2>
                                     <p class="caption">
-                                        {{ $post->story }}
+                                        {{ mb_substr($post->story,0,550) }} <a style="color: cadetblue" href="/story/{{ $post->id }}">. . . read</a>
                                     </p>
                                 </div>
                                 <div class="pic-post">
                                     @foreach ($post->postPics as $pic)
                                         <div class="pic-post-img">
-                                            <img class="zoom" src="/resources/stories/{{ $pic->path }}">
+                                            <img class="zoom" style="margin-left: 1px" src="{{ $pic->path }}">
                                         </div>
                                     @endforeach
                                 </div>

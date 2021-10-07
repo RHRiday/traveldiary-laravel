@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-2 DP-circular-img">
                             <a href="/profile/{{ $post->user->username }}">
-                                <img src="/resources/profile/{{$post->user->dp}}">
+                                <img src="/resources/profile/{{ $post->user->dp }}">
                             </a>
                         </div>
                         <div class="col-10">
@@ -64,13 +64,9 @@
                                     {{ $post->story }}
                                 </p>
                             </div>
-                            <div class="pic-post">
-                                @foreach ($post->postPics as $pic)
-                                    <div class="pic-post-img">
-                                        <img class="zoom" src="/resources/stories/{{ $pic->path }}">
-                                    </div>
-                                @endforeach
-                            </div>
+                            @foreach ($post->postPics as $pic)
+                                <img class="zoom" src="{{ $pic->path }}">
+                            @endforeach
                         </div>
                     </div>
                 </div>
