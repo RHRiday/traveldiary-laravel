@@ -69,6 +69,16 @@
     <script src="{{ asset('js/trix.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        //preview profile change
+        function changePicture(imgInp, imgTarget) {
+            img = document.getElementById(imgTarget);
+            const [file] = imgInp.files;
+            if (file) {
+                img.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
 </body>
 
 </html>

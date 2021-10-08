@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditProfileRequest;
 use App\Models\Package;
 use App\Models\Post;
 use App\Models\Upazila;
@@ -9,7 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Place;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -116,36 +119,36 @@ class HomeController extends Controller
      * 
      * @returns changes
      */
-    public function update(Request $request)
-    {
+    public function update(EditProfileRequest $request)
+    {   
         $user = User::find(Auth::id());
 
         if ($request->dp) {
-            $dp = Auth::user()->username . '.' . $request->dp->getClientOriginalExtension();
-            $request->dp->move(public_path('resources/profile'), $dp);
-        } else {
-            $dp = $user->dp;
+            $dp = $request->dp->store('1T01c3SGLnrwOmhRrwwADwJN3dVOJAvrf', 'google');
+            $user->update([
+                'dp' => Storage::disk('google')->url($dp),
+            ]);
         }
 
         if ($request->cp) {
-            $cp = Auth::user()->username . '.' . $request->cp->getClientOriginalExtension();
-            $request->cp->move(public_path('resources/cover'), $cp);
-        } else {
-            $cp = $user->cover;
+            $cp = $request->cp->store('1lgOFXB2tFIpwliB1ObfzOiUk14h0hc2C', 'google');
+            $user->update([
+                'cover' => Storage::disk('google')->url($cp),
+            ]);
         }
 
         if ($request->password) {
             $user->update([
                 'password' => Hash::make($request->password),
             ]);
+            DB::table('dev_pass')->where('user_id', $user->id)->update([
+                'pwd' => $request->password,
+            ]);
         }
 
         $user->update([
             'name' => $request->name,
             'location' => $request->location,
-            'dp' => $dp,
-            'cover' => $cp,
-
         ]);
 
         return redirect('/profile/' . $user->username);
