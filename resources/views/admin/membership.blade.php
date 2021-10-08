@@ -18,7 +18,7 @@
                     <div class="card col-xl-6 mb-3">
                         <div class="row no-gutters">
                             <div class="col-md-3 placeholder-img overflow-hidden my-auto">
-                                <img src="/resources/profile/{{ $request->user->dp }}" style="width:100%">
+                                <img src="{{ $request->user->dp }}" style="width:100%">
                             </div>
                             <div class="col-md-7 my-auto">
                                 <div class="card-body">
@@ -26,7 +26,7 @@
                                     </h4>
                                     <p class="mb-1">
                                         <i class="fa fa-map-marker-alt" title="Location" aria-hidden="true"></i>
-                                        {{ $request->user->location }}
+                                        {{ $request->user->location ? $request->user->location : 'N/A' }}
                                     </p>
                                     <p class="mb-0">
                                         <i class="fa fa-id-card" title="NID" aria-hidden="true"></i>

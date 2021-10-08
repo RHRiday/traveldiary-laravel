@@ -7,7 +7,6 @@ use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SslCommerzPaymentController;
-use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 

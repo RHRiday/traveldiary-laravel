@@ -18,7 +18,7 @@
             <x-info-card mark="success" title="Total packages (active)" :value="$packages->count()" icon="clipboard-list" />
 
             <!-- Pending Requests -->
-            <x-info-card mark="warning" title="Pending Requests" :value="$guides->count() + $contributions->count()"
+            <x-info-card mark="warning" title="Pending Requests" :value="$guides->where('approval', 0)->count() + $contributions->count()"
                 icon="pause" />
 
             <!-- Pending Reports -->

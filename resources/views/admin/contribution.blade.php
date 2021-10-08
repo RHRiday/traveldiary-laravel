@@ -19,7 +19,7 @@
 
                         <div class="row no-gutters">
                             <div class="col-md-4 placeholder-img overflow-hidden my-auto">
-                                <img src="/resources/places/{{ $request->place->placePics->first()->path }}">
+                                <img src="{{ $request->place->placePics->first()->path }}">
                             </div>
                             <div class="col-md-7 my-auto">
                                 <div class="card-body">

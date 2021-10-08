@@ -100,7 +100,7 @@
                                     <div class="carousel-inner">
                                         @foreach ($place->placePics as $pic)
                                             <div class="carousel-item @if ($loop->first) active @endif">
-                                                <img src="/resources/places/{{ $pic->path }}" class="d-block w-100"
+                                                <img src="{{ $pic->path }}" class="d-block w-100"
                                                     alt="...">
                                             </div>
                                         @endforeach
@@ -206,12 +206,12 @@
                                         <div class="col-md-6 col-lg-4">
                                             <div class="card mb-4 shadow-sm">
                                                 <div class="placeholder-img overflow-hidden">
-                                                    <img src="/resources/packages/{{ $pack->postPics->first()->path }}"
+                                                    <img src="{{ $post->postPics->first()->path }}"
                                                         class="position-relative">
                                                 </div>
                                                 <div class="card-body">
                                                     <h5 class="card-title">
-                                                        <a href="/packages/{{ $post->id }}">
+                                                        <a href="/story/{{ $post->id }}">
                                                             {{ $post->title }}
                                                         </a>
                                                     </h5>

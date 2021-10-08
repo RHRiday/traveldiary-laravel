@@ -11,10 +11,12 @@
 @section('content')
     @include('partials.nav')
     @if (session()->has('message'))
-        <div class="container alert alert-success">
-            {{ session()->get('message') }}
+        <div class="container mt-2">
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
         </div>
-    @endif
+    {{-- @endif --}}
 
     @if (!$membership)
         <section id="services" class="mt-4 services section-bg">
@@ -112,7 +114,7 @@
 
                         <div class="row no-gutters">
                             <div class="col-md-4 placeholder-img overflow-hidden my-auto">
-                                <img src="/resources/places/{{ $request->place->placePics->first()->path }}">
+                                <img src="{{ $request->place->placePics->first()->path }}">
                             </div>
                             <div class="col-md-7 my-auto">
                                 <div class="card-body">
