@@ -39,7 +39,7 @@
                 <a href="/profile/{{ $follower->username }}">
                     <div class="all-follower">
                         <div class="col-2 circular-img">
-                            <img src="/resources/profile/default.png">
+                            <img src="{{ $follower->dp }}">
                         </div>
                         <div class="col-6">
                             <p class="follow-name">{{ $follower->name }}</p>
@@ -76,7 +76,7 @@
                 <a href="/profile/{{ $following->username }}">
                     <div class="all-follower">
                         <div class="col-2 circular-img">
-                            <img src="/resources/profile/default.png">
+                            <img src="{{ $following->dp }}">
                         </div>
                         <div class="col-6">
                             <p class="follow-name">{{ $following->name }}</p>
@@ -129,10 +129,10 @@
                 <div class="middleContent">
                     <div class="details-profile">
                         <div class="cover-picture">
-                            <img src="{{ asset('resources/cover/' . $user->cover) }}" class="zoom medium-zoom-image">
+                            <img src="{{ $user->cover }}" class="zoom medium-zoom-image">
                         </div>
                         <div class="profile-picture">
-                            <img src="{{ asset('resources/profile/' . $user->dp) }}" class="zoom medium-zoom-image">
+                            <img src="{{ $user->dp }}" class="zoom medium-zoom-image">
                         </div>
 
                         <div>
@@ -178,7 +178,7 @@
                         <div class="row">
                             <div class="col-2 DP-circular-img">
                                 <a href="/profile/{{ $user->username }}">
-                                    <img src="/resources/profile/{{ $user->dp }}">
+                                    <img src="{{ $user->dp }}">
                                 </a>
                             </div>
                             <div class="col-10">
@@ -204,7 +204,8 @@
                                     <p class="profile-name">at — {{ $post->location }}</p>
                                     <h2 class="title">{{ $post->title }}</h2>
                                     <p class="caption">
-                                        {{ mb_substr($post->story,0,550) }} <a style="color: cadetblue" href="/story/{{ $post->id }}">. . . read</a>
+                                        {{ mb_substr($post->story, 0, 550) }} <a style="color: cadetblue"
+                                            href="/story/{{ $post->id }}">. . . read</a>
                                     </p>
                                 </div>
                                 <div class="pic-post">

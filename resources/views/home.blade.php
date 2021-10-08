@@ -46,7 +46,7 @@
                         <div class="row">
                             <div class="col-2 DP-circular-img">
                                 <a href="/profile/{{ $post->user->username }}">
-                                    <img src="/resources/profile/{{ $post->user->dp }}">
+                                    <img src="{{ $post->user->dp }}">
                                 </a>
                             </div>
                             <div class="col-10">

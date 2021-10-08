@@ -117,7 +117,7 @@
                                 <span
                                     class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{ asset('resources/profile/' . Auth::user()->dp) }}">
+                                    src="{{ asset(Auth::user()->dp) }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
