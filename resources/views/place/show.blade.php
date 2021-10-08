@@ -173,7 +173,7 @@
                                         <div class="col-md-6 col-lg-4">
                                             <div class="card mb-4 shadow-sm">
                                                 <div class="placeholder-img overflow-hidden">
-                                                    <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
+                                                    <img src="{{ $pack->packagePics->first()->path }}"
                                                         class="position-relative">
                                                 </div>
                                                 <div class="card-body">

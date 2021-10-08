@@ -56,7 +56,7 @@
                         @foreach ($users as $user)
                             <div class="col-12 d-flex border rounded bg-white mb-1">
                                 <div class="p-2 my-auto">
-                                    <img src="/resources/profile/{{ $user->dp }}" class="rounded-circle" width="60">
+                                    <img src="{{ $user->dp }}" class="rounded-circle" width="60">
                                 </div>
                                 <div class="p-2 my-auto">
                                     <h5 class="mb-1">
@@ -88,7 +88,7 @@
                         @foreach ($places as $place)
                             <div class="col-12 d-flex border rounded bg-white mb-1">
                                 <div class="p-2 col-4 place-img">
-                                    <img src="/resources/places/{{ $place->placePics->first()->path }}">
+                                    <img src="{{ $place->placePics->first()->path }}">
                                 </div>
                                 <div class="col-7 my-auto ml-1">
                                     <h5 class="mb-1">
@@ -121,7 +121,7 @@
                         @foreach ($packages as $package)
                             <div class="col-12 d-flex border rounded bg-white mb-1">
                                 <div class="p-2 col-4 place-img">
-                                    <img src="/resources/packages/{{ $package->packagePics->first()->path }}">
+                                    <img src="{{ $package->packagePics->first()->path }}">
                                 </div>
                                 <div class="col-7 my-auto ml-1">
                                     <h5 class="mb-1">
@@ -154,7 +154,7 @@
                         @foreach ($posts as $post)
                             <div class="col-12 d-flex border rounded bg-white mb-1">
                                 <div class="p-2 col-4 place-img">
-                                    <img src="/resources/stories/{{ $post->postPics->first()->path }}">
+                                    <img src="{{ $post->postPics->first()->path }}">
                                 </div>
                                 <div class="col-7 my-auto ml-1">
                                     <h5 class="mb-1">

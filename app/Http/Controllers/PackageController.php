@@ -10,6 +10,7 @@ use App\Models\Upazila;
 use App\Models\User;
 use App\Models\Orders;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PackageController extends Controller
 {
@@ -65,8 +66,7 @@ class PackageController extends Controller
             'benefit' => 'required',
             'rule' => 'required',
         ]);
-        dd($request->description);
-        Package::create([
+        $package = Package::create([
             'title' => $request->name,
             'location' => $request->location,
             'type' => $request->type,
@@ -82,13 +82,12 @@ class PackageController extends Controller
         ]);
 
         foreach ($request->image as $image) {
-            $name = $request->location . time() . mt_rand(9, 99) . '.' . $image->extension();
+            $name = $image->store('1yyR_P10WVi3bzVdYDNv3kU4BThIQQPwR', 'google');
 
             PackagePic::create([
-                'package_id' => Package::max('id'),
-                'path' => $name,
+                'package_id' => $package->id,
+                'path' => Storage::disk('google')->url($name),
             ]);
-            $image->move(public_path('resources/packages'), $name);
         }
 
         GuideController::give_points(Auth::id(), 1);

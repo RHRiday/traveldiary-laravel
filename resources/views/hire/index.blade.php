@@ -15,7 +15,6 @@
         <h1 class="text-center border-bottom mb-3">
             Guide requests
         </h1>
-        {{-- @dd($data) --}}
         @if ($data->count() < 1)
             <div class="alert bg-white">
                 <p class="text-center mb-0">
@@ -27,7 +26,7 @@
             <div class="card mb-3 package">
                 <div class="row no-gutters">
                     <div class="col-md-4 placeholder-img overflow-hidden my-auto">
-                        <img src="/resources/places/{{ $request->place->placePics->first()->path }}">
+                        <img src="{{ $request->place->placePics->first()->path }}">
                     </div>
                     <div class="col-md-7 my-auto">
                         <div class="card-body">

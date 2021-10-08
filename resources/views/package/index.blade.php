@@ -30,7 +30,7 @@
                 <div class="card mb-3 package">
                     <div class="row no-gutters">
                         <div class="col-md-4 placeholder-img overflow-hidden my-auto">
-                            <img src="/resources/packages/{{ $package->packagePics->first()->path }}">
+                            <img src="{{ $package->packagePics->first()->path }}">
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">

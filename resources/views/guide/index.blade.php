@@ -16,7 +16,7 @@
                 {{ session()->get('message') }}
             </div>
         </div>
-    {{-- @endif --}}
+    @endif
 
     @if (!$membership)
         <section id="services" class="mt-4 services section-bg">

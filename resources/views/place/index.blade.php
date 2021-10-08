@@ -45,7 +45,7 @@
                 style="background-image: linear-gradient(
                                                                               rgba(0, 0, 0, 0.2), 
                                                                               rgba(0, 0, 0, 0.2)
-                                                                              ), url('/resources/places/{{ $places[$random]->placePics->first()->path }}')">
+                                                                              ), url('{{ $places[$random]->placePics->first()->path }}')">
                 <div class="col-md-6">
                     <h1 class="text-white">{{ $places[$random]->name }}</h1>
                 </div>
@@ -60,7 +60,7 @@
                                 <div class="maxthumb">
                                     <a href="/places/{{ $place->id }}">
                                         <img class="img-thumb"
-                                            src="{{ asset('/resources/places/' . $place->placePics->first()->path) }}"
+                                            src="{{ $place->placePics->first()->path }}"
                                             alt="{{ $place->name }}">
                                     </a>
                                 </div>

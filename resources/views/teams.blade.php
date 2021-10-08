@@ -69,7 +69,7 @@
                             <div class="member-info">
                                 <h4>Rifat Hossen Riday</h4>
                                 <span>Lead Dev</span>
-                                <p>Project leader | UX/UI designer | Database model designer | Director of operations</p>
+                                <p>Team leader | UX/UI designer | Database model designer | Lead developer</p>
                             </div>
                             <div class="container d-flex justify-content-around">
                                 <a href="https://github.com/rhriday" class="git"><i
@@ -91,7 +91,7 @@
                             <div class="member-info">
                                 <h4>Sajjadul Kabir Abir</h4>
                                 <span>Asst. Dev</span>
-                                <p>Technical writer | Asst. front-end developer | Data analyst</p>
+                                <p>Technical writer | Asst. front-end developer | Content Manager | Software quality tester</p>
                             </div>
                             <div class="container d-flex justify-content-around">
                                 <a href="https://github.com/shajjadKabir" class="git"><i

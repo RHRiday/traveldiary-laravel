@@ -27,7 +27,7 @@
                     <div class="card mb-3 package col-lg-6">
                         <div class="row no-gutters">
                             <div class="col-3 my-auto">
-                                <img src="/resources/profile/{{ $application->guide->user->dp }}" width="100%">
+                                <img src="{{ $application->guide->user->dp }}" width="100%">
                             </div>
                             <div class="col-7 my-auto">
                                 <div class="card-body">
@@ -71,7 +71,7 @@
             <div class="card mb-3 package col-md-8 mx-auto">
                 <div class="row no-gutters">
                     <div class="col-lg-3 my-auto">
-                        <img src="/resources/profile/{{ $data->guide->user->dp }}" width="100%">
+                        <img src="{{ $data->guide->user->dp }}" width="100%">
                     </div>
                     <div class="col-lg-7 my-auto">
                         <div class="card-body">

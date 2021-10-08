@@ -50,7 +50,7 @@
                             <div class="mt-3">
                                 <div class="d-flex bd-highlight ">
                                     <div class="p-2 bd-highlight">
-                                        <img src="/resources/profile/{{ $package->user->dp }}" class="rounded-circle"
+                                        <img src="{{ $package->user->dp }}" class="rounded-circle"
                                             width="60" />
                                     </div>
                                     <div class="p-2 bd-highlight">
@@ -79,7 +79,7 @@
                                 <div class="carousel-inner">
                                     @foreach ($package->packagePics as $pic)
                                         <div class="carousel-item @if ($loop->first) active @endif">
-                                            <img src="/resources/packages/{{ $pic->path }}" class="d-block w-100"
+                                            <img src="{{ $pic->path }}" class="d-block w-100"
                                                 alt="...">
                                         </div>
                                     @endforeach
@@ -97,7 +97,7 @@
                             </div>
 
                             <!--carousel ends-->
-                            <h5 class="mt-3 text-center text-muted">ছবি : প্যাকেজ মালিকের তত্বাবধায়নে ব্যবহৃত</h5>
+                            <h5 class="mt-3 text-center text-muted">ছবি : প্যাকেজ মালিকের তত্ত্বাবধায়নে ব্যবহৃত</h5>
 
                             <!-- Description parts starts -->
                             <x-package-card header="বিস্তারিত:">
@@ -171,7 +171,7 @@
                                         <div class="col-md-6 col-lg-4">
                                             <div class="card mb-4 shadow-sm">
                                                 <div class="placeholder-img overflow-hidden">
-                                                    <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
+                                                    <img src="{{ $pack->packagePics->first()->path }}"
                                                         class="position-relative">
                                                 </div>
                                                 <div class="card-body">
