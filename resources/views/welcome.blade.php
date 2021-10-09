@@ -16,15 +16,27 @@
             background-color: #000000d9;
             z-index: 99;
         }
+
+        .waitup>img {
+            animation: spin 30s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
     </style>
 @endsection
 
 @section('content')
     {{-- top navbar --}}
     <div class="wait">
-        <img src="/loader.jpg" style="max-width: 100%; margin-top: 100px">
+        <img src="/loader.png" style="max-width: 100%; margin-top: 100px">
         <br>
-        <h2 class="text-success">Travel Diary loading . . .</h2>
+        <h2 class="text-primary mt-3">TravelDiary loading . . .</h2>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -154,7 +166,8 @@
                                     @enderror
                                     <input id="password" type="password"
                                         class="mb-2 mr-sm-2 form-control @error('password') is-invalid @enderror"
-                                        name="password" placeholder="Password (Between 6 and 20 characters)" required autocomplete="new-password">
+                                        name="password" placeholder="Password (Between 6 and 20 characters)" required
+                                        autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
