@@ -27,7 +27,7 @@ class CreateStoryRequest extends FormRequest
             'title' => ['required',],
             'story' => ['required',],
             'image' => 'required',
-            'image.*' => 'mimes:jpeg,jpg,png|max:2048',
+            'image.*' => 'mimes:jpeg,jpg,png|max:10240',
         ];
     }
 
@@ -39,7 +39,7 @@ class CreateStoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'image.*.max' => 'Some (or one) of your images may be larger than 2048 KB',
+            'image.*.max' => 'Images should not exceed the 10 MB limit',
         ];
     }
 }

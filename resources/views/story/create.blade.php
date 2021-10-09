@@ -71,7 +71,7 @@
                             </select>
                         </div>
                         <div class="col-md-8 mb-3">
-                            <label for="image">Image(s) <small class="text-muted">(max:2048kb)</small></label>
+                            <label for="image">Image(s) <small class="text-muted">(max:10MB)</small></label>
                             <input name="image[]" type="file" accept="image/*" class="form-control py-1" id="image" multiple
                                 required>
                         </div>

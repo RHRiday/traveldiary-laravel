@@ -26,8 +26,8 @@ class EditProfileRequest extends FormRequest
         return [
             'name' => ['required', 'min:3', 'max:255'],
             'password' => ['nullable', 'min:6', 'max:20'],
-            'dp' => ['nullable', 'max:2048'],
-            'cp' => ['nullable', 'max:2048'],
+            'dp' => ['nullable', 'max:4096'],
+            'cp' => ['nullable', 'max:8192'],
         ];
     }
 
@@ -41,8 +41,8 @@ class EditProfileRequest extends FormRequest
         return [
             'name.*' => 'A name should be between 3 to 255 characters',
             'password.*' => 'Password should be between 6 to 20 characters',
-            'dp.max' => 'Profile image should not be larger than 2048 KB',
-            'cp.max' => 'Cover should not be larger than 2048 KB',
+            'dp.max' => 'Profile image should not be larger than 4 MB',
+            'cp.max' => 'Cover should not be larger than 8 MB',
         ];
     }
 }
