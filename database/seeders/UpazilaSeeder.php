@@ -15,6 +15,11 @@ class UpazilaSeeder extends Seeder
     public function run()
     {
         DB::table('upazilas')->insert([
+            'division' => 'All',
+            'district' => 'All',
+            'upazila' => 'Somewhere else',
+        ]);
+        DB::table('upazilas')->insert([
             'division' => 'Chattogram',
             'district' => 'Chattogram',
             'upazila' => 'Chattogram',

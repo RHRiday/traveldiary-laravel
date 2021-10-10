@@ -33,10 +33,12 @@
                 @include('partials.phone')
                 <div class="middleContent">
                     <div class="row">
-                        <div class="col-2 DP-circular-img">
-                            <a href="/profile/{{ $post->user->username }}">
-                                <img src="{{ $post->user->dp }}">
-                            </a>
+                        <div class="col-2">
+                            <div class="DP-circular-img">
+                                <a href="/profile/{{ $post->user->username }}">
+                                    <img src="{{ $post->user->dp }}">
+                                </a>
+                            </div>
                         </div>
                         <div class="col-10">
                             <div>

@@ -38,8 +38,10 @@
             @foreach ($followers as $follower)
                 <a href="/profile/{{ $follower->username }}">
                     <div class="all-follower">
-                        <div class="col-2 circular-img">
-                            <img src="{{ $follower->dp }}">
+                        <div class="col-2">
+                            <div class="circular-img">
+                                <img src="{{ $follower->dp }}">
+                            </div>
                         </div>
                         <div class="col-6">
                             <p class="follow-name">{{ $follower->name }}</p>
@@ -75,8 +77,10 @@
             @foreach ($followings as $following)
                 <a href="/profile/{{ $following->username }}">
                     <div class="all-follower">
-                        <div class="col-2 circular-img">
-                            <img src="{{ $following->dp }}">
+                        <div class="col-2">
+                            <div class="circular-img">
+                                <img src="{{ $following->dp }}">
+                            </div>
                         </div>
                         <div class="col-6">
                             <p class="follow-name">{{ $following->name }}</p>

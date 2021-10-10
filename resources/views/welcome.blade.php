@@ -141,7 +141,7 @@
 
                             {{-- registration form --}}
                             <div id="signup-form" style="display: none;">
-                                <form method="POST" action="{{ route('register') }}" class="log-sign-form">
+                                <form method="POST" action="{{ route('register') }}" class="log-sign-form" autocomplete="off">
                                     @csrf
                                     <h3>Open a Diary <span>Now</span></h3>
                                     <input id="name" type="text"
@@ -154,7 +154,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <input id="email" type="email"
+                                    <input type="email"
                                         class="form-control mb-2 mr-sm-2 @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" placeholder="Your email" required
                                         autocomplete="email">
@@ -164,10 +164,10 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <input id="password" type="password"
+                                    <input type="password"
                                         class="mb-2 mr-sm-2 form-control @error('password') is-invalid @enderror"
                                         name="password" placeholder="Password (Between 6 and 20 characters)" required
-                                        autocomplete="new-password">
+                                        pattern="^(.){6,20}$" autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -176,7 +176,7 @@
                                     @enderror
                                     <input id="password-confirm" type="password" class="mb-2 mr-sm-2 form-control"
                                         name="password_confirmation" placeholder="Confirm password" required
-                                        autocomplete="new-password">
+                                        pattern="^(.){6,20}$" autocomplete="off">
                                     <input type="submit" class="form-control mb-2 mr-sm-2 btn" value="Signup">
                                     <p class="text-center">Already have an account?</p>
                                 </form>
