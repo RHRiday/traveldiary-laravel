@@ -6,8 +6,10 @@
         <div class="row">
             <div class="profile-row">
                 <a href="/profile/{{ Auth::user()->username }}">
-                    <div class="col-2 circular-img">
-                        <img src="{{ Auth::user()->dp }}">
+                    <div class="col-2">
+                        <div class="circular-img">
+                            <img src="{{ Auth::user()->dp }}">
+                        </div>
                     </div>
                     <div class="col-6">
                         <p>@ {{ Auth::user()->username }} </p>

@@ -9,8 +9,11 @@
         <h3>Who to follow</h3>
         @forelse ($notFollowed as $toFollow)
             <div class="all-follower">
-                <div class="col-2 circular-img">
-                    <a href="/profile/{{ $toFollow->username }}"><img src="{{ $toFollow->dp }}"></a>
+                <div class="col-2">
+                    <div class="circular-img">
+                        <a href="/profile/{{ $toFollow->username }}"><img src="{{ $toFollow->dp }}"></a>
+                    </div>
+                    
                 </div>
                 <a href="/profile/{{ $toFollow->username }}">
                     <div class="col-6">

@@ -4,7 +4,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;font-family: 'Source Sans Pro', sans-serif;
   background-color: #f7fff5;
-  height: 100vh;
+  min-height: 100vh;
 }
 .front-look .forms-pane {
   max-width: 448px;

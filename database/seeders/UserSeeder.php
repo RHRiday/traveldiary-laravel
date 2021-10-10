@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('012345'),
             'username' => 'noyon31',
             'dp' => '/resources/profile/noyon31.jpg',
-            'cover' => '/resources/cover/noyon31.jpg',
+            'cover' => '/resources/cover/noyon31.JPG',
         ]);
     }
 }
