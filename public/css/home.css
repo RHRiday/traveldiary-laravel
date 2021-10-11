@@ -181,7 +181,8 @@ a {
     height: 35px;
     overflow: hidden;
 }
-@media only screen and (max-width: 1096px){
+
+@media only screen and (max-width: 1096px) {
     .circular-img {
         width: 30px;
         height: 30px;
@@ -404,7 +405,9 @@ p.profile-name {
     margin-left: 6px;
     overflow: hidden;
 }
-.DP-circular-img img, .circular-img img{
+
+.DP-circular-img img,
+.circular-img img {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -526,7 +529,8 @@ textarea.textarea {
 .caption {
     line-height: 20px;
 }
-a.post-story{
+
+a.post-story {
     display: none;
 }
 
@@ -575,13 +579,18 @@ a.name:hover {
     justify-content: space-between;
 }
 
-.pic-post-img {
+.postImgCol1,
+.postImgCol1>img {
     width: 100%;
-    height: 100%;
 }
 
-.pic-post-img img {
-    width: 100%;
+.postImgCol2 {
+    display: flex;
+}
+
+.postImgCol2 div {
+    flex: 6;
+    margin-right: .2rem;
 }
 
 .end-of-post p,

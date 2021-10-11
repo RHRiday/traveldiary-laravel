@@ -16,7 +16,7 @@
 .postimage div{
     flex: 1;
 }
-.postimage__row1 img{
+.postimage__row1{
     width:30rem;
     height:10rem;
     object-fit: cover;

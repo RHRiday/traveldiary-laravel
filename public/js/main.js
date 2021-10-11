@@ -59,6 +59,11 @@ mediumZoom('.zoom', {
     background: '#000000d9'
 });
 
+const zoom = mediumZoom('[data-zoomable]');
+console.log(zoom);
+zoom.on('open', event => {
+    console.log(event.detail.zoom);
+});
 
 
 // places

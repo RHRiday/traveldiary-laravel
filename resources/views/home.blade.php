@@ -79,11 +79,22 @@
                                     </p>
                                 </div>
                                 <div class="pic-post">
-                                    @foreach ($post->postPics as $pic)
-                                        <div class="pic-post-img">
-                                            <img class="zoom" style="margin-left: 1px" src="{{ $pic->path }}">
+                                    @if ($post->postPics->count() == 1)
+                                        @foreach ($post->postPics as $pic)
+                                            <div class="postImgCol1">
+                                                <img class="zoom" src="{{ $pic->path }}">
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                    @if ($post->postPics->count() == 2)
+                                        <div class="postImgCol2">
+                                            @foreach ($post->postPics as $pic)
+                                                <div>
+                                                    <img class="zoom" src="{{ $pic->path }}">
+                                                </div>
+                                            @endforeach
                                         </div>
-                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
