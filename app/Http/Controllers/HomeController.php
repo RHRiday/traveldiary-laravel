@@ -46,13 +46,27 @@ class HomeController extends Controller
         if (!User::where('id', Auth::id())->first()->following()->where('user_id', Auth::id())->exists()) {
             User::where('id', Auth::id())->first()->following()->attach(Auth::id());
         } //if it is his 1st time, he will follow himself
+        
+        $posts = Post::whereIn('user_id', $user->following()
+            ->pluck('user_id'))
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        $randomUser = $user->following;
+        //dd($randomUser);
+        if(count($randomUser) < 3) {
+            $randomUser = User::whereNotIn('id', $user->following()
+                ->pluck('user_id'))
+                ->where('role', 'visitor')
+                ->inRandomOrder()
+                ->limit(3)
+                ->get();
+        }
+        dd($randomUser);
 
         return view('home', [
             'user' => $user,
-            'posts' => Post::whereIn('user_id', $user->following()
-                ->pluck('user_id'))
-                ->orderBy('created_at', 'DESC')
-                ->get(),
+            'posts' => $posts,
             'notFollowed' => User::whereNotIn('id', $user->following()
                 ->pluck('user_id'))
                 ->where('role', 'visitor')
