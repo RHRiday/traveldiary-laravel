@@ -50,10 +50,21 @@ class HomeController extends Controller
             User::where('id', Auth::id())->first()->following()->attach(Auth::id());
         } //if it is his 1st time, he will follow himself
 
+        $following = $user->following()->pluck('user_id');
+        if (count($following) < 5) {
+            $postsToGet = array_merge($following->toArray(), User::where('role', 'visitor')
+                ->inRandomOrder()
+                ->limit(5 - count($following))
+                ->pluck('id')
+                ->toArray());
+        }else{
+            $postsToGet = $following;
+        }
+        //if new user he will get some random user's story
+
         return view('home', [
             'user' => $user,
-            'posts' => Post::whereIn('user_id', $user->following()
-                ->pluck('user_id'))
+            'posts' => Post::whereIn('user_id', $postsToGet)
                 ->orderBy('created_at', 'DESC')
                 ->get(),
             'notFollowed' => User::whereNotIn('id', $user->following()
@@ -120,7 +131,7 @@ class HomeController extends Controller
      * @returns changes
      */
     public function update(EditProfileRequest $request)
-    {   
+    {
         $user = User::find(Auth::id());
 
         if ($request->dp) {
@@ -186,7 +197,7 @@ class HomeController extends Controller
         $packages = Package::where('title', 'LIKE', '%' . $request->key . '%')
             ->orWhere('location', 'LIKE', '%' . $request->key . '%');
         $posts = Post::where('location', 'LIKE', '%' . $request->key . '%');
-            
+
         if ($request->price) {
             $places = $places->where('budget', '<=', $request->price);
             $packages = $packages->where('price', '<=', $request->price);
