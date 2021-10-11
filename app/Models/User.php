@@ -126,6 +126,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Package::class);
     }
+    // a user can post many bookings
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
     // a user is a guide
     public function guide()
     {

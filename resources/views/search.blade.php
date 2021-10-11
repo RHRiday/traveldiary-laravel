@@ -18,7 +18,7 @@
                 <div class="col-lg-4 d-flex flex-column text-center order-lg-last">
                     <div class="">
                         <div class="p-2 border-bottom shadow-sm m-1 alert-success">
-                            Filter
+                            Filter <small class="small">(Places / Packages)</small>
                         </div>
                         <form class="py-2" action="/search" method="get">
                             <input type="hidden" name="key" value="{{ request()->get('key') }}">
@@ -51,12 +51,12 @@
                 <div class="col-lg-8 order-lg-first">
                     @if ($users->count() > 0)
                         <div class="mt-2 alert alert-info" id="travellers">
-                            <i class="fas fa-user" aria-hidden="true"></i> Travellers
+                            <i class="fas fa-user" aria-hidden="true"></i> Travelers
                         </div>
                         @foreach ($users as $user)
                             <div class="col-12 d-flex border rounded bg-white mb-1">
                                 <div class="p-2 my-auto">
-                                    <img src="/resources/profile/{{ $user->dp }}" class="rounded-circle" width="60">
+                                    <img src="{{ $user->dp }}" class="rounded-circle" width="60">
                                 </div>
                                 <div class="p-2 my-auto">
                                     <h5 class="mb-1">
@@ -65,7 +65,7 @@
                                     <p class="mb-0">
                                         <strong>
                                             <i class="fa fa-map-marker-alt" title="Location" aria-hidden="true"></i>
-                                        </strong> {{ $user->location }}
+                                        </strong> {{ $user->location ? $user->location : 'N/A' }}
                                     </p>
                                     <p class="mb-0">
                                         <strong>
@@ -88,7 +88,7 @@
                         @foreach ($places as $place)
                             <div class="col-12 d-flex border rounded bg-white mb-1">
                                 <div class="p-2 col-4 place-img">
-                                    <img src="/resources/places/{{ $place->placePics->first()->path }}">
+                                    <img src="{{ $place->placePics->first()->path }}">
                                 </div>
                                 <div class="col-7 my-auto ml-1">
                                     <h5 class="mb-1">
@@ -121,7 +121,7 @@
                         @foreach ($packages as $package)
                             <div class="col-12 d-flex border rounded bg-white mb-1">
                                 <div class="p-2 col-4 place-img">
-                                    <img src="/resources/packages/{{ $package->packagePics->first()->path }}">
+                                    <img src="{{ $package->packagePics->first()->path }}">
                                 </div>
                                 <div class="col-7 my-auto ml-1">
                                     <h5 class="mb-1">
@@ -154,7 +154,7 @@
                         @foreach ($posts as $post)
                             <div class="col-12 d-flex border rounded bg-white mb-1">
                                 <div class="p-2 col-4 place-img">
-                                    <img src="/resources/stories/{{ $post->postPics->first()->path }}">
+                                    <img src="{{ $post->postPics->first()->path }}">
                                 </div>
                                 <div class="col-7 my-auto ml-1">
                                     <h5 class="mb-1">

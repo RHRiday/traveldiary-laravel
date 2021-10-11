@@ -1,17 +1,23 @@
+//window loader
+
+$(window).on('load', function(){
+    $('.wait').fadeOut(500);
+});
+
 // forms animation
 var hiders = $('h1, .search-btn, .navbar-toggler');
 var windowSize = $(window).height();
 $('#signup-btn').on('click', function () {
     $('#login-form').slideUp('slow');
     $('#signup-form').slideDown('slow');
-    if(windowSize < 700){
+    if (windowSize < 700) {
         hiders.hide('slow');
     }
 });
 $('#login-btn').on('click', function () {
     $('#signup-form').slideUp('slow');
     $('#login-form').slideDown('slow');
-    if(windowSize < 700){
+    if (windowSize < 700) {
         hiders.show('slow');
     }
 });
@@ -20,13 +26,13 @@ $('.js--com').on('click', function () {
     $('input[name=fName]').focus();
 });
 // scroll animation 
-$('a').click(function(e){
-    if(this.hash !== ""){
+$('a').click(function (e) {
+    if (this.hash !== "") {
         e.preventDefault();
         var hash = this.hash;
         $('html, body').animate({
             scrollTop: $(hash).offset().top - 100
-        }, 500, function(){
+        }, 500, function () {
             window.location.hash = hash;
         });
     }
@@ -46,38 +52,11 @@ function slicing(el, len) {
     }
 }
 
-//following ajax
-$('[data-type=follow]').each(function(index){
-    $(this).on('click', function(){
-        var status = $(this).html();
-        var id = $(this).val();
-        var self = $(this).data('self');
-        var ref = $(this).data('ref');
-        if(ref==='profile'){
-            var url = "../handlers/ajax.handle.php";
-        }else{
-            var url = "handlers/ajax.handle.php"
-        }
-        $.post(url,{
-            req: id,
-            user: self
-        },function(data, status){
-            $('.search').val(data);
-        });
-        if(status === 'Follow'){
-            $(this).html('Unfollow');
-        }else{
-            $(this).html('Follow');
-        }
-        console.log(self);
-    });
-});
-
 //zooming images
 mediumZoom('.zoom', {
-  margin: 20,
-  scrollOffset: 500,
-  background: '#000000d9'
+    margin: 20,
+    scrollOffset: 500,
+    background: '#000000d9'
 });
 
 
@@ -86,15 +65,25 @@ mediumZoom('.zoom', {
 
 $(function () {
     $("input[type='radio']").on('click', function () {
-      var sim = $("input[type='radio']:checked").val();
-      $('#rating').val(sim);
-      //alert(sim);
-      if (sim < 3) {
-        $(".myratings").css("color", "red");
-        $(".myratings").text(sim);
-      } else {
-        $(".myratings").css("color", "green");
-        $(".myratings").text(sim);
-      }
+        var sim = $("input[type='radio']:checked").val();
+        $('#rating').val(sim);
+        //alert(sim);
+        if (sim < 3) {
+            $(".myratings").css("color", "red");
+            $(".myratings").text(sim);
+        } else {
+            $(".myratings").css("color", "green");
+            $(".myratings").text(sim);
+        }
     });
-  });
+});
+
+//packages
+document.addEventListener("trix-file-accept", event => {
+    event.preventDefault()
+});
+
+//confidentiality
+$('#book_for').on('input', function () {
+    $('#total_price').val($('#book_for').val() * $('#package_price').html());
+})

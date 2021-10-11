@@ -7,6 +7,12 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/place.css') }}">
+    <style>
+        .card-header {
+            background-color: #eaf6f3 !important;
+        }
+
+    </style>
 @endsection
 
 @section('content')
@@ -40,7 +46,8 @@
                                 <div class="d-flex justify-content-center px-5">
                                     <div class="row text-center">
                                         <div class="mx-auto my-2 alert alert-info">
-                                            <strong>Rating : </strong> {{ $place->ratings->avg('rating') }}
+                                            <strong>Rating : </strong>
+                                            {{ $place->ratings->avg('rating') ? $place->ratings->avg('rating') : 'N/A' }}
                                         </div>
                                         @if (Auth::check())
                                             @if (!$alreadyRated)
@@ -50,14 +57,17 @@
                                                         <label class="full" for="star1"
                                                             title="Sucks big time - 1 star"></label>
                                                         <input type="radio" id="star2" name="rating" value="4" />
-                                                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                        <label class="full" for="star2"
+                                                            title="Kinda bad - 2 stars"></label>
                                                         <input type="radio" id="star3" name="rating" value="3" />
-                                                        <label class="full" for="star3" title="Meh - 3 stars"></label>
+                                                        <label class="full" for="star3"
+                                                            title="Meh - 3 stars"></label>
                                                         <input type="radio" id="star4" name="rating" value="2" />
                                                         <label class="full" for="star4"
                                                             title="Pretty good - 4 stars"></label>
                                                         <input type="radio" id="star5" name="rating" value="1" />
-                                                        <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                                        <label class="full" for="star5"
+                                                            title="Awesome - 5 stars"></label>
                                                     </fieldset>
                                                     <span class="myratings"></span>
 
@@ -83,13 +93,14 @@
                                 <!--carousel starts-->
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="0"
+                                            class="active"></li>
                                     </ol>
 
                                     <div class="carousel-inner">
                                         @foreach ($place->placePics as $pic)
                                             <div class="carousel-item @if ($loop->first) active @endif">
-                                                <img src="/resources/places/{{ $pic->path }}" class="d-block w-100"
+                                                <img src="{{ $pic->path }}" class="d-block w-100"
                                                     alt="...">
                                             </div>
                                         @endforeach
@@ -110,37 +121,25 @@
                                 <!--carousel pic caption starts-->
                                 <br>
                                 <!--Description parts starts-->
-                                <figure class="figureClass">
-                                    <figcaption class="captionClass">
-                                        <strong class="display-4"> বিস্তারিত :</strong>
-                                    </figcaption>
-                                </figure>
-                                <p>
-                                    {{ $place->description }}
-                                </p>
-
-                                <!--Description parts Ends-->
+                                <x-package-card header="বিস্তারিত :">
+                                    {!! $place->description !!}
+                                </x-package-card>
 
                                 <!--Direction Parts Start-->
+                                <x-package-card header="চেকপয়েন্ট :">
+                                    {{ $place->checkpoint }}
+                                </x-package-card>
 
-                                <p><strong class="display-4">যেভাবে যাবেন :</strong></p>
-                                <p>
-                                    {{ $place->direction }}
-                                </p>
-
-
-                                <!--Direction parts Ends-->
+                                <!--Direction Parts Start-->
+                                <x-package-card header="যেভাবে যাবেন :">
+                                    {!! $place->direction !!}
+                                </x-package-card>
 
                                 <!--additional info parts start-->
-                                <p><strong class="display-4">বিশেষ দ্রষ্টব্য :</strong> </p>
-                                <ul>
-                                    <li>
-                                        {{ $place->additional_info }}
-                                    </li>
-                                </ul>
+                                <x-package-card header="বিশেষ দ্রষ্টব্য :">
+                                    {!! $place->additional_info ? $place->additional_info : 'N/A' !!}
+                                </x-package-card>
                             </div>
-
-                            <!--additional info parts ends-->
 
                             <!--Budget Parts starts-->
                             <div>
@@ -148,69 +147,84 @@
                                 <p><b>{{ $place->budget }}</b> / Person</p>
 
                             </div>
-                            <!--Budget Parts starts-->
-                            <a href="/places/{{ $place->id }}/hire"
-                                class="col-12 mx-auto text-center btn btn-outline-success">
-                                Hire a guide for your tour
-                            </a>
 
+                            <!--Guide Part starts-->
+                            @if (!Auth::check() || Auth::user()->role != 'admin')
+                                @if (Auth::id() && $alreadyHired == true)
+                                    <p class="text-dark">Did you request for a guide? Check <a href="/hires">here</a>.
+                                    </p>
+                                @else
+                                    <a href="/places/{{ $place->id }}/hire"
+                                        class="col-12 mx-auto text-center btn btn-outline-success">
+                                        Hire a guide for your tour
+                                    </a>
+                                @endif
+                            @endif
 
 
                             <!--related package section-->
-
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h3>Related Packages</h3>
                                     <a href="" class="my-auto">See All</a>
                                 </div>
-                                <div class="d-flex justify-content-start">
-                                    @foreach ($relatedPackage as $pack)
-                                        <div class="card col-sm-12 col-md-6 col-lg-4">
-                                            <div class="place-img">
-                                                <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
-                                                    class="position-relative">
-                                            </div>
-                                            <div class="card-body pl-0">
-                                                <h5 class="card-title">
-                                                    <a href="/packages/{{ $pack->id }}">
-                                                        {{ $pack->title }}
-                                                    </a>
-                                                </h5>
-                                                <p class="my-0">{{ $pack->price }} টাকা</p>
+                                <div class="row d-flex justify-content-start">
+                                    @forelse ($relatedPackage as $pack)
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="card mb-4 shadow-sm">
+                                                <div class="placeholder-img overflow-hidden">
+                                                    <img src="{{ $pack->packagePics->first()->path }}"
+                                                        class="position-relative">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <a href="/packages/{{ $pack->id }}">
+                                                            {{ $pack->title }}
+                                                        </a>
+                                                    </h5>
+                                                    <p class="my-0">{{ $pack->price }} টাকা</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="col-12 bg-white py-2">
+                                            Nothing was found
+                                        </div>
+                                    @endforelse
                                 </div>
                             </div>
-                            <!--related package section-->
-
 
                             <!--related posts section-->
 
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
-                                    <h3>Related Posts</h3>
-                                    <a href="" class="my-auto">See All</a>
+                                    <h3>Related Stories</h3>
+                                    <a href="/home" class="my-auto">See All</a>
                                 </div>
-                                <div class="d-flex justify-content-start">
-                                    @foreach ($relatedPost as $post)
-                                        <div class="card col-sm-12 col-md-6 col-lg-4">
-                                            <div class="place-img">
-                                                <img src="/resources/stories/{{ $post->postPics->first()->path }}"
-                                                    class="position-relative">
-                                            </div>
-                                            <div class="card-body pl-0">
-                                                <h5 class="card-title">
-                                                    <a href="/story/{{ $post->id }}">
-                                                        {{ $post->title }}
-                                                    </a>
-                                                </h5>
+                                <div class="row d-flex justify-content-start">
+                                    @forelse ($relatedPost as $post)
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="card mb-4 shadow-sm">
+                                                <div class="placeholder-img overflow-hidden">
+                                                    <img src="{{ $post->postPics->first()->path }}"
+                                                        class="position-relative">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <a href="/story/{{ $post->id }}">
+                                                            {{ $post->title }}
+                                                        </a>
+                                                    </h5>
+                                                </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="col-12 bg-white py-2">
+                                            Nothing was found
+                                        </div>
+                                    @endforelse
                                 </div>
                             </div>
-                            <!--related posts section-->
                             <br> <br>
 
                         </div>

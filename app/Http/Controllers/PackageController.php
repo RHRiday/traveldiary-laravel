@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\PackagePic;
@@ -9,6 +10,7 @@ use App\Models\Upazila;
 use App\Models\User;
 use App\Models\Orders;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PackageController extends Controller
 {
@@ -43,6 +45,9 @@ class PackageController extends Controller
      */
     public function create()
     {
+        if (!Auth::user()->guide) {
+            return redirect('/guides');
+        }
         return view('package.create', [
             'upazilas' => Upazila::pluck('upazila'),
         ]);
@@ -56,7 +61,12 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        Package::create([
+        $request->validate([
+            'description' => 'required',
+            'benefit' => 'required',
+            'rule' => 'required',
+        ]);
+        $package = Package::create([
             'title' => $request->name,
             'location' => $request->location,
             'type' => $request->type,
@@ -72,14 +82,15 @@ class PackageController extends Controller
         ]);
 
         foreach ($request->image as $image) {
-            $name = $request->location . time() . mt_rand(9, 99) . '.' . $image->extension();
+            $name = $image->store('1yyR_P10WVi3bzVdYDNv3kU4BThIQQPwR', 'google');
 
             PackagePic::create([
-                'package_id' => Package::max('id'),
-                'path' => $name,
+                'package_id' => $package->id,
+                'path' => Storage::disk('google')->url($name),
             ]);
-            $image->move(public_path('resources/packages'), $name);
         }
+
+        GuideController::give_points(Auth::id(), 1);
 
         return redirect('/packages')->with('message', 'Your package has been added');
     }
@@ -93,11 +104,12 @@ class PackageController extends Controller
     public function show($id)
     {
         $package = Package::where('id', $id)->first();
-        $user = User::find(Auth::id()); 
+        $user = User::find(Auth::id());
         if (!$package) {
             abort(404);
         }
         $relatedPackage = Package::where('location', $package->location)
+            ->where('id', '<>', $id)
             ->inRandomOrder()
             ->limit(3)
             ->get();
@@ -111,12 +123,52 @@ class PackageController extends Controller
     /*
         $id -> package_id
     */
-    public function orderList($id){
+    public function orderList($id)
+    {
         $user = User::find(Auth::id());
         $orderList = Orders::where('package_id', $id)->get();
-    
+
         return view('package.showOrders', [
             'orderList' => $orderList
+        ]);
+    }
+
+    /**
+     * Register a booking for a package
+     * @param $package_id, $request
+     * 
+     * saves into database
+     */
+    public function confirmBook(Request $request, $id)
+    {
+        Booking::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'amount' => $request->book_for,
+            'package_id' => $id,
+            'user_id' => Auth::id(),
+            'token' => uniqid('pkgToken-'),
+        ]);
+
+        return redirect(route('packages.index'))
+            ->with('message', 'Your booking has been confirmed! Thank you');
+    }
+
+    /**
+     * Display registering a booking for a package page
+     * @param $package_id
+     * 
+     * return view with resource
+     */
+    public function book($id)
+    {
+        $package = Package::where('id', $id)->first();
+        $user = User::find(Auth::id());
+
+        return view('package.book', [
+            'package' => $package,
+            'user' => $user,
         ]);
     }
 }

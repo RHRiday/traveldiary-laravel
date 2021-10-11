@@ -27,24 +27,24 @@ class UserSeeder extends Seeder
             'email' => 'rifat@gmail.com',
             'password' => Hash::make('012345'),
             'username' => 'rhriday',
-            'dp' => 'rhriday.jpg',
-            'cover' => 'rhriday.jpg',
+            'dp' => '/resources/profile/rhriday.jpg',
+            'cover' => '/resources/cover/rhriday.jpg',
         ]);
         DB::table('users')->insert([
             'name' => 'Shajjadul Kabir',
             'email' => 'abir@gmail.com',
             'password' => Hash::make('012345'),
             'username' => 'shajjad71',
-            'dp' => 'shajjad71.jpg',
-            'cover' => 'shajjad71.jpg',
+            'dp' => '/resources/profile/shajjad71.jpg',
+            'cover' => '/resources/cover/shajjad71.jpg',
         ]);
         DB::table('users')->insert([
             'name' => 'Sajjad Hossen Noyon',
             'email' => 'noyon@gmail.com',
             'password' => Hash::make('012345'),
             'username' => 'noyon31',
-            'dp' => 'noyon31.jpg',
-            'cover' => 'noyon31.jpg',
+            'dp' => '/resources/profile/noyon31.jpg',
+            'cover' => '/resources/cover/noyon31.JPG',
         ]);
     }
 }

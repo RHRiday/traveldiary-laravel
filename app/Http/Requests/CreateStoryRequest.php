@@ -26,6 +26,20 @@ class CreateStoryRequest extends FormRequest
         return [
             'title' => ['required',],
             'story' => ['required',],
+            'image' => 'required',
+            'image.*' => 'mimes:jpeg,jpg,png|max:10240',
+        ];
+    }
+
+    /**
+     * Show the validation message that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'image.*.max' => 'Images should not exceed the 10 MB limit',
         ];
     }
 }

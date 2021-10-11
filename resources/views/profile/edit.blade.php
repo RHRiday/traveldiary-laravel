@@ -4,14 +4,27 @@
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <!-- FONT links -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap"
-        rel="stylesheet" />
-    <!-- FONT-ICON LINK  -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+        input[type="password"]::placeholder {
+            font-size: 90%;
+        }
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+        .changer {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .errors {
+            background-color: rgba(220, 20, 60, 0.041);
+            padding: 20px;
+            font-size: 80%;
+        }
+        .errors>strong {
+            color: crimson;
+        }
+
+    </style>
 @endsection
 
 @section('content')
@@ -32,10 +45,10 @@
                         @method('PUT')
                         <div class="details-profile">
                             <div class="cover-picture">
-                                <img src="/resources/cover/{{ $user->cover }}" class="z">
+                                <img src="{{ $user->cover }}" class="z" id="edit-cp">
                             </div>
                             <div class="profile-picture">
-                                <img src="/resources/profile/{{ $user->dp }}" class="z">
+                                <img src="{{ $user->dp }}" class="z" id="edit-dp">
                             </div>
                         </div>
                         <div class="row">
@@ -43,22 +56,37 @@
                                 value="{{ $user->name }}" autocomplete="off" required>
                             <select type="text" class="textarea title" name="location" required>
                                 @foreach ($upazilas as $upazila)
-                                    <option value="{{ $upazila }}" {{ $user->location == $upazila ? 'selected' : '' }}>
-                                    {{ $upazila }}</option>
+                                    <option value="{{ $upazila }}"
+                                        {{ $user->location == $upazila ? 'selected' : '' }}>
+                                        {{ $upazila }}</option>
                                 @endforeach
                             </select>
                             <input type="password" class="textarea title" name="password"
-                                placeholder="New password (Leave blank to leave unchanged)" autocomplete="off">
-                            <label class="btn-follow" for="dp">Click Here to change Profile Picture</label>
-                            <input id="dp" type="file" name="dp" accept="image/*" hidden>
-                            <label class="btn-follow" for="cp">Click Here to change Cover Picture</label>
-                            <input id="cp" type="file" name="cp" accept="image/*" hidden>
+                                placeholder="Change password (or leave blank)" autocomplete="off">
+                            <div class="changer">
+                                <label class="btn-follow" for="dp">Change Profile Picture</label>
+                                <input id="dp" type="file" name="dp" accept="image/*"
+                                    onchange="changePicture(this, 'edit-dp')" hidden>
+                                <label class="btn-follow" for="cp">Change Cover</label>
+                                <input id="cp" type="file" name="cp" accept="image/*"
+                                    onchange="changePicture(this, 'edit-cp')" hidden>
+                            </div>
                             <div class="row">
                                 <input type="submit" value="Update" class="btn-post">
                             </div>
                         </div>
                     </form>
                 </div>
+                @if (count($errors) > 0)
+                    <div class="middleContent errors">
+                        <strong>Please fix the problems with your input.</strong>
+                        <ol>
+                            @foreach ($errors->all() as $error)
+                                <li>{{$loop->index+1 .'. '. $error }}</li>
+                            @endforeach
+                        </ol>
+                    </div>
+                @endif
             </div>
             <!-------- RIGHT CONTENT-------->
             @include('partials.right')

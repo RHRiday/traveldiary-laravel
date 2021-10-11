@@ -6,13 +6,14 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/package.css') }}">
 @endsection
 
 @section('content')
     @include('partials.nav')
     <div class="container">
         <div class="mt-3 text-center">
-            <h2 class="bg-dark py-2 mx-5 rounded text-light">Sell your package</h2>
+            <h2 class="bg-dark py-2 mx-5 rounded text-light">Advertise your package</h2>
         </div>
 
         <div class="row">
@@ -62,43 +63,44 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="price">Price</label>
-                            <input name="price" type="number" class="form-control" id="price" placeholder="(in BDT)"
+                            <input name="price" type="text" class="form-control" id="price" placeholder="(in BDT)"
                                 pattern="[0-9]*" value="{{ old('price') }}" required>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="description">Description</label>
-                            <textarea name="description" rows="3" class="form-control" id="description"
-                                placeholder="An attracting detail of the package"
-                                required>{{ old('description') }}</textarea>
-
+                            <p>
+                                <input id="description" type="hidden" name="description" value="{{ old('description') }}"
+                                    required />
+                                <trix-editor input="description" placeholder="A good detail attracts more visitors">
+                                </trix-editor>
+                            </p>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="benefit">Benefit</label>
-                            <textarea name="benefit" rows="3" class="form-control" id="description"
-                                placeholder="What will the travellers benefit from this package"
-                                required>{{ old('benefit') }}</textarea>
-
+                            <label for="benefit">Benefit <small class="text-muted"></small></label>
+                            <p>
+                                <input id="benefit" type="hidden" name="benefit" value="{{ old('benefit') }}" required />
+                                <trix-editor input="benefit" placeholder="Benefits make people think about your package">
+                                </trix-editor>
+                            </p>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="rule">Rule</label>
-                            <textarea name="rule" rows="3" class="form-control" id="rule" placeholder="Rules and alertness"
-                                required>{{ old('rule') }}</textarea>
+                            <label for="rule">Rule <small class="text-muted"></small></label>
+                            <p>
+                                <input id="rule" type="hidden" name="rule" value="{{ old('rule') }}" required />
+                                <trix-editor input="rule" placeholder="Rules and regulations travelers must follow">
+                                </trix-editor>
+                            </p>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="phone">Contact no. <small>+88</small></label>
                             <input name="phone" type="tel" class="form-control" id="phone" placeholder="ex: 01234567890"
-                                value="" pattern="[0-9]*" required>
+                                value="{{ old('phone') }}" pattern="[0-9]*" required>
                         </div>
 
-                        <div class="col-md-4 mb-3">
-                            <label for="bkash">bKash no. <small>+88</small></label>
-                            <input name="bkash" type="tel" class="form-control" id="bkash" placeholder="ex: 01234567890"
-                                pattern="[0-9]*" value="" required>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="deadline">Registration deadline </label>
-                            <input type="date" name="deadline" class="form-control" required>
+                            <input type="date" name="deadline" class="form-control" value="{{ old('deadline') }}"
+                                required>
                         </div>
 
                         <div class="col-12 mb-3">

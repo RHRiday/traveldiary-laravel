@@ -57,7 +57,6 @@ class PackageSeeder extends Seeder
             'price' => '5500',
             'phone' => '01712444444',
             'user_id' => 2,
-            'bkash' => '01712444444',
             'deadline' => '2022-01-22',
         ]);
 
@@ -79,7 +78,6 @@ class PackageSeeder extends Seeder
             'price' => '410',
             'user_id' => 3,
             'phone' => '01818888888',
-            'bkash' => '01818888888',
             'deadline' => '2022-02-15',
         ]);
 
@@ -122,7 +120,6 @@ class PackageSeeder extends Seeder
             'price' => '6200',
             'user_id' => 4,
             'phone' => '01818888888',
-            'bkash' => '01818888888',
             'deadline' => '2021-12-30',
         ]);
 
@@ -152,7 +149,6 @@ class PackageSeeder extends Seeder
             'price' => '8000',
             'user_id' => 3,
             'phone' => '0171244444',
-            'bkash' => '0171244444',
             'deadline' => '2021-12-17',
         ]);
 

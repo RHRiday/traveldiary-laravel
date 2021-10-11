@@ -44,10 +44,12 @@
                 @foreach ($posts as $post)
                     <div class="middleContent">
                         <div class="row">
-                            <div class="col-2 DP-circular-img">
-                                <a href="/profile/{{ $post->user->username }}">
-                                    <img src="/resources/profile/{{ $post->user->dp }}">
-                                </a>
+                            <div class="col-2">
+                                <div class="DP-circular-img">
+                                    <a href="/profile/{{ $post->user->username }}">
+                                        <img src="{{ $post->user->dp }}">
+                                    </a>
+                                </div>
                             </div>
                             <div class="col-10">
                                 <div>
@@ -72,13 +74,14 @@
                                     <p class="profile-name">at — {{ $post->location }}</p>
                                     <h2 class="title">{{ $post->title }}</h2>
                                     <p class="caption">
-                                        {{ $post->story }}
+                                        {{ mb_substr($post->story, 0, 550) }} <a style="color: cadetblue"
+                                            href="/story/{{ $post->id }}">. . . read</a>
                                     </p>
                                 </div>
                                 <div class="pic-post">
                                     @foreach ($post->postPics as $pic)
                                         <div class="pic-post-img">
-                                            <img class="zoom" src="/resources/stories/{{ $pic->path }}">
+                                            <img class="zoom" style="margin-left: 1px" src="{{ $pic->path }}">
                                         </div>
                                     @endforeach
                                 </div>

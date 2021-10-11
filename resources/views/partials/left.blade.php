@@ -6,18 +6,20 @@
         <div class="row">
             <div class="profile-row">
                 <a href="/profile/{{ Auth::user()->username }}">
-                    <div class="col-2 circular-img">
-                        <img src="/resources/profile/{{ Auth::user()->dp }}">
+                    <div class="col-2">
+                        <div class="circular-img">
+                            <img src="{{ Auth::user()->dp }}">
+                        </div>
                     </div>
                     <div class="col-6">
                         <p>@ {{ Auth::user()->username }} </p>
                     </div>
                 </a>
                 <div class="col-4">
-                    <form id="logout-form" action="http://localhost:8080/logout" method="POST" hidden>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" hidden>
                         @csrf
                     </form>
-                    <a title="Logout" href="http://localhost:8080/logout"
+                    <a title="Logout" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                                                             document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>
                     </a>

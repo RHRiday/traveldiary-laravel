@@ -20,4 +20,9 @@ class Package extends Model
     {
         return $this->hasMany(PackagePic::class);
     }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

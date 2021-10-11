@@ -12,11 +12,12 @@ use App\Models\Post;
 use App\Models\Package;
 use App\Models\PlacePic;
 use App\Models\Upazila;
-use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class PlaceController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         return $this->middleware('auth')->only(['create']);
     }
 
@@ -71,7 +72,7 @@ class PlaceController extends Controller
      */
     public function store(CreatePlaceRequest $request)
     {
-        Place::create([
+        $place = Place::create([
             'name' => $request->name,
             'location' => $request->location,
             'type' => $request->type,
@@ -83,17 +84,16 @@ class PlaceController extends Controller
         ]);
 
         foreach ($request->image as $image) {
-            $name = $request->location . time() . mt_rand(9, 99) . '.' . $image->extension();
+            $name = $image->store('19FxlYfRs_XxW79ANIWWZX4sWuu23EXpX', 'google');
 
             PlacePic::create([
-                'place_id' => Place::max('id'),
-                'path' => $name,
+                'place_id' => $place->id,
+                'path' => Storage::disk('google')->url($name),
             ]);
-            $image->move(public_path('resources/places'), $name);
         }
 
         Contribution::create([
-            'place_id' => Place::max('id'),
+            'place_id' => $place->id,
             'user_id' => Auth::id(),
             'status' => (int) 0,
         ]);
@@ -109,42 +109,50 @@ class PlaceController extends Controller
      */
     public function show(Place $id)
     {
-        $alreadyRated = false ;
+        $alreadyRated = false;
+        $alreadyHired = false;
 
-        foreach($id->ratings as $rating) {
-            if($rating->user_id == Auth::id() && $rating->place_id == $id->id) {
-                $alreadyRated = true ;
+        foreach ($id->ratings as $rating) {
+            if ($rating->user_id == Auth::id() && $rating->place_id == $id->id) {
+                $alreadyRated = true;
+            }
+        }
+        foreach ($id->hires as $hire) {
+            if ($hire->user_id == Auth::id() && $hire->place_id == $id->id && $hire->date > now()) {
+                $alreadyHired = true;
             }
         }
 
         $relatedPackage = Package::where('location', $id->location)
-                ->inRandomOrder()
-                ->limit(3)
-                ->get();
+            ->inRandomOrder()
+            ->limit(3)
+            ->get();
 
         $relatedPost = Post::where('location', $id->location)
-                ->inRandomOrder()
-                ->limit(3)
-                ->get();
+            ->inRandomOrder()
+            ->limit(3)
+            ->get();
 
         return view('place.show', [
             'place' => $id,
             'alreadyRated' => $alreadyRated,
+            'alreadyHired' => $alreadyHired,
             'relatedPost' => $relatedPost,
             'relatedPackage' => $relatedPackage,
         ]);
     }
 
-    public function saveRating(Request $request, $place_id) {
+    public function saveRating(Request $request, $place_id)
+    {
 
         GuideController::give_points(Auth::id(), 3);
-        
+
         Rating::create([
             'user_id' => Auth::id(),
             'place_id' => $place_id,
             'rating' => $request->rated,
         ]);
 
-        return redirect('/places/' . $place_id) ;
+        return redirect('/places/' . $place_id);
     }
 }

@@ -10,10 +10,13 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePlaceRequest;
 use App\Models\Contribution;
 use App\Models\Guide;
+use App\Models\Package;
 use App\Models\PlacePic;
+use App\Models\Post;
 use App\Models\Report;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -34,6 +37,16 @@ class AdminController extends Controller
 
         return view('admin.index', [
             'places' => Place::all(),
+            'guides' => Guide::where('approval', 0)->get(),
+            'contributions' => Contribution::where('status', 0)->get(),
+            'reports' => Report::where('status', 0)
+                            ->groupBy('post_id')
+                            ->havingRaw('count(*) > 5')
+                            ->get(),
+            'packages' => Package::where('deadline', '>', now())->get(),
+            'users' => User::where('role', 'visitor')->get(),
+            'stories' => Post::all(),
+            'guides' => Guide::all(),
         ]);
     }
 
@@ -69,7 +82,7 @@ class AdminController extends Controller
             abort(404);
         }
 
-        Place::create([
+        $place = Place::create([
             'name' => $request->name,
             'location' => $request->location,
             'type' => $request->type,
@@ -81,13 +94,12 @@ class AdminController extends Controller
         ]);
 
         foreach ($request->image as $image) {
-            $name = $request->location . time() . mt_rand(9, 99) . '.' . $image->extension();
+            $name = $image->store('19FxlYfRs_XxW79ANIWWZX4sWuu23EXpX', 'google');
 
             PlacePic::create([
-                'place_id' => Place::max('id'),
-                'path' => $name,
+                'place_id' => $place->id,
+                'path' => Storage::disk('google')->url($name),
             ]);
-            $image->move(public_path('resources/places'), $name);
         }
 
         return redirect('/admin')->with('message', 'Tour spot has been added');
@@ -154,17 +166,16 @@ class AdminController extends Controller
         if ($request->image) {
             PlacePic::where('place_id', $id)->delete();
             foreach ($request->image as $image) {
-                $name = $request->location . time() . mt_rand(9, 99) . '.' . $image->extension();
-
+                $name = $image->store('19FxlYfRs_XxW79ANIWWZX4sWuu23EXpX', 'google');
+    
                 PlacePic::create([
                     'place_id' => $id,
-                    'path' => $name,
+                    'path' => Storage::disk('google')->url($name),
                 ]);
-                $image->move(public_path('resources/places'), $name);
             }
         }
 
-        return redirect('/admin')->with('message', 'Tour spot has been updated');
+        return redirect('/admin/places')->with('message', 'Tour spot has been updated');
     }
 
     /**
@@ -180,6 +191,22 @@ class AdminController extends Controller
         $place->delete();
 
         return redirect('/admin')->with('message', 'Tour spot has been deleted');
+    }
+
+    /**
+     * View the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function places()
+    {
+        if (Auth::user()->role !== 'admin') {
+            abort(404);
+        }
+
+        return view('admin.places', [
+            'places' => Place::inRandomOrder()->get(),
+        ]);
     }
 
     /**

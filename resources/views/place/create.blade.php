@@ -1,34 +1,9 @@
-@extends('layouts.app')
-
-@section('title')
-    <title>Admin Panel</title>
-@endsection
-
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-@endsection
+@extends('admin.app')
 
 @section('content')
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-            <a href="{{ route('admin.index') }}" class="navbar-brand d-flex align-items-center">
-                <img src="{{ asset('logo.ico') }}" alt="logo" width="30x">
-                <strong>&nbsp;TravelDiary</strong>
-            </a>
-            <form id="logout-form" action="http://localhost:8080/logout" method="POST" hidden>
-                @csrf
-            </form>
-            <a title="Logout" href="http://localhost:8080/logout" onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();"><i
-                    class="fas fa-sign-out-alt"></i>
-                Logout
-            </a>
-        </div>
-    </div>
     <div class="container">
         <div class="mt-3 text-center">
-            <img class="d-block mx-auto mb-4" src="{{ asset('logo.ico') }}" alt="" width="72" height="72">
-            <h2 class="bg-dark py-2 mx-5 rounded text-light">Add Tour Spots</h2>
+            <h2 class="bg-success py-2 mx-5 rounded text-light">Add Tour Spots</h2>
         </div>
 
         <div class="row">
@@ -84,18 +59,30 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label for="description">Short description</label>
-                            <input name="description" type="text" class="form-control" id="description"
-                                placeholder="An attracting detail of the place" value="{{ old('description') }}" required>
+                            <p>
+                                <input id="description" type="hidden" name="description" value="{{ old('description') }}"
+                                    required />
+                                <trix-editor input="description" placeholder="A good detail attracts more visitors">
+                                </trix-editor>
+                            </p>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="direction">Direction</label>
-                            <textarea name="direction" rows="5" class="form-control" id="direction"
-                                placeholder="Direction from the checkpoint" required>{{ old('direction') }}</textarea>
+                            <p>
+                                <input id="direction" type="hidden" name="direction" value="{{ old('direction') }}"
+                                    required />
+                                <trix-editor input="direction" placeholder="Direction from the checkpoint">
+                                </trix-editor>
+                            </p>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="info">Additional info (Optional)</label>
-                            <textarea name="info" rows="3" class="form-control" id="info"
-                                placeholder="ex: Don't dust the place">{{ old('info') }}</textarea>
+                            <p>
+                                <input id="info" type="hidden" name="info" value="{{ old('info') }}"
+                                    required />
+                                <trix-editor input="info" placeholder="Cautions and regulations to take in account">
+                                </trix-editor>
+                            </p>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="image">Image(s)</label>
@@ -108,9 +95,5 @@
                 </form>
             </div>
         </div>
-
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">© 2020-2021 TravelDiary</p>
-        </footer>
     </div>
 @endsection

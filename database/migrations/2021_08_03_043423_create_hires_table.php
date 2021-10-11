@@ -19,7 +19,8 @@ class CreateHiresTable extends Migration
             $table->unsignedBigInteger('place_id');
             $table->unsignedBigInteger('guide_id')->nullable();
             $table->mediumText('info_letter');
-            $table->timestamp('date');
+            $table->integer('recommended')->default(0);
+            $table->date('date');
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('place_id')->references('id')->on('places');

@@ -66,6 +66,11 @@ class GuideController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'national_id' => 'unique:guides',
+            'contact' => 'unique:guides',
+        ]);
+        
         Guide::create([
             'national_id' => $request->nid,
             'contact' => $request->contact,

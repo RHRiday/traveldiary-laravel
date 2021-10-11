@@ -7,44 +7,32 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/place.css') }}">
+    <style>
+        .card-header {
+            background-color: #eaf6f3 !important;
+        }
+
+    </style>
 @endsection
 
 @section('content')
     @include('partials.nav')
     <!--main section starts-->
     <section id="main">
-        <section class="my-5">
-            <div class="container text-center">
-                @if (session()->has('tran_msg'))
-                    <div style="background: rgb(158, 158, 219); color:rgb(1, 1, 1); text:center; padding:1% 1%" 
-                    class="alert alert-success" role="alert">
-                        {{ session()->get('tran_msg') }}
-                    </div>
-                @endif
-            </div>
-        </section>
 
         <div class="container">
             <div class="row" id="post-content">
-                <div class="col-12" style="margin-top: 20px"></div>
-                <div class="col-12">
+                <div class="col-12 mt-2">
                     <div class="container">
                         <ul class="list-group list-group-horizontal">
-                            <li class="list-group-item"><a href="/packages?location={{ $package->location }}">{{ $package->location }}</a></li>
-                            <li class="list-group-item"><a href="/packages?type={{ $package->location_type }}">{{ $package->location_type }}</a></li>
+                            <li class="list-group-item"><a
+                                    href="/packages?location={{ $package->location }}">{{ $package->location }}</a></li>
+                            <li class="list-group-item"><a
+                                    href="/packages?type={{ $package->location_type }}">{{ $package->location_type }}</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
-                @if( $user->id == $package->user_id )
-                    <div class="col-12" style="margin-top: 20px"></div>
-                    <div class="col-12">
-                        <div class="container">
-                            <a href="/orderlist/{{ $package->id }}" class="btn btn-success">Order list</a>
-                        </div>
-                    </div>
-                @endif
-
-
 
                 <div class="col-sm-12 col-md-12">
                     <div class="content">
@@ -62,13 +50,17 @@
                             <div class="mt-3">
                                 <div class="d-flex bd-highlight ">
                                     <div class="p-2 bd-highlight">
-                                        <img src="/resources/profile/{{ $package->user->dp }}" class="rounded-circle"
+                                        <img src="{{ $package->user->dp }}" class="rounded-circle"
                                             width="60" />
                                     </div>
                                     <div class="p-2 bd-highlight">
-                                        <h4 class="mb-1"><a href="/profile/{{$package->user->username}}">{{ $package->user->name }}</a></h4>
-                                        <p class="mb-0"><strong>সময়সীমা :</strong> {{ date('F d, Y', strtotime($package->deadline)) }} </p>
-                                        <p class="mb-0"><strong>মূল্য :</strong> জনপ্রতি {{ $package->price }} টাকা</p>
+                                        <h4 class="mb-1"><a
+                                                href="/profile/{{ $package->user->username }}">{{ $package->user->name }}</a>
+                                        </h4>
+                                        <p class="mb-0"><strong>সময়সীমা :</strong>
+                                            {{ date('F d, Y', strtotime($package->deadline)) }} </p>
+                                        <p class="mb-0"><strong>মূল্য :</strong> জনপ্রতি {{ $package->price }}
+                                            টাকা</p>
                                     </div>
                                 </div>
                             </div>
@@ -81,12 +73,13 @@
                             <!--carousel starts-->
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+                                    </li>
                                 </ol>
                                 <div class="carousel-inner">
                                     @foreach ($package->packagePics as $pic)
                                         <div class="carousel-item @if ($loop->first) active @endif">
-                                            <img src="/resources/packages/{{ $pic->path }}" class="d-block w-100"
+                                            <img src="{{ $pic->path }}" class="d-block w-100"
                                                 alt="...">
                                         </div>
                                     @endforeach
@@ -104,68 +97,100 @@
                             </div>
 
                             <!--carousel ends-->
-                            <h5 class="mt-3 text-center text-muted">ছবি : প্যাকেজ মালিকের তত্বাবধায়নে ব্যবহৃত</h5>
+                            <h5 class="mt-3 text-center text-muted">ছবি : প্যাকেজ মালিকের তত্ত্বাবধায়নে ব্যবহৃত</h5>
 
-                            <!--Description parts starts-->
-                            <figure class="figureClass mt-5">
-                                <figcaption class="captionClass">
-                                    <strong class="display-4"> বিস্তারিত:</strong>
-                                </figcaption>
-                            </figure>
-                            <p>
-                                {{ $package->description }}
-                            </p>
+                            <!-- Description parts starts -->
+                            <x-package-card header="বিস্তারিত:">
+                                {!! $package->description !!}
+                            </x-package-card>
 
-                            <!--Description parts Ends-->
+                            <!-- Benefit parts starts -->
+                            <x-package-card header="এক্সপেরিয়েন্সটিতে থাকছে:">
+                                {!! $package->benefit !!}
+                            </x-package-card>
 
-                            <!--Direction Parts Start-->
-                            <p><strong class="display-4">এক্সপেরিয়েন্সটিতে থাকছে:</strong></p>
-                            <p>
-                                {{ $package->benefit }}
-                            </p>
+                            <!-- Rules parts starts -->
+                            <x-package-card header="বুকিংয়ের নিয়মাবলী ও সতর্কতা:">
+                                {!! $package->rule ? $package->rule : 'N/A' !!}
+                            </x-package-card>
 
-                            <!--Direction parts Ends-->
-                            <p><strong class="display-4">বুকিংয়ের নিয়মাবলী ও সতর্কতা:</strong> </p>
-
-                            <p>
-                                {{ $package->rule }}
-                            </p>
-                            <p class="display-4">প্যাকেজ সংক্রান্ত তথ্যের জন্য যোগাযোগ করুন <span
+                            <p class="h3">প্যাকেজ সংক্রান্ত তথ্যের জন্য যোগাযোগ করুন <span
                                     class="alert-dark">{{ $package->phone }}</span> নম্বরে</p>
 
-                            <div>
-                                <a href="/buypackage/{{ $package->id }}" class="btn btn-success">Buy Package</a>
+                            <div class="mt-3">
+                                @if ($package->user_id === Auth::id())
+                                    <x-package-card header="বুকিং লিস্ট:">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Phone</th>
+                                                    <th scope="col">Amount</th>
+                                                    <th scope="col">Token</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $i = 1;
+                                                @endphp
+                                                @forelse ($package->bookings as $booking)
+                                                    <tr>
+                                                        <th scope="row">{{ $i++ }}</th>
+                                                        <td>{{ $booking->name }}</td>
+                                                        <td>{{ $booking->email }}</td>
+                                                        <td>{{ $booking->phone }}</td>
+                                                        <td>{{ $booking->amount }}</td>
+                                                        <td>{{ $booking->token }}</td>
+                                                    </tr>
+                                                @empty
+                                                <tr>
+                                                    <td colspan="6" class="text-center">Nothing was found</td>
+                                                </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </x-package-card>
+                                @else
+                                    <a href="/packages/{{ $package->id }}/book" class="btn btn-success">Book Package</a>
+                                    @empty(!$package->bookings->where('user_id', Auth::id())->all())
+                                        <span class="badge badge-info p-2"><i class="far fa-check-circle"></i> Booked</span>
+                                    @endempty
+                                @endif
                             </div>
-                            {{-- exampleEasycheckout --}}
-                            <!--Budget Parts starts-->
 
                             <!--related package section-->
-
                             <div class="related-posts mt-5">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h3>Related Packages</h3>
                                     <a href="/packages" class="my-auto">See All</a>
                                 </div>
-                                <div class="d-flex justify-content-start">
-                                    @foreach ($relatedPackage as $pack)
-                                        <div class="card col-sm-12 col-md-6 col-lg-4">
-                                            <div class="place-img">
-                                                <img src="/resources/packages/{{ $pack->packagePics->first()->path }}"
-                                                    class="position-relative">
-                                            </div>
-                                            <div class="card-body pl-0">
-                                                <h5 class="card-title">
-                                                    <a href="/packages/{{ $pack->id }}">
-                                                        {{ $pack->title }}
-                                                    </a>
-                                                </h5>
-                                                <p class="my-0">{{$pack->price}} টাকা</p>
+                                <div class="row d-flex justify-content-start">
+                                    @forelse ($relatedPackage as $pack)
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="card mb-4 shadow-sm">
+                                                <div class="placeholder-img overflow-hidden">
+                                                    <img src="{{ $pack->packagePics->first()->path }}"
+                                                        class="position-relative">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <a href="/packages/{{ $pack->id }}">
+                                                            {{ $pack->title }}
+                                                        </a>
+                                                    </h5>
+                                                    <p class="my-0">{{ $pack->price }} টাকা</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @empty
+                                        <div class="col-12 bg-white py-2">
+                                            Nothing was found
+                                        </div>
+                                    @endforelse
                                 </div>
                             </div>
-                            <!--related package section-->
 
                         </div>
                     </div>

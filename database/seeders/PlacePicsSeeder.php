@@ -16,43 +16,43 @@ class PlacePicsSeeder extends Seeder
     {
         DB::table('place_pics')->insert([
             'place_id' => 1,
-            'path' => 'Nafakhum.jpg',
+            'path' => '/resources/places/Nafakhum.jpg',
         ]);
         DB::table('place_pics')->insert([
             'place_id' => 2,
-            'path' => 'Cottage.jpg',
+            'path' => '/resources/places/Cottage.jpg',
         ]);
         DB::table('place_pics')->insert([
             'place_id' => 3,
-            'path' => 'Tahirpur.jpg',
+            'path' => '/resources/places/Tahirpur.jpg',
         ]);
         DB::table('place_pics')->insert([
             'place_id' => 4,
-            'path' => 'Shajek.jpg',
+            'path' => '/resources/places/Shajek.jpg',
         ]);
         DB::table('place_pics')->insert([
             'place_id' => 5,
-            'path' => 'Peyara.jpg',
+            'path' => '/resources/places/Peyara.jpg',
         ]);
         DB::table('place_pics')->insert([
             'place_id' => 6,
-            'path' => 'Kutubdiya.jpg',
+            'path' => '/resources/places/Kutubdiya.jpg',
         ]);
         DB::table('place_pics')->insert([
             'place_id' => 7,
-            'path' => 'Kamalganj.jpg',
+            'path' => '/resources/places/Kamalganj.jpg',
         ]);
         DB::table('place_pics')->insert([
             'place_id' => 8,
-            'path' => 'Gowainghat.jpg',
+            'path' => '/resources/places/Gowainghat.jpg',
         ]);
         DB::table('place_pics')->insert([
             'place_id' => 9,
-            'path' => 'Zinda.jpg',
+            'path' => '/resources/places/Zinda.jpg',
         ]);
         DB::table('place_pics')->insert([
             'place_id' => 10,
-            'path' => 'Nilgiri.jpg',
+            'path' => '/resources/places/Nilgiri.jpg',
         ]);
     }
 }

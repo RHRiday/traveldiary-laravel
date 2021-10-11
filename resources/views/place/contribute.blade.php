@@ -6,6 +6,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/package.css') }}">
 @endsection
 
 @section('content')
@@ -69,18 +70,30 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label for="description">Short description</label>
-                            <input name="description" type="text" class="form-control" id="description"
-                                placeholder="An attracting detail of the place" value="{{ old('description') }}" required>
+                            <p>
+                                <input id="description" type="hidden" name="description" value="{{ old('description') }}"
+                                    required />
+                                <trix-editor input="description" placeholder="A good detail attracts more visitors">
+                                </trix-editor>
+                            </p>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="direction">Direction</label>
-                            <textarea name="direction" rows="5" class="form-control" id="direction"
-                                placeholder="Direction from the checkpoint" required>{{ old('direction') }}</textarea>
+                            <p>
+                                <input id="direction" type="hidden" name="direction" value="{{ old('direction') }}"
+                                    required />
+                                <trix-editor input="direction" placeholder="Direction from the checkpoint">
+                                </trix-editor>
+                            </p>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="info">Additional info (Optional)</label>
-                            <textarea name="info" rows="3" class="form-control" id="info"
-                                placeholder="ex: Don't dust the place">{{ old('info') }}</textarea>
+                            <p>
+                                <input id="info" type="hidden" name="info" value="{{ old('info') }}"
+                                    required />
+                                <trix-editor input="info" placeholder="Cautions and regulations to take in account">
+                                </trix-editor>
+                            </p>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="image">Image(s)</label>

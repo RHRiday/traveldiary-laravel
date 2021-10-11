@@ -12,6 +12,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <style>
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.25rem !important;
+            font-size: .7rem !important;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 50%;
+            background-color: #21b573 !important;
+            color: white !important;
+        }
+
+    </style>
 @endsection
 
 @section('content')
@@ -22,8 +38,10 @@
             @foreach ($followers as $follower)
                 <a href="/profile/{{ $follower->username }}">
                     <div class="all-follower">
-                        <div class="col-2 circular-img">
-                            <img src="/resources/profile/default.png">
+                        <div class="col-2">
+                            <div class="circular-img">
+                                <img src="{{ $follower->dp }}">
+                            </div>
                         </div>
                         <div class="col-6">
                             <p class="follow-name">{{ $follower->name }}</p>
@@ -59,8 +77,10 @@
             @foreach ($followings as $following)
                 <a href="/profile/{{ $following->username }}">
                     <div class="all-follower">
-                        <div class="col-2 circular-img">
-                            <img src="/resources/profile/default.png">
+                        <div class="col-2">
+                            <div class="circular-img">
+                                <img src="{{ $following->dp }}">
+                            </div>
                         </div>
                         <div class="col-6">
                             <p class="follow-name">{{ $following->name }}</p>
@@ -113,10 +133,10 @@
                 <div class="middleContent">
                     <div class="details-profile">
                         <div class="cover-picture">
-                            <img src="{{ asset('resources/cover/'.$user->cover) }}" class="zoom medium-zoom-image">
+                            <img src="{{ $user->cover }}" class="zoom medium-zoom-image">
                         </div>
                         <div class="profile-picture">
-                            <img src="{{ asset('resources/profile/'.$user->dp) }}" class="zoom medium-zoom-image">
+                            <img src="{{ $user->dp }}" class="zoom medium-zoom-image">
                         </div>
 
                         <div>
@@ -126,17 +146,23 @@
                                 </a>
                             @else
                                 <a href="/follow/{{ $user->id }}">
-                                    <button class="profile-btn">{{$user->status($user->id) ? 'Unfollow' : 'Follow'}}</button>
+                                    <button
+                                        class="profile-btn">{{ $user->status($user->id) ? 'Unfollow' : 'Follow' }}</button>
                                 </a>
                             @endif
                         </div>
                     </div>
                     <div class="details-profile2">
                         <div class="name-and-handle">
-                            <h4 class="profile-name">{{ $user->name }}</h4>
+                            <h4 class="profile-name">{{ $user->name }}
+                                @if ($user->username == 'rhriday' || $user->username == 'noyon31' || $user->username == 'shajjad71')
+                                    <a href="/dev"><i class="fas fa-code badge" title="Dev Badge"></i></a>
+                                @endif
+                            </h4>
                             <p class="profile-handle" title="Username">@ {{ $user->username }}</p>
-                            <p class="profile-name"><i class="fa fa-map-marker-alt" title="Location" aria-hidden="true"></i>
-                                {{$user->location ? $user->location : 'N/A'}}</p>
+                            <p class="profile-name"><i class="fa fa-map-marker-alt" title="Location"
+                                    aria-hidden="true"></i>
+                                {{ $user->location ? $user->location : 'N/A' }}</p>
                             <p class="profile-handle"><i class="fa fa-bookmark" title="Points"></i> {{ $user->points }}
                             </p>
                         </div>
@@ -154,10 +180,12 @@
                 @foreach ($user->posts->reverse() as $post)
                     <div class="middleContent">
                         <div class="row">
-                            <div class="col-2 DP-circular-img">
-                                <a href="/profile/{{ $user->username }}">
-                                    <img src="/resources/profile/{{$user->dp}}">
-                                </a>
+                            <div class="col-2">
+                                <div class="DP-circular-img">
+                                    <a href="/profile/{{ $user->username }}">
+                                        <img src="{{ $user->dp }}">
+                                    </a>
+                                </div>
                             </div>
                             <div class="col-10">
                                 <div>
@@ -171,9 +199,10 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <a class="name" href="/profile/{{ $user->username }}">{{ $user->name }}</a>
+                                        <a class="name"
+                                            href="/profile/{{ $user->username }}">{{ $user->name }}</a>
                                         &nbsp;<span>.</span>&nbsp;
-                                        <a href="/story/{{$post->id}}" style="font-size: 60%;"
+                                        <a href="/story/{{ $post->id }}" style="font-size: 60%;"
                                             class="name">{{ $post->time($post->created_at) }}</a>
                                         <a href="#post-option{{ $post->id }}" rel="modal:open"><i
                                                 class="fas fa-ellipsis-h"></i></a>
@@ -181,13 +210,14 @@
                                     <p class="profile-name">at — {{ $post->location }}</p>
                                     <h2 class="title">{{ $post->title }}</h2>
                                     <p class="caption">
-                                        {{ $post->story }}
+                                        {{ mb_substr($post->story, 0, 550) }} <a style="color: cadetblue"
+                                            href="/story/{{ $post->id }}">. . . read</a>
                                     </p>
                                 </div>
                                 <div class="pic-post">
                                     @foreach ($post->postPics as $pic)
                                         <div class="pic-post-img">
-                                            <img class="zoom" src="/resources/stories/{{ $pic->path }}">
+                                            <img class="zoom" style="margin-left: 1px" src="{{ $pic->path }}">
                                         </div>
                                     @endforeach
                                 </div>

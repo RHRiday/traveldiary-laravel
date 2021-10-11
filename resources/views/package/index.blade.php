@@ -18,20 +18,19 @@
             <div class="title mt-5">
                 <div class="d-flex justify-content-between">
                     <h3>Packages list</h3>
-                    <a href="{{ route('packages.create') }}" class="btn btn-outline-danger my-auto">Sell</a>
+                    <a href="{{ route('packages.create') }}" class="btn btn-outline-danger my-auto">Advertise</a>
                 </div>
                 @if (session()->has('message'))
-                    <p class="alert alert-success">{{ session()->get('message') }}</p>
-                @endif
-                @if (session()->has('tran_msg'))
-                <p class="alert alert-success">{{ session()->get('tran_msg') }}</p>
+                    <p class="alert alert-success">
+                        <i class="fa fa-check-circle"></i> {{ session()->get('message') }}
+                    </p>
                 @endif
             </div>
             @foreach ($packages as $package)
                 <div class="card mb-3 package">
                     <div class="row no-gutters">
                         <div class="col-md-4 placeholder-img overflow-hidden my-auto">
-                            <img src="/resources/packages/{{ $package->packagePics->first()->path }}">
+                            <img src="{{ $package->packagePics->first()->path }}">
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
@@ -51,7 +50,13 @@
                                 <p class="mb-0 text-justify">
                                     <strong>
                                         <i class="fa fa-info-circle" title="Details" aria-hidden="true"></i>
-                                        {{ $package->benefit }}
+                                        {{ mb_substr(strip_tags($package->description), 0, 250) }} . . .
+                                    </strong>
+                                </p>
+                                <p class="mb-0 text-justify">
+                                    <strong>
+                                        <i class="fa fa-check-square" title="Booked" aria-hidden="true"></i>
+                                        by {{ $package->bookings->count() }} People
                                     </strong>
                                 </p>
                             </div>
@@ -59,7 +64,7 @@
                         <div class="m-auto col-md-1">
                             <div class="float-md-right mr-md-2 text-center mb-1">
                                 <h5>{{ $package->price }} &#2547; </h5>
-                                <a href="/packages/{{ $package->id }}" class="btn btn-info"> Details </a>
+                                <a href="/packages/{{ $package->id }}" class="btn btn-primary"> Details </a>
                             </div>
                         </div>
                     </div>

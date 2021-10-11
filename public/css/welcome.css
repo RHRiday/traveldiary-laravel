@@ -4,7 +4,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;font-family: 'Source Sans Pro', sans-serif;
   background-color: #f7fff5;
-  height: 100vh;
+  min-height: 100vh;
 }
 .front-look .forms-pane {
   max-width: 448px;
@@ -42,6 +42,16 @@ body{
 /*TOP SECTION AND NAVBAR DESIGN */
 .search-btn{
   float: left;
+}
+@media (max-width: 992px) {
+  .search-btn {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) {
+  .phone-search {
+    display: none !important;
+  }
 }
 .navbar-nav li {
   padding: 8px 10px;

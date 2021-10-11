@@ -7,10 +7,37 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    <style>
+        .wait {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            text-align: center;
+            background-color: #000000d9;
+            z-index: 99;
+        }
+
+        .waitup>img {
+            animation: spin 30s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
 @endsection
 
 @section('content')
     {{-- top navbar --}}
+    <div class="wait">
+        <img src="/loader.png" style="max-width: 100%; margin-top: 100px">
+        <br>
+        <h2 class="text-primary mt-3">TravelDiary loading . . .</h2>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <img class="title" src="/resources/travel-diary.png" alt="Travel-Diary">
@@ -23,6 +50,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dev">DEVs</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/home">STORIES</a>
                     </li>
@@ -111,7 +141,7 @@
 
                             {{-- registration form --}}
                             <div id="signup-form" style="display: none;">
-                                <form method="POST" action="{{ route('register') }}" class="log-sign-form">
+                                <form method="POST" action="{{ route('register') }}" class="log-sign-form" autocomplete="off">
                                     @csrf
                                     <h3>Open a Diary <span>Now</span></h3>
                                     <input id="name" type="text"
@@ -124,7 +154,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <input id="email" type="email"
+                                    <input type="email"
                                         class="form-control mb-2 mr-sm-2 @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" placeholder="Your email" required
                                         autocomplete="email">
@@ -134,9 +164,10 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                    <input id="password" type="password"
+                                    <input type="password"
                                         class="mb-2 mr-sm-2 form-control @error('password') is-invalid @enderror"
-                                        name="password" placeholder="Password (Min. 6 characters)" required autocomplete="new-password">
+                                        name="password" placeholder="Password (Between 6 and 20 characters)" required
+                                        pattern="^(.){6,20}$" autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -145,7 +176,7 @@
                                     @enderror
                                     <input id="password-confirm" type="password" class="mb-2 mr-sm-2 form-control"
                                         name="password_confirmation" placeholder="Confirm password" required
-                                        autocomplete="new-password">
+                                        pattern="^(.){6,20}$" autocomplete="off">
                                     <input type="submit" class="form-control mb-2 mr-sm-2 btn" value="Signup">
                                     <p class="text-center">Already have an account?</p>
                                 </form>

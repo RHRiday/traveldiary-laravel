@@ -56,7 +56,7 @@
                     <div class="row">
                         <div class="col-12 mb-3">
                             <label for="title">Title</label>
-                            <input name="title" type="text" class="form-control" id="title" placeholder="Write a title here"
+                            <input name="title" type="text" class="form-control" id="title" placeholder="Write a story title"
                                 value="{{ old('title') }}" required>
                         </div>
                         <div class="col-md-4 mb-3">
@@ -71,7 +71,7 @@
                             </select>
                         </div>
                         <div class="col-md-8 mb-3">
-                            <label for="image">Image(s)</label>
+                            <label for="image">Image(s) <small class="text-muted">(max:10MB)</small></label>
                             <input name="image[]" type="file" accept="image/*" class="form-control py-1" id="image" multiple
                                 required>
                         </div>
