@@ -74,7 +74,7 @@
                                     <p class="profile-name">at — {{ $post->location }}</p>
                                     <h2 class="title">{{ $post->title }}</h2>
                                     <p class="caption">
-                                        {{ mb_substr($post->story, 0, 550) }} <a style="color: cadetblue"
+                                        {{ mb_substr($post->story, 0, 250) }} <a style="color: cadetblue"
                                             href="/story/{{ $post->id }}">. . . read</a>
                                     </p>
                                 </div>
@@ -93,6 +93,20 @@
                                                     <img class="zoom" src="{{ $pic->path }}">
                                                 </div>
                                             @endforeach
+                                        </div>
+                                    @endif
+                                    @if ($post->postPics->count() > 2)
+                                        <div class="postImgCol3">
+                                            <div>
+                                                <img class="zoom" src="{{ $post->postPics->first()->path }}">
+                                            </div>
+                                            <a href="/story/{{ $post->id }}">
+                                                <div style="background-image:  linear-gradient(to bottom, #00000099, #00000091),
+                                                            url({{ $post->postPics[1]->path }});"
+                                                    class="moreImg">
+                                                    <h2>+{{ $post->postPics->count() - 1 }}</h2>
+                                                </div>
+                                            </a>
                                         </div>
                                     @endif
                                 </div>

@@ -215,11 +215,39 @@
                                     </p>
                                 </div>
                                 <div class="pic-post">
-                                    @foreach ($post->postPics as $pic)
-                                        <div class="pic-post-img">
-                                            <img class="zoom" style="margin-left: 1px" src="{{ $pic->path }}">
-                                        </div>
-                                    @endforeach
+                                    <div class="pic-post">
+                                        @if ($post->postPics->count() == 1)
+                                            @foreach ($post->postPics as $pic)
+                                                <div class="postImgCol1">
+                                                    <img class="zoom" src="{{ $pic->path }}">
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                        @if ($post->postPics->count() == 2)
+                                            <div class="postImgCol2">
+                                                @foreach ($post->postPics as $pic)
+                                                    <div>
+                                                        <img class="zoom" src="{{ $pic->path }}">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                        @if ($post->postPics->count() > 2)
+                                            <div class="postImgCol3">
+                                                <div>
+                                                    <img class="zoom"
+                                                        src="{{ $post->postPics->first()->path }}">
+                                                </div>
+                                                <a href="/story/{{ $post->id }}">
+                                                    <div style="background-image:  linear-gradient(to bottom, #00000099, #00000091),
+                                                                    url({{ $post->postPics[1]->path }});"
+                                                        class="moreImg">
+                                                        <h2>+{{ $post->postPics->count() - 1 }}</h2>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>

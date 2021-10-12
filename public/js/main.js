@@ -1,6 +1,6 @@
 //window loader
 
-$(window).on('load', function(){
+$(window).on('load', function () {
     $('.wait').fadeOut(500);
 });
 
@@ -57,12 +57,6 @@ mediumZoom('.zoom', {
     margin: 20,
     scrollOffset: 500,
     background: '#000000d9'
-});
-
-const zoom = mediumZoom('[data-zoomable]');
-console.log(zoom);
-zoom.on('open', event => {
-    console.log(event.detail.zoom);
 });
 
 

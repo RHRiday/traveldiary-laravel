@@ -580,17 +580,37 @@ a.name:hover {
 }
 
 .postImgCol1,
-.postImgCol1>img {
+.postImgCol1>img,
+.postImgCol2 img,
+.postImgCol3 img {
     width: 100%;
 }
 
-.postImgCol2 {
+.postImgCol2,
+.postImgCol3 {
     display: flex;
 }
 
-.postImgCol2 div {
+.postImgCol2 div,
+.postImgCol3>div, .postImgCol3>a {
     flex: 6;
     margin-right: .2rem;
+    display: flex;
+    align-items: center;
+}
+
+.moreImg {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.moreImg>h2 {
+    color: #f9fcfb;
 }
 
 .end-of-post p,
