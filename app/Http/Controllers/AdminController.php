@@ -34,6 +34,13 @@ class AdminController extends Controller
         if (Auth::user()->role !== 'admin') {
             abort(404);
         };
+        $files = Storage::disk('google')->allFiles();
+        $size = 0;
+        foreach ($files as $file) {
+            $size += Storage::disk('google')->size($file);
+        }
+
+        $used = round($size / 1024 / 1024 / 12288 * 100, 2); //in MegaBytes
 
         return view('admin.index', [
             'places' => Place::all(),
@@ -47,6 +54,7 @@ class AdminController extends Controller
             'users' => User::where('role', 'visitor')->get(),
             'stories' => Post::all(),
             'guides' => Guide::all(),
+            'used' => $used,
         ]);
     }
 

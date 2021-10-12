@@ -56,7 +56,7 @@ class HomeController extends Controller
                 ->pluck('user_id'))
                 ->where('role', 'visitor')
                 ->inRandomOrder()
-                ->limit(5 - count($following))
+                ->limit(6 - count($following))
                 ->pluck('id')
                 ->toArray());
         } else {
