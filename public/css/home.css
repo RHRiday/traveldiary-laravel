@@ -314,11 +314,10 @@ a.title {
 }
 
 .cover-picture {
-    height: 250px;
-}
-
-.cover-picture img {
-    margin-top: -11%;
+    max-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .profile-picture {
@@ -329,12 +328,10 @@ a.title {
     bottom: 0;
     border: 5px solid white;
     border-radius: 50%;
-}
-
-.profile-picture>img {
-    min-height: 100%;
-    min-width: 100%;
-    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f9f7;
 }
 
 .profile-btn {
@@ -579,11 +576,10 @@ a.name:hover {
     justify-content: space-between;
 }
 
-.postImgCol1,
-.postImgCol1>img,
-.postImgCol2 img,
-.postImgCol3 img {
-    width: 100%;
+.postImgCol1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .postImgCol2,
@@ -980,7 +976,7 @@ h6 {
     }
 
     .cover-picture {
-        height: 150px;
+        max-height: 150px;
     }
 
     .modal {
