@@ -52,12 +52,14 @@ class HomeController extends Controller
 
         $following = $user->following()->pluck('user_id');
         if (count($following) < 5) {
-            $postsToGet = array_merge($following->toArray(), User::where('role', 'visitor')
+            $postsToGet = array_merge($following->toArray(), User::whereNotIn('id', $user->following()
+                ->pluck('user_id'))
+                ->where('role', 'visitor')
                 ->inRandomOrder()
                 ->limit(5 - count($following))
                 ->pluck('id')
                 ->toArray());
-        }else{
+        } else {
             $postsToGet = $following;
         }
         //if new user he will get some random user's story
