@@ -242,7 +242,7 @@ margin-bottom: 5%;
   border: none;
   font-weight: 900;
 }
-.btn:hover, .btn:active {
+.btn:hover, .btn:active, .btn:visited {
   background-image: linear-gradient(90deg, rgb(9, 238, 96), rgb(4, 182, 63));
   border: none;
   color: #fff;

@@ -484,74 +484,74 @@ class UpazilaSeederTwo extends Seeder
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
-            'district' => 'Barisal',
+            'division' => 'barishal',
+            'district' => 'barishal',
             'upazila' => 'Babuganj',
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
-            'district' => 'Barisal',
+            'division' => 'barishal',
+            'district' => 'barishal',
             'upazila' => 'Bakerganj',
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
-            'district' => 'Barisal',
+            'division' => 'barishal',
+            'district' => 'barishal',
             'upazila' => 'Hizla',
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
-            'district' => 'Barisal',
+            'division' => 'barishal',
+            'district' => 'barishal',
             'upazila' => 'Wazirpur ',
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
-            'district' => 'Barisal',
+            'division' => 'barishal',
+            'district' => 'barishal',
             'upazila' => 'Muladi',
         ]);
 
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
+            'division' => 'barishal',
             'district' => 'Bhola',
             'upazila' => 'Bhola Sadar',
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
+            'division' => 'barishal',
             'district' => 'Bhola',
             'upazila' => 'Daulatkhan',
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
+            'division' => 'barishal',
             'district' => 'Bhola',
             'upazila' => 'Burhanuddin',
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
+            'division' => 'barishal',
             'district' => 'Bhola',
             'upazila' => 'Tazumuddin',
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
+            'division' => 'barishal',
             'district' => 'Bhola',
             'upazila' => 'Lalmohan',
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
+            'division' => 'barishal',
             'district' => 'Bhola',
             'upazila' => 'Char Fasson',
         ]);
 
         DB::table('upazilas')->insert([
-            'division' => 'Barisal',
+            'division' => 'barishal',
             'district' => 'Bhola',
             'upazila' => 'Manpura',
         ]);
