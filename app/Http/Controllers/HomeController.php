@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['root', 'search', 'dev']);
+        $this->middleware('auth')->except(['root', 'search', 'about']);
     }
 
     public function root()
@@ -219,8 +219,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function dev()
+    public function about()
     {
-        return view('teams');
+        return view('about');
     }
 }

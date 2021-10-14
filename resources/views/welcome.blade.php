@@ -50,8 +50,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dev">DEVs</a>
+                    <li class="nav-item d-block d-md-none">
+                        <a class="nav-link" href="/about">LEARN MORE</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/home">STORIES</a>
@@ -88,7 +88,7 @@
                                 Coca-Cola!"</h5>
                             <p class="banner-text">— Bob Dylan</p>
                             <a class="common-btn js--com" href="#signup">Join Our Community</a>
-                            <a class="common-btn light" href="#banners">Learn More</a>
+                            <a class="common-btn light" href="{{ route('about') }}">Learn More</a>
                         </div>
                     </div>
 
@@ -141,7 +141,8 @@
 
                             {{-- registration form --}}
                             <div id="signup-form" style="display: none;">
-                                <form method="POST" action="{{ route('register') }}" class="log-sign-form" autocomplete="off">
+                                <form method="POST" action="{{ route('register') }}" class="log-sign-form"
+                                    autocomplete="off">
                                     @csrf
                                     <h3>Open a Diary <span>Now</span></h3>
                                     <input id="name" type="text"
