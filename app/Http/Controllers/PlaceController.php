@@ -42,7 +42,7 @@ class PlaceController extends Controller
         return view('place.index', [
             'places' => $places->get(),
             'divisions' => array_unique($divisions->toArray()),
-            'upazilas' => Upazila::all(),
+            'upazilas' => Upazila::all()->sortBy('upazila'),
         ]);
     }
 

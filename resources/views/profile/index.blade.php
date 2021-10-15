@@ -156,7 +156,7 @@
                         <div class="name-and-handle">
                             <h4 class="profile-name">{{ $user->name }}
                                 @if ($user->username == 'rhriday' || $user->username == 'noyon31' || $user->username == 'shajjad71')
-                                    <a href="/dev"><i class="fas fa-code badge" title="Dev Badge"></i></a>
+                                    <a href="/about"><i class="fas fa-code badge" title="Dev Badge"></i></a>
                                 @endif
                             </h4>
                             <p class="profile-handle" title="Username">@ {{ $user->username }}</p>

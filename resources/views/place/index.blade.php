@@ -41,15 +41,17 @@
             @php
                 $random = rand(0, $places->count() - 1);
             @endphp
-            <a href="/places/{{ $places[$random]->id }}" class="row align-items-center places mt-5 text-decoration-none"
-                style="background-image: linear-gradient(
-                                                                              rgba(0, 0, 0, 0.2), 
-                                                                              rgba(0, 0, 0, 0.2)
-                                                                              ), url('{{ $places[$random]->placePics->first()->path }}')">
-                <div class="col-md-6">
-                    <h1 class="text-white">{{ $places[$random]->name }}</h1>
-                </div>
-            </a>
+            <div class="row justify-content-center">
+                <a href="/places/{{ $places[$random]->id }}" class="col-11 col-md-12 align-items-center places mt-5 text-decoration-none"
+                    style="background-image: linear-gradient(
+                                                                                  rgba(0, 0, 0, 0.2), 
+                                                                                  rgba(0, 0, 0, 0.2)
+                                                                                  ), url('{{ $places[$random]->placePics->first()->path }}')">
+                    <div class="">
+                        <h1 class="text-white">{{ $places[$random]->name }}</h1>
+                    </div>
+                </a>
+            </div>
             <div class="firstpage">
                 <div class="blog-grid-container">
 
