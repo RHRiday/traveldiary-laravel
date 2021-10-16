@@ -13,19 +13,8 @@
             height: 100vh;
             position: absolute;
             text-align: center;
-            background-color: #000000d9;
+            background-color: #000000e8;
             z-index: 99;
-        }
-
-        .waitup>img {
-            animation: spin 30s linear infinite;
-        }
-
-        @keyframes spin {
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
         }
 
     </style>
@@ -34,9 +23,15 @@
 @section('content')
     {{-- top navbar --}}
     <div class="wait">
-        <img src="/loader.png" style="max-width: 100%; margin-top: 100px">
-        <br>
-        <h2 class="text-primary mt-3">TravelDiary loading . . .</h2>
+        <div style="max-width: 100%; margin-top: 200px">
+            <h1 class="text-success mt-3">
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <span class="sr-only">Loading...</span>
+                <span class="mt-2">TravelDiary</span>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <span class="sr-only">Loading...</span>
+            </h1>
+        </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">

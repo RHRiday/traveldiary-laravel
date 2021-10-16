@@ -7,6 +7,21 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/place.css') }}">
+    <style>
+        .circular-img {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .circular-img img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+    </style>
 @endsection
 
 @section('content')
@@ -55,10 +70,10 @@
                         </div>
                         @foreach ($users as $user)
                             <div class="col-12 d-flex border rounded bg-white mb-1">
-                                <div class="p-2 my-auto">
-                                    <img src="{{ $user->dp }}" class="rounded-circle" width="60">
+                                <div class="my-auto circular-img">
+                                    <img src="{{ $user->dp }}">
                                 </div>
-                                <div class="p-2 my-auto">
+                                <div class="ml-md-3 p-2 my-auto col-7">
                                     <h5 class="mb-1">
                                         <a href="/profile/{{ $user->username }}">{{ $user->name }}</a>
                                     </h5>
@@ -73,9 +88,9 @@
                                         </strong> {{ $user->points }}
                                     </p>
                                 </div>
-                                <div class="my-auto ml-auto p-2 bd-highlight">
+                                <div class="my-auto ml-auto">
                                     <a href="/profile/{{ $user->username }}"
-                                        class="btn btn-success btn-md px-2 ml-5">Profile</a>
+                                        class="btn btn-success btn-sm px-2">Profile</a>
                                 </div>
                             </div>
                         @endforeach

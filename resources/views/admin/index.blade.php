@@ -40,22 +40,30 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Pages</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Main pages</h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="row">
-                            <a href="/places" class="col-auto text-center text-info">
+                            <a href="/profile/rhriday" class="col-auto text-center text-primary">
+                                <i class="fas fa-fw fa-folder fa-5x"></i>
+                                <p class="font-weight-bold">Profile</p>
+                            </a>
+                            <a href="/places" class="col-auto text-center text-primary">
                                 <i class="fas fa-fw fa-folder fa-5x"></i>
                                 <p class="font-weight-bold">Places</p>
                             </a>
-                            <a href="/packages" class="col-auto text-center text-info">
+                            <a href="/packages" class="col-auto text-center text-primary">
                                 <i class="fas fa-fw fa-folder fa-5x"></i>
                                 <p class="font-weight-bold">Packages</p>
                             </a>
-                            <a href="/dev" class="col-auto text-center text-info">
+                            <a href="/about" class="col-auto text-center text-primary">
                                 <i class="fas fa-fw fa-folder fa-5x"></i>
-                                <p class="font-weight-bold">Dev</p>
+                                <p class="font-weight-bold">Development</p>
+                            </a>
+                            <a href="/search" class="col-auto text-center text-primary">
+                                <i class="fas fa-fw fa-folder fa-5x"></i>
+                                <p class="font-weight-bold">Search</p>
                             </a>
                         </div>
                     </div>
@@ -71,9 +79,9 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <div class="pt-4 pb-2">
-                            <div class="row">
-                                @foreach ($guides as $guide)
+                        <div class="row">
+                            @foreach ($guides as $guide)
+                                <div class="col-12 d-flex">
                                     <div class="col-auto">
                                         <span class="mr-2">
                                             <i
@@ -81,10 +89,10 @@
                                         </span>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="/{{ $guide->user->username }}">{{ $guide->user->name }}</a>
+                                        <a href="/profile/{{ $guide->user->username }}">{{ $guide->user->name }}</a>
                                     </div>
-                                @endforeach
-                            </div>
+                                </div>
+                            @endforeach
                         </div>
                         <div class="mt-4 text-center small">
                             <span class="mr-2">
@@ -94,7 +102,7 @@
                                 <i class="fas fa-circle text-success"></i> Approved
                             </span>
                             <span class="mr-2">
-                                <i class="fas fa-circle text-warning"></i> Unapprored
+                                <i class="fas fa-circle text-warning"></i> Unapproved
                             </span>
                         </div>
                     </div>
