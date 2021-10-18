@@ -17,6 +17,11 @@
             z-index: 99;
         }
 
+        .warn {
+            position: absolute;
+            bottom: 50px;
+        }
+
     </style>
 @endsection
 
@@ -24,6 +29,9 @@
     {{-- top navbar --}}
     <div class="wait">
         <div style="max-width: 100%; margin-top: 200px">
+            <p class="text-center warn text-info mx-auto" id="textContainer">
+
+            </p>
             <h1 class="text-success mt-3">
                 <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                 <span class="sr-only">Loading...</span>
@@ -185,4 +193,15 @@
             </div>
         </div>
     </section>
+    <script src="https://unpkg.com/typeit"></script>
+    <script>
+        typedJs = new TypeIt('#textContainer', {
+            strings: "Loading resources in your browser for the first time may take a while. Please be patient. ",
+            speed: 50,
+            startDelay: 0,
+        });
+        setTimeout(function() {
+            typedJs.go();
+        }, 1000);
+    </script>
 @endsection
