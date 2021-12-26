@@ -45,7 +45,7 @@ class PackageController extends Controller
      */
     public function create()
     {
-        if (!Auth::user()->guide) {
+        if (!Auth::user()->guide || Auth::user()->guide->approval == 0) {
             return redirect('/guides');
         }
         return view('package.create', [
